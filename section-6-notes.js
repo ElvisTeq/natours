@@ -51,3 +51,26 @@
 // Will never remember the previous request
 // BadEx => GET /tours/nextPage => not good, nextPage will use previous page + 1
 // GoodEx => GET /tours/page/6 => all we need to do is add 1 to the ID for next page
+
+/////////////////////////////////////////////////////////////////////
+
+// #3
+// Starting Our API: Handling GET Requests
+
+// -------------------------------------------- res.json({})
+// => express method
+// => sends a response that is the parameter converted to a JSON string using the JSON.stringify() method.
+// => returns => object
+
+/////////////////////////////////////////////////////////////////////
+
+// #4
+// Handling POST request
+
+// Middle wear
+// -------------------------------------------- app.use(express.json());
+// => function that can modify incoming request data
+// => Automatically converts incoming JSON data into JS code when using 'app'
+
+// -------------------------------------------- Object.assign({Obj1}, {Obj2})
+// => Merge 2 objects and returns a new Object
