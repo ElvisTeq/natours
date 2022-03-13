@@ -127,3 +127,53 @@
 
 // Reques-Response Cycle => Everything, All the process together in the Middleware
 // From => Incoming request => Middleware stack/functions => response
+
+/////////////////////////////////////////////////////////////////////
+
+// #10
+// Creating Our Own Middleware
+
+// ------------------------------------------ .use((req, res, next) => {})
+// Method to create middleware
+// next() => always needs to be called last in order to work
+
+/////////////////////////////////////////////////////////////////////
+
+// #11
+// Using 3rd-Party Middleware
+
+// Just need to install the middleware and ".use()" it
+// ------------------------------------------ npm i morgan
+// => app.use(morgan('dev'));
+// Usefull tool for developing, automatically logs in the terminal some data about our request
+
+/////////////////////////////////////////////////////////////////////
+
+// #12
+// Implementing the "Users" Routes
+
+// Created "app.route()" for users, and functions created for users
+
+/////////////////////////////////////////////////////////////////////
+
+// #13
+// Creating and Mounting Multiple Routers
+
+// Middleware function
+// ----------------------------------------- express.Router()
+// To create a sub router, necessary when we need to split our code in modules
+// Ex => const tourRouter = express.Router()
+// => app.use('/api/v1/tours', tourRouter)
+
+/////////////////////////////////////////////////////////////////////
+
+// #14
+// A better File Structure
+
+// Refactored all Users/Tours by their own module
+
+// "tourRoutes.js" / "userRouters.js" => files created
+// Contains all routes
+
+// 'userController.js' / 'tourController.js' => files created
+// Contrains all function/methods
