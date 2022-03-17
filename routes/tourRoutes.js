@@ -3,10 +3,17 @@ const fs = require('fs');
 
 const tourController = require('./../controllers/tourController.js');
 
+const router = express.Router();
+
+// #15 _______________________________________________________________
+// Param Middleware
+
+// Middleware that only run with certain params
+router.param('id', tourController.checkID);
+// in 'id' => do 'tourController.checkID'
+
 // #12 _______________________________________________________________
 // User Routes
-
-const router = express.Router();
 
 // app.get('/api/v1/tours', getAllTours);
 // app.post('/api/v1/tours', createTour);
@@ -14,7 +21,7 @@ const router = express.Router();
 router
   .route('/')
   .get(tourController.getAllTours)
-  .post(tourController.createTour);
+  .post(tourController.checkBody, tourController.createTour);
 // '/' => We will define '/api/v1/tours' by "app.use()" in "app.js"
 
 // app.get('/api/v1/tours/:id?', getTour);

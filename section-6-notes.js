@@ -177,3 +177,31 @@
 
 // 'userController.js' / 'tourController.js' => files created
 // Contrains all function/methods
+
+/////////////////////////////////////////////////////////////////////
+
+// #15
+// Param Middleware
+
+// ------------------------------------------- router.param('id' (req, res, next, val) {})
+// Any router function that has => "('id' (req, res, next, val) {})" is a middleware function
+// Middleware that only run with certain parameters
+// Ex => 'tourRouters.js'
+// next() => always needs to be called on Middleware functions
+
+// ********** NOTED IMPORTANT ***********
+// res.status().json({}) => is the key to work with the web-site
+
+/////////////////////////////////////////////////////////////////////
+
+// #16
+// Chaining multiple Middleware Functions
+
+// "tourController.js"
+// => Created a middleware
+
+// ********** NOTED IMPORTANT ***********
+// res.status().json({}) => is the key to work with the web-site
+
+// If any param of (req, res, next, val) is not used in the function => function will not work
+// that's why the "checkBody" middleware has only (req, res, next)
