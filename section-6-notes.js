@@ -247,9 +247,9 @@
 // --------------------------------------------------- NODE_ENV=develpment X=23 nodemon server.js
 // X=23 => manual environment vartiable, it could be anything we put
 
-// ***********************************
+// *****************************************************
 // We can create a file containing all environment variables
-// fileName => config.env
+// fileName => "config.env" created
 // --------------------------------------------------- npm i dotenv
 // to install package to use out 'config.env' file
 
@@ -258,3 +258,7 @@
 // require('dotenv') => is needed for this method
 // "SET NODE_ENV=development&&nodemon server.js" was added in "package.json" start" for this to run
 // => npm start will make it run
+
+// --------------------------------------------------- process.env.NODE_ENV
+// console.log this => logs current environment 'production/developer'
+// NODE_ENV => was set manually on the "config.env" File

@@ -19,10 +19,9 @@ const app = express();
 // if we are on delevepment mode, automatically run morgan.dev
 console.log(process.env.NODE_ENV);
 if (process.env.NODE_ENV === 'development') {
-  app.use(morgan.dev);
+  app.use(morgan('dev'));
 }
 
-app.use(morgan('dev'));
 app.use(express.json());
 
 // #17 _____________________________________________________________
