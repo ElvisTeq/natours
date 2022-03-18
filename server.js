@@ -1,3 +1,7 @@
+const dotenv = require('dotenv');
+dotenv.config({ path: './config.env' });
+// this makes "config.env" file to work
+
 const app = require('./app.js');
 // . => current folder
 

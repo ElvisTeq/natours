@@ -205,3 +205,56 @@
 
 // If any param of (req, res, next, val) is not used in the function => function will not work
 // that's why the "checkBody" middleware has only (req, res, next)
+
+/////////////////////////////////////////////////////////////////////
+
+// #17
+// Serving Static Files
+
+// How to open static files
+
+// --------------------------------------------------- app.use(express.static('folder/location'))
+// To access the file in URL will be => localhost:3000/file
+// localhost:3000 => folder
+// file => file inside the folder
+
+// Example.
+// app.use(express.static(`${__dirname}/public`));
+// localhost:3000/overview.html => Will open "public/overview.html"
+// Ex => localhost:3000/img/pin.png => Will open "public/img/pin.png"
+
+/////////////////////////////////////////////////////////////////////
+
+// #18
+// Environment Variables
+
+// => Are global variables that are used to define the environment in which the node app is running
+
+// Production Environments / Development Environments
+// => Development is default
+
+// --------------------------------------------------- app.get('env');
+// console.log(app.get('env')) => to log current environment
+// this is from express
+
+// --------------------------------------------------- process.env
+// console.log(process.env) => will log all env data of Node.js
+// process.env.USERNAME => example to get USERNAME from the data
+
+// --------------------------------------------------- NODE_ENV=develpment nodemon server.js
+// Same result as above but this is a command for the terminal
+
+// --------------------------------------------------- NODE_ENV=develpment X=23 nodemon server.js
+// X=23 => manual environment vartiable, it could be anything we put
+
+// ***********************************
+// We can create a file containing all environment variables
+// fileName => config.env
+// --------------------------------------------------- npm i dotenv
+// to install package to use out 'config.env' file
+
+// --------------------------------------------------- dotenv.config({path: './config.env'})
+// => method to use out config file
+// require('dotenv') => is needed for this method
+// "SET NODE_ENV=development&&nodemon server.js" was added in "package.json" start" for this to run
+// => npm start will make it run

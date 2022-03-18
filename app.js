@@ -12,8 +12,24 @@ const app = express();
 
 // Middlewares
 // => functions that can modify incoming request data
+
+// #18 _____________________________________________________________
+// Environment Variables
+
+// if we are on delevepment mode, automatically run morgan.dev
+console.log(process.env.NODE_ENV);
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan.dev);
+}
+
 app.use(morgan('dev'));
 app.use(express.json());
+
+// #17 _____________________________________________________________
+// Serving Static Files
+
+app.use(express.static(`${__dirname}/public`));
+// __dirname => this file name
 
 // #10 _____________________________________________________________
 // Creating Middleware
