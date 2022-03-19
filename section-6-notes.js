@@ -262,3 +262,14 @@
 // --------------------------------------------------- process.env.NODE_ENV
 // console.log this => logs current environment 'production/developer'
 // NODE_ENV => was set manually on the "config.env" File
+
+/////////////////////////////////////////////////////////////////////
+
+// #19
+// Setting Up ESLint + Prettier in VS Code
+
+// 1. Install ESLint and Prettier
+// 2. In the console => "npm i eslint prettier eslint-config-prettier eslint-plugin-prettier eslint-config-airbnb eslint-plugin-node eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react --save-dev"
+// 3. has to be install localy
+
+// Is basically a plugin to make rules to follow to prevent error in out code
