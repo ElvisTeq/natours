@@ -11,3 +11,6 @@
 
 // ---------------------------------------------- db.tours.find()
 // return our tours created
+
+// ---------------------------------------------- show dbs
+// Shows dbs content
