@@ -39,6 +39,7 @@ const tourSchema = new mongoose.Schema({
   },
   rating: {
     type: Number,
+    // default => will show if no rating is enter
     default: 4.5,
   },
   price: {
@@ -49,6 +50,23 @@ const tourSchema = new mongoose.Schema({
 
 // "Tour" => var name and model name are similar for convenience
 const Tour = mongoose.model('Tour', tourSchema);
+
+// #3 __________________________________________________________
+// Creating Documents and Testing the Model
+
+const testTour = new Tour({
+  name: 'The Park Camper',
+  price: 997,
+});
+
+testTour
+  .save()
+  .then((doc) => {
+    console.log(doc);
+  })
+  .catch((err) => {
+    console.log('ERROR:', err);
+  });
 
 // _____________________________________________________________
 const port = 3000;

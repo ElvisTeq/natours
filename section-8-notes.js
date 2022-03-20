@@ -28,8 +28,29 @@
 
 // --------------------------------------------- new mongoose.Schema({})
 // To create schema
+// This is were we put the rules, what content is needed for the created objects
 
 // --------------------------------------------- new mongoose.model('Name', Schema)
 // To create model
+// This is basically our class
+// Ex => new 'Name' ({Data: value})
 
 // Example on => 'server.js'
+
+//////////////////////////////////////////////////////////////////////////////
+
+// #3
+// Creating Documents and Testing the Model
+
+// ---------------------------------------------- new "Model"({Data})
+// To create a document
+// It works similar to classes
+// const whatever = new "Model"({Data})
+
+// ---------------------------------------------- .save()
+// Method to save created model
+// Returns a promise => .then().catch()
+
+// Example => "server.js"
+
+//////////////////////////////////////////////////////////////////////////////
