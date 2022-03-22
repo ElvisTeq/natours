@@ -29,7 +29,7 @@ exports.checkID = (req, res, next, val) => {
 */
 // #16 _______________________________________________________________
 // Chaining multiple Middleware Functions
-
+/*
 exports.checkBody = (req, res, next) => {
   // req => is what the web-site send to us
   if (!req.body.name || !req.body.price) {
@@ -41,7 +41,7 @@ exports.checkBody = (req, res, next) => {
   }
   next();
 };
-
+*/
 // _____________________________________________________________________
 
 // req.requestTime => middleware from 'app'
@@ -81,14 +81,27 @@ exports.getTour = (req, res) => {
 
 // #4 ________________________________________________________________
 
-exports.createTour = (req, res) => {
-  res.status(201).json({
-    // 201 => created
-    status: 'success',
-    // data: {
-    //   tour: newTour,
-    // },
-  });
+exports.createTour = async (req, res) => {
+  try {
+    // const newTour = new Tour()
+    // newTour.save().then()
+    const newTour = await Tour.create(req.body);
+    // req.body => data from request
+
+    res.status(201).json({
+      // 201 => created
+      status: 'success',
+      data: {
+        tour: newTour,
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      // 400 => bad request
+      status: 'fail',
+      message: 'Invalid data sent!',
+    });
+  }
 };
 
 // #6 ________________________________________________________________

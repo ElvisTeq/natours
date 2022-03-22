@@ -77,3 +77,18 @@
 
 // "./models/tourModel.js" => created
 // => for Schema & Model
+
+//////////////////////////////////////////////////////////////////////////////
+
+// #6
+// Another way of creating documents
+
+// checkBody function from "tourController.js" deleted
+
+// -------------------------------------------------- modelName.create({})
+// => const name = modelName.create({})
+// A easier way to create a model
+// => Returns a promise
+// Example in => tourController.js => "createTour"
+
+// Starting to use Async/Await & Try/Catch

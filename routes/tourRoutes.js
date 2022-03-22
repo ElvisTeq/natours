@@ -21,7 +21,8 @@ router.param('id', tourController.checkID);
 router
   .route('/')
   .get(tourController.getAllTours)
-  .post(tourController.checkBody, tourController.createTour);
+  .post(tourController.createTour);
+// checkBody function deleter
 // '/' => We will define '/api/v1/tours' by "app.use()" in "app.js"
 
 // app.get('/api/v1/tours/:id?', getTour);
