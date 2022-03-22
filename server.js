@@ -26,34 +26,20 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+// _____________________________________________________________
+
+const port = 3000;
+app.listen(port, () => {
+  console.log(`App running on port ${port}...`);
+});
 
 // #2 __________________________________________________________
 // Creating a simple Tour model
-
-const tourSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    // [true, 'errorString']
-    required: [true, 'A tour must have a name'],
-    unique: true,
-  },
-  rating: {
-    type: Number,
-    // default => will show if no rating is enter
-    default: 4.5,
-  },
-  price: {
-    type: Number,
-    required: [true, 'A tour must have a price'],
-  },
-});
-
-// "Tour" => var name and model name are similar for convenience
-const Tour = mongoose.model('Tour', tourSchema);
+// Refactored/Moved to "tourModel.js"
 
 // #3 __________________________________________________________
 // Creating Documents and Testing the Model
-
+/*
 const testTour = new Tour({
   name: 'The Park Camper',
   price: 997,
@@ -67,9 +53,4 @@ testTour
   .catch((err) => {
     console.log('ERROR:', err);
   });
-
-// _____________________________________________________________
-const port = 3000;
-app.listen(port, () => {
-  console.log(`App running on port ${port}...`);
-});
+*/

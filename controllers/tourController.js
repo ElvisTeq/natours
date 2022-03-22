@@ -1,7 +1,8 @@
 const fs = require('fs');
+const Tour = require('./../models/tourModel.js');
 
 // #3 ______________________________________________________________
-
+/*
 // File was a json file
 // JSON.parse => to convert into JS
 const tours = JSON.parse(
@@ -10,10 +11,10 @@ const tours = JSON.parse(
 // __dirname => this file location
 // .. => go back once
 // then => dev-data/data/tours-simple.json
-
+*/
 // #15 _______________________________________________________________
 // Param Middleware
-
+/*
 exports.checkID = (req, res, next, val) => {
   // "val" => value of parameter of URL entered
   console.log(`Tour id is: ${val}`);
@@ -25,7 +26,7 @@ exports.checkID = (req, res, next, val) => {
   }
   next();
 };
-
+*/
 // #16 _______________________________________________________________
 // Chaining multiple Middleware Functions
 
@@ -51,10 +52,9 @@ exports.getAllTours = (req, res) => {
   res.status(200).json({
     status: 'success',
     requestedAt: req.requestTime,
-    results: tours.length,
-    data: {
-      tours,
-    },
+    // results: tours.length,
+    // data: {
+    //   tours,
   });
 };
 
@@ -68,47 +68,27 @@ exports.getTour = (req, res) => {
   const id = req.params.id * 1;
 
   // Get tour based on ID enter
-  const tour = tours.find((el) => el.id === id);
+  // const tour = tours.find((el) => el.id === id);
 
-  // Display tour from ID
-  res.status(200).json({
-    status: 'success',
-    data: {
-      tour,
-    },
-  });
+  // // Display tour from ID
+  // res.status(200).json({
+  //   status: 'success',
+  //   data: {
+  //     tour,
+  //   },
+  // });
 };
 
 // #4 ________________________________________________________________
 
 exports.createTour = (req, res) => {
-  // console.log(req.body);
-
-  // Creating new tours/ID
-  const newId = tours[tours.length - 1].id + 1;
-  const newTour = Object.assign({ id: newId }, req.body);
-  // req.body => What we want to post, it was what we typed in the Postman body
-
-  tours.push(newTour);
-
-  // To add/save data into the file
-  fs.writeFile(
-    `${__dirname}/dev-data/data/tours-simple.json`,
-    // File to override
-    JSON.stringify(tours),
-    // Data that we want to write to the file
-    // JSON.stringify => because File is written in .json
-    (err) => {
-      // res => display result
-      res.status(201).json({
-        // 201 => created
-        status: 'success',
-        data: {
-          tour: newTour,
-        },
-      });
-    }
-  );
+  res.status(201).json({
+    // 201 => created
+    status: 'success',
+    // data: {
+    //   tour: newTour,
+    // },
+  });
 };
 
 // #6 ________________________________________________________________

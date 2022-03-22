@@ -54,3 +54,26 @@
 // Example => "server.js"
 
 //////////////////////////////////////////////////////////////////////////////
+
+// #4
+// MVC, Model, View, Controller
+
+// Application logic => "Controller"
+// => Code about the application
+// Ex. managing request and responses
+
+// Business Logic => "Model"
+// => Code that solves business problems
+// Ex. Creating new tours in database, Check users password, Validating users input data
+
+// FAT MODELS/THIN CONTROLLES:
+// => Offload ad much logic as possible into the model
+// => Keep the controllers as simple/little logic as possible
+
+//////////////////////////////////////////////////////////////////////////////
+
+// #5
+// Refactoring for MVC (Model, View, Controller)
+
+// "./models/tourModel.js" => created
+// => for Schema & Model

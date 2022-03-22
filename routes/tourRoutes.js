@@ -7,11 +7,11 @@ const router = express.Router();
 
 // #15 _______________________________________________________________
 // Param Middleware
-
+/*
 // Middleware that only run with certain params
 router.param('id', tourController.checkID);
 // in 'id' => do 'tourController.checkID'
-
+*/
 // #12 _______________________________________________________________
 // User Routes
 
