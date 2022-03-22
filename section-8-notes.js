@@ -92,3 +92,44 @@
 // Example in => tourController.js => "createTour"
 
 // Starting to use Async/Await & Try/Catch
+
+//////////////////////////////////////////////////////////////////////////////
+
+// #7
+// Reading documents with mongoose
+
+// "getAllTours","getTour"  from "tourController.js" => changes
+
+// -------------------------------------------------- .find({})
+// If no argument => will return all
+
+// -------------------------------------------------- .findOne({}, optionalFunction)
+// => to find one object
+// => Optional Second arg => function
+
+// -------------------------------------------------- .findById()
+// translated to => .findOne({ _id: (ARGUMENT) })
+
+//////////////////////////////////////////////////////////////////////////////
+
+// #8
+// Updating documents
+// => Updates and Keep unchanged data
+
+// "Query.prototype" in any documentation => methods/function that can only be use by instances
+
+// Changes made on "updateTour" => tourController.js
+// ------------------------------------------------- .findByIdAndUpdate(1, 2, {3})
+// 1 => req.params.id => Id
+// 2 => req.body => Data we want to update
+// 3 => Options => Example = "updateTour" => tourController.js
+
+//////////////////////////////////////////////////////////////////////////////
+
+// #9
+// Deleting Documents
+// => No need to send data back to the client when deleting
+
+// "deleteTour" => changes
+// ----------------------------------------------- .findByIdAndDelete(req.params.id)
+// => finds ID and delete

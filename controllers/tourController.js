@@ -45,38 +45,48 @@ exports.checkBody = (req, res, next) => {
 // _____________________________________________________________________
 
 // req.requestTime => middleware from 'app'
-// getAllTours => is called by 'app'
-exports.getAllTours = (req, res) => {
-  console.log(req.requestTime);
+exports.getAllTours = async (req, res) => {
+  try {
+    const tours = await Tour.find();
+    // .find() => if no argument = all Tour data will be returned
 
-  res.status(200).json({
-    status: 'success',
-    requestedAt: req.requestTime,
-    // results: tours.length,
-    // data: {
-    //   tours,
-  });
+    res.status(200).json({
+      status: 'success',
+      requestedAt: req.requestTime,
+      results: tours.length,
+      data: {
+        tours,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err,
+    });
+  }
 };
 
 // #5 ________________________________________________________________
 
-exports.getTour = (req, res) => {
-  // req.params => all parameters enter/use on the URL
-  console.log(req.params);
+exports.getTour = async (req, res) => {
+  try {
+    // req.params => all parameters enter/use on the URL
+    const tour = await Tour.findById(req.params.id);
+    // id => route('/:id') we specified in "tourRoutes.js"
 
-  // Get ID param in URL & convert to number
-  const id = req.params.id * 1;
-
-  // Get tour based on ID enter
-  // const tour = tours.find((el) => el.id === id);
-
-  // // Display tour from ID
-  // res.status(200).json({
-  //   status: 'success',
-  //   data: {
-  //     tour,
-  //   },
-  // });
+    // Display tour from ID
+    res.status(200).json({
+      status: 'success',
+      data: {
+        tour,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err,
+    });
+  }
 };
 
 // #4 ________________________________________________________________
@@ -107,15 +117,44 @@ exports.createTour = async (req, res) => {
 // #6 ________________________________________________________________
 // Updating existing tours
 
-exports.updateTour = (req, res) => {
-  res
-    .status(200)
-    .json({ status: 'success', data: { tour: '<Updated tour Here...>' } });
+exports.updateTour = async (req, res) => {
+  try {
+    const tour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
+      // to return new changes
+      new: true,
+      // to validate the schema rules
+      runValidators: true,
+    });
+
+    res.status(200).json({
+      status: 'success',
+      data: {
+        tour,
+      },
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err,
+    });
+  }
 };
 
 // #7 ________________________________________________________________
 // Deleting Tours
 
-exports.deleteTour = (req, res) => {
-  res.status(204).json({ status: 'success', data: null });
+exports.deleteTour = async (req, res) => {
+  try {
+    await Tour.findByIdAndDelete(req.params.id);
+
+    res.status(204).json({
+      status: 'success',
+      data: null,
+    });
+  } catch (err) {
+    res.status(404).json({
+      status: 'fail',
+      message: err,
+    });
+  }
 };
