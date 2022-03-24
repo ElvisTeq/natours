@@ -133,3 +133,35 @@
 // "deleteTour" => changes
 // ----------------------------------------------- .findByIdAndDelete(req.params.id)
 // => finds ID and delete
+
+//////////////////////////////////////////////////////////////////////////////
+
+// #10
+// Modeling the Tours
+
+// Updated our schema from "tourModel.js"
+
+//////////////////////////////////////////////////////////////////////////////
+
+// #11
+// Importing Development Data
+// => Using the terminal to run functions from another file
+
+// import-dev-data.js => created on "data" folder
+
+// ---------------------------------------------- .deleteMany()
+// If no argument => will delete all
+
+// ******** In the Terminal Console **********
+// ---------------------------------------------- process.argv
+// console.log(process.argv)
+// => The data we typed in the "Terminal" => logs where the command is located
+// If we type => "node dev-data/data/import-dev-data.js"
+// Will log an Array of the location of arguments we type in the Terminal
+
+// Example
+// node dev-data/data/import-dev-data.js --import
+// console.log(process.argv) => [node, dev-data/data/import-dev-data.js, --import]
+
+// ---------------------------------------------- process.exit()
+// equivalent to => ctrl+c
