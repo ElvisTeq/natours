@@ -187,3 +187,15 @@
 // ************ NOTE ***************
 // We await separately in one short line, after finishing doing our queryString manipulation
 // => If not, we would not be ablo to chain the queryString after is "await"
+
+//////////////////////////////////////////////////////////////////////////////
+
+// #13
+// Advanced Filtering
+// Sorting by => gte | gt | lte | lt
+
+// "getAllTours" => "tourController.js"
+
+// Template literal used with .replace()
+// => to add (MongoDB operator sign "$") to all matching template literal
+// $ => MongoDB needs in order to work

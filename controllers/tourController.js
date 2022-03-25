@@ -49,7 +49,10 @@ exports.getAllTours = async (req, res) => {
   try {
     // localhost:3000/api/v1/tours?duration=5&difficulty=easy
 
+    console.log(req.query);
+
     // BUILD QUERY
+    // 1) Filtering
 
     // Creating a hard copy => destructuring
     // => Deleting excluded fields
@@ -58,10 +61,19 @@ exports.getAllTours = async (req, res) => {
     excludedFields.forEach((el) => delete queryObj[el]);
 
     // req.query => query string => ?duration=5&difficulty=easy
-    console.log(req.query, queryObj);
+
+    // 2) Advanced Filtering
+
+    // Convert into string => to use ".replace" method
+    let queryStr = JSON.stringify(queryObj);
+    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
+    // \b => Exactly the same, words that include them won't count
+    // g => Global, to make changes on all, if not added will just change the first one
+
+    console.log(JSON.parse(queryStr));
 
     // Filtering Method 1
-    const query = Tour.find(req.query);
+    const query = Tour.find(JSON.parse(queryStr));
     // .find() => if no argument = all Tour data will be returned
     // We do not "await" query so we can still chain methods
 
