@@ -47,9 +47,35 @@ exports.checkBody = (req, res, next) => {
 // req.requestTime => middleware from 'app'
 exports.getAllTours = async (req, res) => {
   try {
-    const tours = await Tour.find();
-    // .find() => if no argument = all Tour data will be returned
+    // localhost:3000/api/v1/tours?duration=5&difficulty=easy
 
+    // BUILD QUERY
+
+    // Creating a hard copy => destructuring
+    // => Deleting excluded fields
+    const queryObj = { ...req.query };
+    const excludedFields = ['page', 'soft', 'limit', 'fields'];
+    excludedFields.forEach((el) => delete queryObj[el]);
+
+    // req.query => query string => ?duration=5&difficulty=easy
+    console.log(req.query, queryObj);
+
+    // Filtering Method 1
+    const query = Tour.find(req.query);
+    // .find() => if no argument = all Tour data will be returned
+    // We do not "await" query so we can still chain methods
+
+    // // Filtering Method 2
+    // const query = await Tour.find()
+    //   .where('duration')
+    //   .equals(5)
+    //   .where('difficulty')
+    //   .equals('easy');
+
+    // EXECUTE QUERY
+    const tours = await query;
+
+    // SEND RESPONSE
     res.status(200).json({
       status: 'success',
       requestedAt: req.requestTime,

@@ -165,3 +165,25 @@
 
 // ---------------------------------------------- process.exit()
 // equivalent to => ctrl+c
+
+//////////////////////////////////////////////////////////////////////////////
+
+// #12
+// Making the API Better: Filtering
+
+// Changes made in => "getAllTours" in "tourController.js"
+
+// in the URL => everything after the "?"
+// Ex => localhost:3000/api/v1/tours?duration=5&difficulty=easy
+// => Filtering everything with => duration = 5, difficulty = easy
+
+// ---------------------------------------------- req.query
+// console.log(req.query)
+// the filtering that EXPRESS automatically do for us for the query string
+
+// Deleting unwanted query string by creating a copy of the "req.query" and a array of query-string we dont want
+// => excludedArr.forEach(el => delete queryStringCopy[el])
+
+// ************ NOTE ***************
+// We await separately in one short line, after finishing doing our queryString manipulation
+// => If not, we would not be ablo to chain the queryString after is "await"
