@@ -191,7 +191,7 @@
 //////////////////////////////////////////////////////////////////////////////
 
 // #13
-// Advanced Filtering
+// Advanced Sorting
 // Sorting by => gte | gt | lte | lt
 
 // "getAllTours" => "tourController.js"
@@ -199,3 +199,29 @@
 // Template literal used with .replace()
 // => to add (MongoDB operator sign "$") to all matching template literal
 // $ => MongoDB needs in order to work
+
+//////////////////////////////////////////////////////////////////////////////
+
+// #14
+// Advanced Sorting
+
+// Example in "getAllTours"
+// -------------------------------------------- query.sort("stringNameToSort")
+// ?sort=price => URL
+// ?sort=-price => hight to low (reverse)
+
+// -------------------------------------------- "-"
+// Use to reverse the sorting
+
+// ********************* NOTED *********************
+// sort = price,ratingsAverage
+// => is was what we typed in the URL
+
+// Mongoose works like this => .sort('stringNameToSort stringNameToSort')
+// In order to sort 2 things at the same time => we need to convert "sort" into a string that ".sort" can take
+// => removing the ","
+
+// Example
+// sort = price,ratingsAverage
+// => req.query.sort.split(',').join(' ');
+// sort = price ratingsAverage

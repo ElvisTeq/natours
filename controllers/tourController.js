@@ -52,17 +52,17 @@ exports.getAllTours = async (req, res) => {
     console.log(req.query);
 
     // BUILD QUERY
-    // 1) Filtering
+    // 1A) Filtering
 
     // Creating a hard copy => destructuring
     // => Deleting excluded fields
     const queryObj = { ...req.query };
-    const excludedFields = ['page', 'soft', 'limit', 'fields'];
+    const excludedFields = ['page', 'sort', 'limit', 'fields'];
     excludedFields.forEach((el) => delete queryObj[el]);
 
     // req.query => query string => ?duration=5&difficulty=easy
 
-    // 2) Advanced Filtering
+    // 1B) Advanced Filtering
 
     // Convert into string => to use ".replace" method
     let queryStr = JSON.stringify(queryObj);
@@ -70,10 +70,8 @@ exports.getAllTours = async (req, res) => {
     // \b => Exactly the same, words that include them won't count
     // g => Global, to make changes on all, if not added will just change the first one
 
-    console.log(JSON.parse(queryStr));
-
     // Filtering Method 1
-    const query = Tour.find(JSON.parse(queryStr));
+    let query = Tour.find(JSON.parse(queryStr));
     // .find() => if no argument = all Tour data will be returned
     // We do not "await" query so we can still chain methods
 
@@ -83,6 +81,17 @@ exports.getAllTours = async (req, res) => {
     //   .equals(5)
     //   .where('difficulty')
     //   .equals('easy');
+
+    // 2) Sorting
+    if (req.query.sort) {
+      const sortBy = req.query.sort.split(',').join(' ');
+      // sort = price,ratingsAverage
+      // We need => sort = price ratingsAverage => for .sort() to work
+      query = query.sort(sortBy);
+    } else {
+      query = query.sort('-createdAt');
+      // Sort by creation time "new~old"
+    }
 
     // EXECUTE QUERY
     const tours = await query;
