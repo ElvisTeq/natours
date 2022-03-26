@@ -239,3 +239,27 @@
 // **************** NOTE ******************
 // select: false, => in the schema to make it excluded by default
 // => permanently hide form the output
+
+//////////////////////////////////////////////////////////////////////////////
+
+// #16
+// Pagination
+
+// Impemented in "getAllTours"
+
+// -------------------------------------------- query.skip(Num)
+// => how many object to skip
+
+// -------------------------------------------- query.limit(Num)
+// => how many to show per page
+
+// Example
+// => page=2&limit=10 => p1 1-10 => p2 11-20 => p3 21-30
+// const page = req.query.page * 1 || 1;
+// const limit = req.query.limit * 1 || 100;
+// const skip = (page - 1) * limit;
+// query = query.skip(skip).limit(limit);
+
+// -------------------------------------------------------- Tour.countDocuments()
+// Method to get the total of documents
+// Returns a promise (await)
