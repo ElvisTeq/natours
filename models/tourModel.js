@@ -56,6 +56,8 @@ const tourSchema = new mongoose.Schema({
     type: Date,
     // Returns times in miliseconds, but MongoDB will parse this for us
     default: Date.now(),
+    // Exclude Field Defaul
+    select: false,
   },
   // Array of only "Date"
   startDates: [Date],

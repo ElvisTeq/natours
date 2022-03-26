@@ -225,3 +225,17 @@
 // sort = price,ratingsAverage
 // => req.query.sort.split(',').join(' ');
 // sort = price ratingsAverage
+
+//////////////////////////////////////////////////////////////////////////////
+
+// #15
+// Making the API Better: Limiting Fields
+
+// -------------------------------------------- query.select('')
+// -------------------------- "-" => To exclude
+// Expects => ('field1 field2 field3')
+// Solution => req.query.fields.split(',').join(' ');
+
+// **************** NOTE ******************
+// select: false, => in the schema to make it excluded by default
+// => permanently hide form the output
