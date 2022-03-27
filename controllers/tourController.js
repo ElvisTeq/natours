@@ -1,5 +1,6 @@
 const fs = require('fs');
-const Tour = require('./../models/tourModel.js');
+const Tour = require('./../models/tourModel');
+const APIFeatures = require('./../utils/apiFeatures');
 
 // #3 ______________________________________________________________
 /*
@@ -44,6 +45,13 @@ exports.checkBody = (req, res, next) => {
 */
 // _____________________________________________________________________
 
+exports.aliasTopTours = (req, res, next) => {
+  req.query.limit = '5';
+  req.query.sort = '-ratingsAverage,price';
+  req.query.fields = 'name,price,ratingsAverage,summary,difficulty';
+  next();
+};
+
 // req.requestTime => middleware from 'app'
 exports.getAllTours = async (req, res) => {
   try {
@@ -51,77 +59,90 @@ exports.getAllTours = async (req, res) => {
 
     console.log(req.query);
 
+    // Refactored to "APIFeatures"
+    // ______________________________________________________________
     // BUILD QUERY
     // 1A) Filtering
 
-    // Creating a hard copy => destructuring
-    // => Deleting excluded fields
-    const queryObj = { ...req.query };
-    const excludedFields = ['page', 'sort', 'limit', 'fields'];
-    excludedFields.forEach((el) => delete queryObj[el]);
+    // // Creating a hard copy => destructuring
+    // // => Deleting excluded fields
+    // const queryObj = { ...req.query };
+    // const excludedFields = ['page', 'sort', 'limit', 'fields'];
+    // excludedFields.forEach((el) => delete queryObj[el]);
 
-    // req.query => query string => ?duration=5&difficulty=easy
+    // // req.query => query string => ?duration=5&difficulty=easy
 
-    // 1B) Advanced Filtering
+    // // 1B) Advanced Filtering
 
-    // Convert into string => to use ".replace" method
-    let queryStr = JSON.stringify(queryObj);
-    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
-    // \b => Exactly the same, words that include them won't count
-    // g => Global, to make changes on all, if not added will just change the first one
+    // // Convert into string => to use ".replace" method
+    // let queryStr = JSON.stringify(queryObj);
+    // queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
+    // // \b => Exactly the same, words that include them won't count
+    // // g => Global, to make changes on all, if not added will just change the first one
 
-    // Filtering Method 1
-    let query = Tour.find(JSON.parse(queryStr));
-    // .find() => if no argument = all Tour data will be returned
-    // We do not "await" query so we can still chain methods
+    // // Filtering Method 1
+    // let query = Tour.find(JSON.parse(queryStr));
+    // // .find() => if no argument = all Tour data will be returned
+    // // We do not "await" query so we can still chain methods
 
-    // // Filtering Method 2
-    // const query = await Tour.find()
-    //   .where('duration')
-    //   .equals(5)
-    //   .where('difficulty')
-    //   .equals('easy');
+    // // // Filtering Method 2
+    // // const query = await Tour.find()
+    // //   .where('duration')
+    // //   .equals(5)
+    // //   .where('difficulty')
+    // //   .equals('easy');
+    // ______________________________________________________________
 
-    // 2) Sorting
-    if (req.query.sort) {
-      const sortBy = req.query.sort.split(',').join(' ');
-      // sort = price,ratingsAverage
-      // We need => sort = price ratingsAverage => for .sort() to work
-      query = query.sort(sortBy);
-    } else {
-      query = query.sort('-createdAt');
-      // Sort by creation time "new~old"
-    }
+    // // 2) Sorting
+    // if (req.query.sort) {
+    //   const sortBy = req.query.sort.split(',').join(' ');
+    //   // sort = price,ratingsAverage
+    //   // We need => sort = price ratingsAverage => for .sort() to work
+    //   query = query.sort(sortBy);
+    // } else {
+    //   query = query.sort('-createdAt');
+    //   // Sort by creation time "new~old"
+    // }
+    // ______________________________________________________________
 
-    // 3) Field Limiting
+    // // 3) Field Limiting
 
-    if (req.query.fields) {
-      const fields = req.query.fields.split(',').join(' ');
-      query = query.select(fields);
-    } else {
-      query = query.select('-__v');
-      // "-" => Exclusion for .select()
-    }
+    // if (req.query.fields) {
+    //   const fields = req.query.fields.split(',').join(' ');
+    //   query = query.select(fields);
+    // } else {
+    //   query = query.select('-__v');
+    //   // "-" => Exclusion for .select()
+    // }
+    // ______________________________________________________________
 
-    // 4) Pagination
+    // // 4) Pagination
 
-    const page = req.query.page * 1 || 1;
-    const limit = req.query.limit * 1 || 100;
-    const skip = (page - 1) * limit;
+    // const page = req.query.page * 1 || 1;
+    // const limit = req.query.limit * 1 || 100;
+    // const skip = (page - 1) * limit;
 
-    // page=2&limit=10 => p1 1-10 => p2 11-20 => p3 21-30
-    // .skip() => how many opject to skip
-    // .limit() => how many to show per page
-    query = query.skip(skip).limit(limit);
+    // // page=2&limit=10 => p1 1-10 => p2 11-20 => p3 21-30
+    // // .skip() => how many opject to skip
+    // // .limit() => how many to show per page
+    // query = query.skip(skip).limit(limit);
 
-    if (req.query.page) {
-      // Total of tours
-      const numTours = await Tour.countDocuments();
-      if (skip >= numTours) throw new Error('This page does not exist');
-    }
+    // if (req.query.page) {
+    //   // Total of tours
+    //   const numTours = await Tour.countDocuments();
+    //   if (skip >= numTours) throw new Error('This page does not exist');
+    // }
+    // ______________________________________________________________
 
     // EXECUTE QUERY
-    const tours = await query;
+    // Tour.find() => returns all the data from Tour
+    const features = new APIFeatures(Tour.find(), req.query)
+      .filter()
+      .sort()
+      .limitFields()
+      .paginate();
+
+    const tours = await features.query;
 
     // SEND RESPONSE
     res.status(200).json({

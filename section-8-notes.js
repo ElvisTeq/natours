@@ -263,3 +263,33 @@
 // -------------------------------------------------------- Tour.countDocuments()
 // Method to get the total of documents
 // Returns a promise (await)
+
+//////////////////////////////////////////////////////////////////////////////
+
+// #17
+// Aliasing
+
+// Ex => To get 5 best & Cheapest Tours
+// req.query => ?limit=5&sort=-ratingsAverage,price
+// limit=5 => show 5
+// sort=-ratingAverage => sort high~Low
+// Price => low~high
+
+// New router created at "tourRouter.js"
+// When Router is enter to automatically sort 5 best & Cheapest Tours
+//  Using => Middleware to manipulate "req.query" for "getAllTours" to show
+
+//////////////////////////////////////////////////////////////////////////////
+
+// #18
+// Refactoring API Features
+// => getAllTours & APIFeatures
+
+// Created a class => APIFeatures => Moved to "apiFeatures.js"
+// => Which contains all methods for sorting/paginate/filter etc
+// Receives => (query(allData), reqString(req.query))
+// in which => all methods inside this class will manipulate
+
+// Then We create a new object from "APIFeatures"
+// APIFeatures(queryObject, req.query(comingFromExpress))
+// then => chaing the methods

@@ -15,9 +15,15 @@ router.param('id', tourController.checkID);
 // #12 _______________________________________________________________
 // User Routes
 
+// get Top-5-Cheap when router hits "/top-5-cheap"
+router
+  .route('/top-5-cheap')
+  // localhost:3000/api/v1/tours/top-5-cheap
+  .get(tourController.aliasTopTours, tourController.getAllTours);
+// aliasTopTours => Middleware to get "req.query" for "getAllTours" to show
+
 // app.get('/api/v1/tours', getAllTours);
 // app.post('/api/v1/tours', createTour);
-
 router
   .route('/')
   .get(tourController.getAllTours)
@@ -28,7 +34,6 @@ router
 // app.get('/api/v1/tours/:id?', getTour);
 // app.patch('/api/v1/tours/:id', updateTour);
 // app.delete('/api/v1/tours/:id', deleteTour);
-
 router
   .route('/:id')
   // We need only the id because the rest of the route is defined by "app.use()" in "app.js"
