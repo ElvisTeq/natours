@@ -22,6 +22,8 @@ router
   .get(tourController.aliasTopTours, tourController.getAllTours);
 // aliasTopTours => Middleware to get "req.query" for "getAllTours" to show
 
+router.route('/tour-stats').get(tourController.getTourStats);
+
 // app.get('/api/v1/tours', getAllTours);
 // app.post('/api/v1/tours', createTour);
 router

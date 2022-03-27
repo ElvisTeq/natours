@@ -293,3 +293,14 @@
 // Then We create a new object from "APIFeatures"
 // APIFeatures(queryObject, req.query(comingFromExpress))
 // then => chaing the methods
+
+//////////////////////////////////////////////////////////////////////////////
+
+// #19
+// Aggregation Pipeline: Matching and Grouping
+
+// -------------------------------------------------- Tour.aggregate([{}])
+// => Example on "tourController.js" "getTourStats"
+// => to get/match a data from a list of data
+// => Group them and sort them by average/min/max/sum/exclude
+// => calculate averages,etc
