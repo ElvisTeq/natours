@@ -304,3 +304,19 @@
 // => to get/match a data from a list of data
 // => Group them and sort them by average/min/max/sum/exclude
 // => calculate averages,etc
+
+//////////////////////////////////////////////////////////////////////////////
+
+// #20
+// Aggregation Pipeline: Unwinding and Projecting
+
+// "getMonthlyPlan" created
+
+// -------------------------------------------------- $unwind: "$"
+// => Deconstruct an array field from the input documents => output one document for each element of the array
+// => To separate documents data by input "/:year" individually
+// Ex => was use to get all Tours from 2021 => we got "every single" tour from 2021 "separated"
+// => Event repeated one but in different dated.
+
+// ******************** NOTE ***********************
+// To manually give "req.params" to an router => add "/:paramName"

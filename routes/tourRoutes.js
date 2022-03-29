@@ -23,6 +23,8 @@ router
 // aliasTopTours => Middleware to get "req.query" for "getAllTours" to show
 
 router.route('/tour-stats').get(tourController.getTourStats);
+router.route('/monthly-plan/:year').get(tourController.getMonthlyPlan);
+// /:year => to manually give "req.params" to "/monthly-plan"
 
 // app.get('/api/v1/tours', getAllTours);
 // app.post('/api/v1/tours', createTour);
