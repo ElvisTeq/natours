@@ -320,3 +320,26 @@
 
 // ******************** NOTE ***********************
 // To manually give "req.params" to an router => add "/:paramName"
+
+//////////////////////////////////////////////////////////////////////////////
+
+// #21
+// Virtual Properties
+
+// Field we can define in the Schema that will not be persisted
+// => will not be save into the data base, for space saving
+// => mostly use for conversion of datas
+
+// Changed added to "TourModel.js"
+// ------------------------------------------------ tourSchema.virtual('fieldName').get(function(){return this.changes})
+// => regular function was used in order to have ".this"
+// => virtual will not show untill we add the settings to the schema.
+
+// const tourSchema = new mongoose.Schema({SchemaSettings}, {
+//   toJSON: { virtuals: true },
+//   toObject: { virtuals: true },
+// })
+
+// *************** Purpose ****************
+// => always try to keep Application logic and Bussiness Logic Separate
+// => This was a "Bussiness Bogic", because had nothing to do with (req, res)
