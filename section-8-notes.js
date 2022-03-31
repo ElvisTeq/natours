@@ -343,3 +343,28 @@
 // *************** Purpose ****************
 // => always try to keep Application logic and Bussiness Logic Separate
 // => This was a "Bussiness Bogic", because had nothing to do with (req, res)
+
+//////////////////////////////////////////////////////////////////////////////
+
+// #22
+// Document Middleware
+
+// 4 Types of Middlewate in Mongoose
+// 1) Document
+// 2) Query
+// 3) Aggregate
+// 4) Module Middleware
+
+// ------------------------------------------------- tourSchema.pre('save', function(next) {})
+// Runs before an actual event => to manipulate documents before being save()
+// => runs before .save() and .create() only
+// next() => needed at the end
+// => we can use multiple ".pre()" middlewares for the same HOOK
+// HOOK => .pre("save")
+
+// ------------------------------------------------- tourSchema.post('save', function(doc, next) {})
+// .post() => Is executed after all the ".pre()" is executed
+// this function does not returns ".this"
+// doc => .this => Finished document
+
+// DOCUMENT MIDDLEWARE: Example in "tourModel.js"
