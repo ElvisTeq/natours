@@ -368,3 +368,24 @@
 // doc => .this => Finished document
 
 // DOCUMENT MIDDLEWARE: Example in "tourModel.js"
+
+//////////////////////////////////////////////////////////////////////////////
+
+// #23
+// Query Middleware
+
+// To run functions before or after a certain query is executed
+
+// ------------------------------------------------- tourSchema.pre('find', function(next) {})
+// .this => returns the query
+// .post('find', function(docs, next) {}) => will be executed after ".pre()"
+// changed to /^find/ for regular expression
+
+// Regular Expression --------------------------- /^name/
+// "^" => find all the strings that starts with "name"
+
+// ****************** NOTE ******************
+// By setting in the "Schema" =>
+// anyNAme: {type: Boolean, default: false}
+// by adding "anyName" to a new created Object/Tour, it will hide it
+// anyName: true => in order for the tour to show

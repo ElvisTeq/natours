@@ -64,6 +64,10 @@ const tourSchema = new mongoose.Schema(
     },
     // Array of only "Date"
     startDates: [Date],
+    secretTour: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     toJSON: { virtuals: true },
@@ -78,6 +82,7 @@ tourSchema.virtual('durationWeeks').get(function () {
 // ___________________________________________________________
 // #22 - S-8
 // DOCUMENT MIDDLEWARE: runs before .save() and .create()
+
 tourSchema.pre('save', function (next) {
   // slugify => npm i => import
   // .this => all results/Objects
@@ -95,6 +100,30 @@ tourSchema.pre('save', function (next) {
 //   console.log(doc);
 //   next();
 // });
+// ___________________________________________________________
+// #23 - S-8
+// Query Middleware: Runs when .find() is called
+
+// tourSchema.pre('find', function (next) {
+// /^find/ => regular Expression
+tourSchema.pre(/^find/, function (next) {
+  // Runs when ".find()" is called somewhere in the code
+  // .this => query => what ".find()" is returned in "getAllTours"
+
+  this.find({ secretTour: { $ne: true } });
+  // .find() => All secretTour that are not true
+
+  this.start = Date.now();
+  next();
+});
+
+tourSchema.post(/^find/, function (docs, next) {
+  // To show that this runs after the code on top
+  console.log(`Queru took ${Date.now() - this.start} milliseconds!`);
+  console.log(docs);
+  next();
+});
+
 // ___________________________________________________________
 
 // "Tour" => var name and model name are similar for convenience
