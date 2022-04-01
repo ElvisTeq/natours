@@ -355,6 +355,7 @@
 // 3) Aggregate
 // 4) Module Middleware
 
+// .this => current doccument
 // ------------------------------------------------- tourSchema.pre('save', function(next) {})
 // Runs before an actual event => to manipulate documents before being save()
 // => runs before .save() and .create() only
@@ -376,8 +377,8 @@
 
 // To run functions before or after a certain query is executed
 
-// ------------------------------------------------- tourSchema.pre('find', function(next) {})
 // .this => returns the query
+// ------------------------------------------------- tourSchema.pre('find', function(next) {})
 // .post('find', function(docs, next) {}) => will be executed after ".pre()"
 // changed to /^find/ for regular expression
 
@@ -389,3 +390,17 @@
 // anyNAme: {type: Boolean, default: false}
 // by adding "anyName" to a new created Object/Tour, it will hide it
 // anyName: true => in order for the tour to show
+
+//////////////////////////////////////////////////////////////////////////////
+
+// #24
+// Aggregation Middleware
+
+// To add "hooks" before, or after an aggregation happends
+
+// "HOOK" => .pre('thisIsTheHookTarget', function() {})
+
+// .this => aggregation object
+// -------------------------------------------------- tourSchema.pre('aggregate', function(next) {})
+// this.pipeline().unshift({ $match: { secretTour: { $ne: true } } });
+// => to add $match aggregation to a pipeline

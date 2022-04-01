@@ -119,10 +119,22 @@ tourSchema.pre(/^find/, function (next) {
 
 tourSchema.post(/^find/, function (docs, next) {
   // To show that this runs after the code on top
-  console.log(`Queru took ${Date.now() - this.start} milliseconds!`);
-  console.log(docs);
+  console.log(`Query took ${Date.now() - this.start} milliseconds!`);
   next();
 });
+
+// ___________________________________________________________
+// #24 - S-8
+// Aggregation Middleware
+// To make/add changes in a "pipeline" before executing
+
+// tourSchema.pre('aggregate', function (next) {
+//   // .unshift() => JS ARR method => too add at the beggining of ARR
+//   // this.pipeline() => Tour.aggregate([pipeline])
+//   this.pipeline().unshift({ $match: { secretTour: { $ne: true } } });
+//   console.log(this._pipeline);
+//   next();
+// });
 
 // ___________________________________________________________
 
