@@ -423,3 +423,23 @@
 
 // ************************ NOTED ***********************
 // runValidator: true => in order for upgradeTour to work when trting to change name
+
+//////////////////////////////////////////////////////////////////////////////
+
+// #26
+// Data Validation: Custom Validators
+
+// Added to priceDiscount in the Schema
+
+// Is just a regular function that returns true/false
+// ----------------------------------------------- validate: {validator: function(val) {}, message: 'err'}
+// (val) => value we entered
+// If true => pass
+// If false => err message => has access to {VALUE} => Value entered
+
+// ************************ IMPORTANT *************************
+// validate: => only work for creating new documents
+// will not work when updating documents
+
+// ---------------------------------------------- npm i validator
+// => installed validator library
