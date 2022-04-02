@@ -404,3 +404,22 @@
 // -------------------------------------------------- tourSchema.pre('aggregate', function(next) {})
 // this.pipeline().unshift({ $match: { secretTour: { $ne: true } } });
 // => to add $match aggregation to a pipeline
+
+//////////////////////////////////////////////////////////////////////////////
+
+// #25
+// Data Validation: Build-in Validators
+
+// ------------------------------------------------ maxlength: [num, 'err']
+// ------------------------------------------------ minlength: [num, 'err']
+// => Validator for String length
+
+// ------------------------------------------------ min: [num, 'err']
+// ------------------------------------------------ max: [num, 'err']
+// => Validator for Numbers/Dates
+
+// ------------------------------------------------ enum: { value: ['string'], message: 'err' }
+// => To sonly accept the values we specify => Strings Only
+
+// ************************ NOTED ***********************
+// runValidator: true => in order for upgradeTour to work when trting to change name

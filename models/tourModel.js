@@ -9,6 +9,8 @@ const tourSchema = new mongoose.Schema(
       required: [true, 'A tour must have a name'],
       unique: true,
       trim: true,
+      maxlength: [40, 'A tour name cannot have more than 40 characters'],
+      minlength: [10, 'A tour name must have at least 10 characters'],
     },
     slug: String,
     duration: {
@@ -22,11 +24,17 @@ const tourSchema = new mongoose.Schema(
     difficulty: {
       type: String,
       required: [true, 'A tour must have a difficulty'],
+      enum: {
+        values: ['easy', 'medium', 'difficult'],
+        message: 'Difficulty is either: easy, medium, difficult',
+      },
     },
     ratingsAverage: {
       type: Number,
       // default => will show if no rating is enter
       default: 4.5,
+      min: [1, 'Rating must be above 1.0'],
+      max: [5, 'Rating must be below 5.0'],
     },
     ratingsQuantity: {
       type: Number,
@@ -128,13 +136,13 @@ tourSchema.post(/^find/, function (docs, next) {
 // Aggregation Middleware
 // To make/add changes in a "pipeline" before executing
 
-// tourSchema.pre('aggregate', function (next) {
-//   // .unshift() => JS ARR method => too add at the beggining of ARR
-//   // this.pipeline() => Tour.aggregate([pipeline])
-//   this.pipeline().unshift({ $match: { secretTour: { $ne: true } } });
-//   console.log(this._pipeline);
-//   next();
-// });
+tourSchema.pre('aggregate', function (next) {
+  // .unshift() => JS ARR method => too add at the beggining of ARR
+  // this.pipeline() => Tour.aggregate([pipeline])
+  this.pipeline().unshift({ $match: { secretTour: { $ne: true } } });
+  console.log(this._pipeline);
+  next();
+});
 
 // ___________________________________________________________
 
