@@ -49,3 +49,25 @@
 // ************************ IMPORTANT **************************
 // next() => anything passed inside the "next()" function, Express will take it as a ERROR
 // Will skip all the other middlewares into the global err handling
+
+//////////////////////////////////////////////////////////////////////////
+
+// #4
+// Better Errors and Refactoring
+
+// "appError.js", "errorController.js" created
+
+// ----------------------------------------------- .startWith('')
+// To check if a String start with ''
+
+// ----------------------------------------------- err.stack
+// .log(err.stack) => will log where is the Error
+
+// ----------------------------------------------- isOperational = Boolean
+// => manually setting a boolean to a object
+// => so we can manipulate based on this boolean in the future
+
+// "appError.js"
+// ----------------------------------------------- Error.captureStackTrace(curObj, toDoWithObj)
+// this => current object
+// this.constructor => what to do with the object
