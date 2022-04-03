@@ -33,10 +33,10 @@ app.use(express.static(`${__dirname}/public`));
 // #10 _____________________________________________________________
 // Creating Middleware
 
-app.use((req, res, next) => {
-  console.log('Hello from the middleware..');
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log('Hello from the middleware..');
+//   next();
+// });
 
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
@@ -47,6 +47,44 @@ app.use((req, res, next) => {
 // Mounting Router
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
+
+//  __________________________________________________________________
+// #2 - S9
+// Handling Unhandled Routes
+
+// .all() => .get, post, delete, find.
+// '*' => Everything => all URLs
+app.all('*', (req, res, next) => {
+  // res.status(404).json({
+  //   status: 'fail',
+  //   message: `Can't find ${req.originalUrl} on this server!`,
+  // });
+
+  // Manually Setting/Creating a Error
+  const err = new Error(`Can't find ${req.originalUrl} on this server!`);
+  err.status = 'fail';
+  err.statusCode = 404;
+
+  // Any Argument is passed into "next()" => is a error
+  // This causes all Middleware to skip into the Global Error Handling Middleware
+  next(err);
+});
+
+//  __________________________________________________________________
+// #3 - S9
+// Global Error Handling Middleware
+
+app.use((err, req, res, next) => {
+  // if no "res.status()" => then "500"
+  err.statusCode = err.statusCode || 500;
+  // if no "status:" => then "status: 'error'"
+  err.status = err.status || 'error';
+
+  res.status(err.statusCode).json({
+    status: err.status,
+    message: err.message,
+  });
+});
 
 module.exports = app;
 

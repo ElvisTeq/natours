@@ -12,3 +12,40 @@
 // npm run debug => to run this tool
 
 // Better way of debugging instead of using console.log
+
+//////////////////////////////////////////////////////////////////////////
+
+// #2
+// Handling Unhandled Routes
+
+// => Handling wrong URL
+
+// ---------------------------------------------- app.all('*', (req, res, next) => {})
+// .all() => .get, post, delete, find, update
+// '*' => Everything => all URLs
+
+// ----------------------- req.originalUrl
+// => input URL
+
+// ************************ Important ************************
+// handling with ".all()" => has to be after the ROUTER MOUNTING
+// Or else any URL will be (404)
+
+//////////////////////////////////////////////////////////////////////////
+
+// #3
+// Implementing Global Error Handling Middleware
+
+// ---------------------------------------------- app.use((err, req, res , next) => {})
+// When 4 arguments are given is automatically recognized as a Error Handling Middleware
+//
+
+// ------------------------ err.statusCode
+// => res.status(Code)
+
+// ------------------------ err.status
+// => .json({ status: })
+
+// ************************ IMPORTANT **************************
+// next() => anything passed inside the "next()" function, Express will take it as a ERROR
+// Will skip all the other middlewares into the global err handling
