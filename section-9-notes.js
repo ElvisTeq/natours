@@ -71,3 +71,19 @@
 // ----------------------------------------------- Error.captureStackTrace(curObj, toDoWithObj)
 // this => current object
 // this.constructor => what to do with the object
+
+//////////////////////////////////////////////////////////////////////////
+
+// #5
+// Catching Errors in Async Functions
+
+// In "tourController.js" => All async functions were change
+// => Function created to handle ".catch()"
+// => try{} catch{} => deleted on all of them
+
+// "catchAsync.js" created for "catchAsync"
+
+// ************************* Important ***************************
+// "catchAsync" => returns a new anonymous function
+// "tourController.js" functions cannot call a function that calls another function
+// Fix => Make "tourConstroller.js" to only call "catchAsync" which returns its own function, instead of chaning to another one
