@@ -87,3 +87,11 @@
 // "catchAsync" => returns a new anonymous function
 // "tourController.js" functions cannot call a function that calls another function
 // Fix => Make "tourConstroller.js" to only call "catchAsync" which returns its own function, instead of chaning to another one
+
+//////////////////////////////////////////////////////////////////////////
+
+// #6
+// Adding 404 Not Found Errors
+
+// Implemented in => "getTour"
+// => Simply implemented an "if" => return next(new AppError('Message', statusCode))
