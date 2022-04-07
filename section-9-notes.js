@@ -95,3 +95,10 @@
 
 // Implemented in => "getTour"
 // => Simply implemented an "if" => return next(new AppError('Message', statusCode))
+
+//////////////////////////////////////////////////////////////////////////
+
+// #7
+// Errors During Development vs Production
+
+// Changes on "errorController.js"
