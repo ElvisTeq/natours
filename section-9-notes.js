@@ -108,9 +108,25 @@
 // #8
 // Handling Invalid Database Ids
 
-// "handleCastErrorDB" created in "errorController.js"
+// "handleCastErrorDB()" created in "errorController.js"
 // => to handle errors for Production => client
 // => To show understandable errors
 
 // --------------------------- if (err.name === 'CastError')
 // => was use to identify the type of error to handle
+
+//////////////////////////////////////////////////////////////////////////
+
+// #9
+// Handling Duplicate Database Fields
+
+// => handling error by code
+// -------------------------- if (err.code === 11000)
+// Found when trying to create a tour with existing name
+
+// "handleDuplicateFieldsDB()" created in "errorController.js"
+
+// **************** IMPORTANT *****************
+// => using error.data to locate and handle the error message
+// => By logging the "error" we can find the "error.code" to manipulate specific errors
+// and keyValues => keyValue cause of the error
