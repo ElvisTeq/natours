@@ -102,3 +102,15 @@
 // Errors During Development vs Production
 
 // Changes on "errorController.js"
+
+//////////////////////////////////////////////////////////////////////////
+
+// #8
+// Handling Invalid Database Ids
+
+// "handleCastErrorDB" created in "errorController.js"
+// => to handle errors for Production => client
+// => To show understandable errors
+
+// --------------------------- if (err.name === 'CastError')
+// => was use to identify the type of error to handle
