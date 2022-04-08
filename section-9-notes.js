@@ -130,3 +130,14 @@
 // => using error.data to locate and handle the error message
 // => By logging the "error" we can find the "error.code" to manipulate specific errors
 // and keyValues => keyValue cause of the error
+
+//////////////////////////////////////////////////////////////////////////
+
+// #10
+// Handling Mongoose Validation Errors
+
+// -------------------------------- Object.values()
+// => to get values from the object
+
+// "handleValidationErrorDB()" created in "errorController.js"
+// Object.values().map() => was used to get err.message from all the different Validation errors
