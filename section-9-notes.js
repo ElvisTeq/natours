@@ -163,6 +163,7 @@
 // ********** IMPORTANT ************
 // Before exiting our application we need to close the server first
 // => So all the code can finish before closing
+// => Implemented in => "server.js"
 
 // Exmaple:
 //   const server = app.listen(port, () => {
@@ -171,3 +172,17 @@
 //   server.close(() => {
 //     process.exit(1);
 //    });
+
+//////////////////////////////////////////////////////////////////////////
+
+// #12
+// Catching Uncaught Exceptions
+
+// All error/bugs that occour in the async code but are not handled anywhere
+// Ex => console.log something that does't exist
+
+// -------------------------------- process.on('uncaughtException', err => {})
+// to subscribe to all "uncaughtException"
+
+// ****************** IMPROTANT ********************
+// If this error is inside a Express Middleware, the error will be handled by "global middleware handling"

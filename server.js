@@ -1,6 +1,21 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
+// _____________________________________________________________
+// #12 - S9
+// Catching Uncaught Exceptions
+
+process.on('uncaughtException', (err) => {
+  console.log('UNCAUGHT EXCEPTION! **** Shutting Down ****');
+  console.log(err.name, err.message);
+  server.close(() => {
+    process.exit(1);
+  });
+});
+
+// console.log(x);
+// _____________________________________________________________
+
 dotenv.config({ path: './config.env' });
 // this makes "config.env" file to work
 // Has to be declared before "app" => becase by calling app, it will create our application without the dotenv file
@@ -38,8 +53,9 @@ const server = app.listen(port, () => {
 
 process.on('unhandledRejection', (err) => {
   console.log(err.name, err.message);
-  console.log('UNHANDLES REJECTION! **** Shutting down ****');
-  // The ideal way of exiting the app is to close the server first
+  console.log('UNHANDLES REJECTION! **** Shutting Down ****');
+  // .close() => stops the server, but not the app, so other code will finish executing
+  // .exit() => completely stops/crash the code (NOT GOOD)
   server.close(() => {
     process.exit(1);
   });
