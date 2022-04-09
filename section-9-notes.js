@@ -141,3 +141,33 @@
 
 // "handleValidationErrorDB()" created in "errorController.js"
 // Object.values().map() => was used to get err.message from all the different Validation errors
+
+//////////////////////////////////////////////////////////////////////////
+
+// #11
+// Errors Outside Express: Unhandled Rejections
+
+// => handling authentication globally
+
+// changes on "server.js"
+// -------------------------------- process.on('unhandledRejection', err => {})
+// process.on => to subscribe to a event
+// 'unhandledRejection' => event to handle rejection
+// receives an "err" => {}
+
+// -------------------------------- process.exit()
+// 0 => success
+// 1 => uncaught exception
+// NOT RECOMMENDED => to end programm, imediatelly abort all the request that are currently still running or pending
+
+// ********** IMPORTANT ************
+// Before exiting our application we need to close the server first
+// => So all the code can finish before closing
+
+// Exmaple:
+//   const server = app.listen(port, () => {
+//     console.log(`App running on port ${port}...`);
+
+//   server.close(() => {
+//     process.exit(1);
+//    });

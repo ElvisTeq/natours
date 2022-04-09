@@ -22,15 +22,27 @@ mongoose
     useCreateIndex: true,
     useFindAndModify: false,
   })
-  .then(() => console.log('DB connection successful!'))
-  .catch((err) => {
-    console.log(err);
-  });
+  .then(() => console.log('DB connection successful!'));
+// .catch((err) => {
+//   console.log(err);
+// });
 // _____________________________________________________________
 
 const port = 3000;
-app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log(`App running on port ${port}...`);
+});
+// _____________________________________________________________
+// #11 - S9
+// Errors Outside Express: Unhandled Rejections
+
+process.on('unhandledRejection', (err) => {
+  console.log(err.name, err.message);
+  console.log('UNHANDLES REJECTION! **** Shutting down ****');
+  // The ideal way of exiting the app is to close the server first
+  server.close(() => {
+    process.exit(1);
+  });
 });
 
 // #2 __________________________________________________________
