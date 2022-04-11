@@ -59,6 +59,9 @@
 // => which the server receives and verify
 // => if valid => it will send protected data to the client
 
+// ********** NOTED **********
+// Tokens always takes an ID to create
+
 //////////////////////////////////////////////////////////////////////////
 
 // #5
@@ -82,3 +85,30 @@
 
 // *********** IMPROTANT ************
 // SECRET code should be at least 32 characters long
+
+//////////////////////////////////////////////////////////////////////////
+
+// #6
+// Logging in Users
+
+// Created => ".login()" in "auntController.js"
+
+// Implemented => ".getAllUsers" from "userController.js"
+
+// Added => ".post('/login')" to the router
+
+// --------------------------- select: false
+// => options for the schema to hide the object
+
+// --------------------------- .select('+object')
+// => to explicitly select/add an object
+// => was needed to select "+password" => it was "select: false" in the schema
+
+// --------------------------------------- schemaName.methods.anyName = function() {}
+// To create a method that can be use by all the instances of "schemaName"
+// .anyName => name of the function
+// Ex => userModel.js
+
+// --------------------------------------- bcrypt.compare(originalPassword, encryptedPassword)
+// returns true/false
+// To check is the password entered is the same as the encrypted one

@@ -20,6 +20,8 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please provide a password!'],
     minlength: 8,
+    select: false,
+    // hide
   },
   passwordConfirm: {
     type: String,
@@ -55,7 +57,20 @@ userSchema.pre('save', async function (next) {
   next();
 });
 // _________________________________________________________________________
+// #6
+// Logging in Users
+// Instance method
 
+// .methods => to create a method for all the instances of "userChema"
+userSchema.methods.correctPassword = async function (
+  candidatePassword,
+  userPassword
+) {
+  // this.password => is not possible because, "select: false" in the schema
+  return await bcrypt.compare(candidatePassword, userPassword);
+};
+
+// _________________________________________________________________________
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;
