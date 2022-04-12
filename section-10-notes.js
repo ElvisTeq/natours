@@ -112,3 +112,47 @@
 // --------------------------------------- bcrypt.compare(originalPassword, encryptedPassword)
 // returns true/false
 // To check is the password entered is the same as the encrypted one
+
+//////////////////////////////////////////////////////////////////////////
+
+// #7
+// Protecting Tour Routes - p1
+
+// Created middleware => ".protect()" in "authController"
+// Added => ".protect()" to "tourRoutes.js" => "getAllTours"
+
+// ---------------- req.headers
+// => HTTP headers => request headers
+
+// Standar to send JWT as a Header
+// ------------------------------------ Authorization: Bearer Token
+// Authorization => header name for token
+// Bearer Token => "Token" = token
+// Ex => ".protect()" in "authController"
+
+// ************ Noted ************
+// => Apparently the Token is Stored in the "req.headers"
+// as => Authorization: Bearer Token
+
+//////////////////////////////////////////////////////////////////////////
+
+// #8
+// Protecting Tour Routes - p2
+
+// Added => error handling for "JsonWebTokenError" && "TokenExpiredError" in "errorController.js"
+
+// Created => "handleJWTError()" && "handleJWTExpiredError()" in "errorController.js"
+
+// Added => "passwordChangedAt: Date"  to the Schema
+// => if user has changed his password => it will contain this
+
+// Created => "userSchema.methods.changedPasswordAfter()" in "userModel.js"
+// => check if passwordChanged after first token was issued
+
+// -------------------------------- { promisify } = require('util')
+// build-in Node method to promisify a function
+// Ex. => const anyName = await promisify(function)(functionArg)
+
+// ------------------------------------------------ jwt.verify(token, secretCoken)
+// takes => token + secretCode
+// returns => objects id, creationDate(iat), expDate(exp) of the object
