@@ -156,3 +156,26 @@
 // ------------------------------------------------ jwt.verify(token, secretCoken)
 // takes => token + secretCode
 // returns => objects id, creationDate(iat), expDate(exp) of the object
+
+//////////////////////////////////////////////////////////////////////////
+
+// #9
+// Advanced Postman Setup
+
+// Using Envorinments in Postman App
+// Add new Environment =>
+// Variable: URL
+// Initial Value: http://127.0.0.1:3000/
+
+// ------------------------------------------- {{URL}}
+// => like => `${URL}`
+// => {{URL}}api/v1/tours
+
+// Creating a variable when sending a .post/request (TEST tab in Postman)
+// ------------------------------------------- pm.environment.set("variable_key", "variable_value");
+// "variable_key" => VariableName
+// "variable_value" => pm.responde.json().token => Initial Value
+// => {{VariableName}}: pm.responde.json().token
+
+// Setting "Bearer Token" in (AUTHORIZATION tab in Postman)
+// => select Type => {{VariableName}}
