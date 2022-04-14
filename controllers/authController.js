@@ -23,6 +23,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,
     passwordChangedAt: req.body.passwordChangedAt,
+    role: req.body.role,
   });
 
   // ________________________________________________________________
@@ -42,7 +43,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   });
 });
 // ________________________________________________________________
-// #6
+// #6 = s10
 // Logging in Users
 
 exports.login = catchAsync(async (req, res, next) => {
@@ -71,7 +72,7 @@ exports.login = catchAsync(async (req, res, next) => {
 });
 
 // ________________________________________________________________
-// #7 - #8
+// #7 - #8 = s10
 // Protecting Tour Routes - p1 - p2
 
 // This runs everytime a request happends for security
@@ -117,3 +118,19 @@ exports.protect = catchAsync(async (req, res, next) => {
   req.user = currentUser;
   next();
 });
+
+// ________________________________________________________________
+// #10 = s10
+// Authorization: User Roles and Permissions
+
+// (...roles) => argument for the middleware function
+exports.restrictTo = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      return next(
+        new AppError('You do not have permission to perform this action', 403)
+      );
+    }
+    next();
+  };
+};

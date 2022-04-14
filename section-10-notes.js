@@ -179,3 +179,24 @@
 
 // Setting "Bearer Token" in (AUTHORIZATION tab in Postman)
 // => select Type => {{VariableName}}
+
+//////////////////////////////////////////////////////////////////////////
+
+// #10
+// Authorization: User Roles and Permissions
+
+// Added => "role:" to the Schema in "userModel.js"
+
+// Created => "restrictTo()" in "authController.js"
+
+// Added => ".protect, .restrictTo()" to "deleteTour()" in "tourRoutes.js"
+// => To verify account role before running .deleteTour()
+
+// ************************ Important *************************
+// => To pass Arguments into Middleware function
+// exports.restrictTo = (...arg) => {return (req, res , next) => {}}
+
+// ************************ Note from Teacher *********************
+// We could implement this authentication functions because
+// We stored => req.user=currentUser => in .protect() => which contains the current JWT
+// Then => we used the stored user in the next Middleware => .restrictTo() To manipulate the same log in user
