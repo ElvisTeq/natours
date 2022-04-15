@@ -227,3 +227,24 @@
 
 // ----------------------------------- .save({ validateBeforeSave: false });
 // => makes mandatory data from the schema: false before saving
+
+//////////////////////////////////////////////////////////////////////////
+
+// #12
+// Sending Emails woth Nodemailer
+
+// DOWNLOADED => Mailtrap
+// => website used to fake send/receive emails for developers
+
+// Created => "email.js" in "utils"
+
+// Implemented => ".forgotPassword()" in "authController.js"
+
+// ------------------------------------ npm i nodemailer
+// module to send emails
+
+// ------------------------------------ nodemailer.createTrasnport({})
+// => to define the service to send the emails
+// Ex => gmail, email, yahoo, etc ...
+
+// To create a sendEmail function => "email.js"
