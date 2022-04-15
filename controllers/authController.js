@@ -134,3 +134,24 @@ exports.restrictTo = (...roles) => {
     next();
   };
 };
+
+// ________________________________________________________________
+// #11 - s10
+// Password Reset Functionality: Reset Token
+
+exports.forgotPassword = catchAsync(async (req, res, next) => {
+  // 1) Get user based on POSTed email
+  const user = await User.findOne({ email: req.body.email });
+  if (!user) {
+    return next(new AppError('There is no user with that email'));
+  }
+
+  // 2) Generate the random reset token
+  const resetToken = user.createPasswordResetToken();
+
+  // required data from the schema: false
+  await user.save({ validateBeforeSave: false });
+  // because we only need to input the email to get out password
+
+  // 3) Send it to user's email
+});

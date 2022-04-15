@@ -200,3 +200,30 @@
 // We could implement this authentication functions because
 // We stored => req.user=currentUser => in .protect() => which contains the current JWT
 // Then => we used the stored user in the next Middleware => .restrictTo() To manipulate the same log in user
+
+//////////////////////////////////////////////////////////////////////////
+
+// #11
+// Password Reset Functionality: Reset Token
+
+// Added to "userRouter.js"
+// router.post('/forgotPassword', authController.signup);
+// router.post('/resetPassword', authController.login);
+
+// Created => ".forgotPassword()" in "authController.js"
+
+// Created => "userSchema.methods.createPasswordResetToken" in "userModel.js"
+
+// Added => "crypto = require('crypto')" to "userModel.js"
+// build-in module
+
+// ------------------------------------ crypto.randomBytes(32)
+// crypto module method
+// => generate a cryptographically well-built artificial random data
+// => (size, callback)
+
+// ------------------------------------ .toString('hex')
+// => convert to string hex format (1~9 A~F)
+
+// ----------------------------------- .save({ validateBeforeSave: false });
+// => makes mandatory data from the schema: false before saving
