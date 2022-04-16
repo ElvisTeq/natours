@@ -68,6 +68,20 @@ userSchema.pre('save', async function (next) {
   next();
 });
 // _________________________________________________________________________
+// #13 - s10
+// Password Reset Functionality: Setting new Password
+
+userSchema.pre('save', function (next) {
+  if (!this.isModified('password') || this.isNew) return next();
+
+  // Optional If PC is Slow
+  // -1 seconds => To ensure the token is always created after the password has been changed
+  // .protect() => Check if user changed password after the token was issued
+  this.passwordChangedAt = Date.now() - 1000;
+  next();
+});
+
+// _________________________________________________________________________
 // #6
 // Logging in Users
 // Instance method
@@ -108,7 +122,7 @@ userSchema.methods.createPasswordResetToken = function () {
   // create random 32 long data => convert into string in hex format
   const resetToken = crypto.randomBytes(32).toString('hex');
 
-  // Encrypting the random data
+  // Encrypting the random data & save to Schema
   this.passwordResetToken = crypto
     .createHash('sha256')
     .update(resetToken)

@@ -248,3 +248,21 @@
 // Ex => gmail, email, yahoo, etc ...
 
 // To create a sendEmail function => "email.js"
+
+//////////////////////////////////////////////////////////////////////////
+
+// #13
+// Password Reset Functionality: Setting new Password
+
+// Created => ".resetPassword" in "authController.js"
+
+// ------------------------------- .isModified('')
+// => to check if document was modified
+// true/false
+
+// ------------------------------- .isNew
+// => to check if document is new
+// true/false
+
+// ************************* IMPORTANT ****************************
+// Always use ".Save()" => on passwords because it contains => middleware functions and validations that runs on save()
