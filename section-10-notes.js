@@ -273,3 +273,19 @@
 // Updating the Current User: Password
 
 // Created => ".updatePassword" in "authController.js"
+
+//////////////////////////////////////////////////////////////////////////
+
+// #15
+// Updating current User : Data
+
+// Created => "updateMe()" in "userController.js"
+
+// Created => "filterObj()" in "userController.js"
+// => filter => only receives "name" and "email" from "req.body"
+
+// Implemented in "updateMe"
+// ------------------------------------------------- findByIdAndUpdate(req.user.id, function, {options})
+// find object by ID => req.user.id
+// function => function to filter
+// {options} => for the data to update
