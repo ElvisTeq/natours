@@ -266,3 +266,10 @@
 
 // ************************* IMPORTANT ****************************
 // Always use ".Save()" => on passwords because it contains => middleware functions and validations that runs on save()
+
+//////////////////////////////////////////////////////////////////////////
+
+// #14
+// Updating the Current User: Password
+
+// Created => ".updatePassword" in "authController.js"
