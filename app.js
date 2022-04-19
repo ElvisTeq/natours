@@ -5,6 +5,7 @@ const morgan = require('morgan');
 // Automatically logs in the terminal some data about our request
 
 const rateLimit = require('express-rate-limit');
+const helmet = require('helmet');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -16,6 +17,11 @@ const app = express();
 
 // 1) Global Middlewares
 // => functions that can modify incoming request data
+
+//_________________________________________________________________
+// #20 - s10
+// Setting Security HTTP Headers
+app.use(helmet());
 
 // _________________________________________________________________
 // #19 - s10
@@ -43,11 +49,11 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-app.use(express.json());
+// Body parser, reading data from body into req.body
+app.use(express.json({ limit: '10kb' }));
 
 // #17 _____________________________________________________________
 // Serving Static Files
-
 app.use(express.static(`${__dirname}/public`));
 // __dirname => this file name
 

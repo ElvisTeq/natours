@@ -343,3 +343,20 @@
 
 // ******************** Detail *******************
 // Details/info about limiter is shown in "Headers" of the "res"
+
+//////////////////////////////////////////////////////////////////////////
+
+// #20
+// Setting Security HTTP Headers
+
+// Added => "app.use(helmet())" to "app.js"
+
+// ------------------------------------------------------------ npm i helmet
+// Module that helps you secure HTTP headers returned by your Express apps.
+// HTTP headers are an important part of the HTTP protocol, but are generally transparent from the end-user perspective.
+
+// ------------------------------------- app.use(express.json({ limit: "10kb" }))
+// => to limit the size of the data we accept
+
+// ****************** Importat *********************
+// app.use(helmet()) => Recommended to put it on first
