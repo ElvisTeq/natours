@@ -20,7 +20,27 @@ const signToken = (id) => {
 
 const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
+  // ________________________________________________________________
+  // #18 - s10
+  // Creating cookie
+  const cookieOptions = {
+    expires: new Date(
+      // 90 * 24 (hour) * 60 (minute) * 60 (seconds) * 1000 (milliseconds) = 90 days into milliseconds
+      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+    ),
+    // Cookie cannot be modified/access in any way by the browser
+    httpOnly: true,
+  };
 
+  // secure: true => Cookie will be sent in a incrypted connection
+  // if False => It will appear in postman
+  if (process.env.NODE_ENV === 'production') cookieOptions.secure = true;
+
+  res.cookie('jwt', token, cookieOptions);
+
+  // Remove password from the output
+  user.password = undefined;
+  // ________________________________________________________________
   res.status(statusCode).json({
     status: 'success',
     token,

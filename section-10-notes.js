@@ -301,3 +301,28 @@
 // Created => "deleteMe" in "userController"
 
 // Hide user based on if "active: true/false"
+
+//////////////////////////////////////////////////////////////////////////
+
+// #17
+// Security Best Practices and Suggections
+
+// See Vid: 141
+
+//////////////////////////////////////////////////////////////////////////
+
+// #18
+// Sending JWT via Cookie
+
+// Changes => in "createSendToken()" in  "authController.js"
+
+// To create cookie
+// --------------------------------------------- res.cookie('name', token, {options})
+// Ex => in "creaseSendToken()"
+
+// {options for cookie}
+// secure: true/false => to show hide from res
+// httpOnly: true/false => cannot be modified/access in any way by the browser
+
+// ****************** Detail *******************
+// Creating a cookie with same name will override the old one
