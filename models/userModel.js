@@ -46,6 +46,11 @@ const userSchema = new mongoose.Schema({
   },
   passwordResetToken: String,
   passwordResetExpires: Date,
+  active: {
+    type: Boolean,
+    default: true,
+    select: false,
+  },
 });
 
 // _________________________________________________________________________
@@ -78,6 +83,19 @@ userSchema.pre('save', function (next) {
   // -1 seconds => To ensure the token is always created after the password has been changed
   // .protect() => Check if user changed password after the token was issued
   this.passwordChangedAt = Date.now() - 1000;
+  next();
+});
+// _________________________________________________________________________
+// #16 - s10
+// Deleting the Current User
+
+// Middleware that runs before ".find()"
+
+// /^find/ => look string/words that starts with "find"
+userSchema.pre(/^find/, function (next) {
+  // .find() => returns all the objects that has {active: {$notEqual to false}}
+  // $ne => not equal to:
+  this.find({ active: { $ne: false } });
   next();
 });
 

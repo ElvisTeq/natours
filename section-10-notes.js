@@ -289,3 +289,15 @@
 // find object by ID => req.user.id
 // function => function to filter
 // {options} => for the data to update
+
+//////////////////////////////////////////////////////////////////////////
+
+// #16
+// Deleting the Current User
+
+// Created => "userSchema.pre(/^find/)" in "user Model.js"
+// middleware to run before "find()"
+
+// Created => "deleteMe" in "userController"
+
+// Hide user based on if "active: true/false"

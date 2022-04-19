@@ -17,6 +17,8 @@ const filterObj = (obj, ...allowedFields) => {
 // User methods
 
 exports.getAllUsers = catchAsync(async (req, res, next) => {
+  // usetSchema.pre(/^find/) => in userModel
+
   // .find() => if no argument => find all
   const users = await User.find();
 
@@ -56,6 +58,15 @@ exports.updateMe = catchAsync(async (req, res, next) => {
     data: {
       user: updatedUser,
     },
+  });
+});
+
+exports.deleteMe = catchAsync(async (req, res, next) => {
+  await User.findByIdAndUpdate(req.user.id, { active: false });
+
+  res.status(204).json({
+    status: 'success',
+    data: null,
   });
 });
 
