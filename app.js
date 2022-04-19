@@ -4,6 +4,8 @@ const express = require('express');
 const morgan = require('morgan');
 // Automatically logs in the terminal some data about our request
 
+const rateLimit = require('express-rate-limit');
+
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const tourRouter = require('./routes/tourRoutes');
@@ -12,8 +14,25 @@ const userRouter = require('./routes/userRoutes');
 const app = express();
 // We store/assign the functions to 'app'
 
-// Middlewares
+// 1) Global Middlewares
 // => functions that can modify incoming request data
+
+// _________________________________________________________________
+// #19 - s10
+// Implementing Rate Limiting
+
+const limiter = rateLimit({
+  // 100 request
+  max: 100,
+  // 1 Hour in Milliseconds
+  windowMs: 60 * 60 * 1000,
+  // Err message
+  message: 'Too many request from this IP, please try again in an hour!',
+});
+
+// Apply limiter to "/api"
+// => if URL contains /api
+app.use('/api', limiter);
 
 // #18 _____________________________________________________________
 // Environment Variables

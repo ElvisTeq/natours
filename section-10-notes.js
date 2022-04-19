@@ -326,3 +326,20 @@
 
 // ****************** Detail *******************
 // Creating a cookie with same name will override the old one
+
+//////////////////////////////////////////////////////////////////////////
+
+// #19
+// Implementing Rate Limiting
+
+// Created => "limiter" in "app.js"
+
+// --------------------------------------------- npm i express-rate-limit
+// => Package to create limits
+
+// --------------------------------------------- rateLimit({options})
+// to create limit
+// Ex => see "limiter"
+
+// ******************** Detail *******************
+// Details/info about limiter is shown in "Headers" of the "res"
