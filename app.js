@@ -5,7 +5,13 @@ const morgan = require('morgan');
 // Automatically logs in the terminal some data about our request
 
 const rateLimit = require('express-rate-limit');
+// Securing HTTP Headers
 const helmet = require('helmet');
+
+// Sanitization agains NoDQL query injection
+const mongoSanitize = require('express-mongo-sanitize');
+// sanitization agains XSS
+const xss = require('xss-clean');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -51,6 +57,15 @@ if (process.env.NODE_ENV === 'development') {
 
 // Body parser, reading data from body into req.body
 app.use(express.json({ limit: '10kb' }));
+
+// _________________________________________________________________
+// #21 - s10
+// Data Sanitization agains NoDQL query injection
+app.use(mongoSanitize());
+// "email": { "$gt": "" } => no longer works
+
+// Data sanitization agains XSS
+app.use(xss());
 
 // #17 _____________________________________________________________
 // Serving Static Files

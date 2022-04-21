@@ -360,3 +360,26 @@
 
 // ****************** Importat *********************
 // app.use(helmet()) => Recommended to put it on first
+
+//////////////////////////////////////////////////////////////////////////
+
+// #21
+// Data Sanitization
+
+// => To clean all the data that comes into the app from malicious code
+
+// **** NoDQL query injection ****
+// Example => faking an email adress by giving it a true value
+// "email": { $gt: "" } = true => returns all the accounts if we search in the database
+
+// ----------------------------------------------- npm i express-mongo-sanitize
+// => const mongoSanitize = require('express-mongo-sanitize');
+// ---------------------------- app.use(mongoZanitize())
+// => Removes all the "$" so nobody can cheese any data
+
+// **** XSS ****
+// => Prevent user to write/inject code in the req.body
+
+// ----------------------------------------------- npm i xss-clean
+// => const xss = require('xss-clean');
+// --------------------------- app.use(xss())
