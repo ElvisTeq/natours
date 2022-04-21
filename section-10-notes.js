@@ -365,8 +365,9 @@
 
 // #21
 // Data Sanitization
-
 // => To clean all the data that comes into the app from malicious code
+
+// Changes => "app.js"
 
 // **** NoDQL query injection ****
 // Example => faking an email adress by giving it a true value
@@ -383,3 +384,20 @@
 // ----------------------------------------------- npm i xss-clean
 // => const xss = require('xss-clean');
 // --------------------------- app.use(xss())
+
+//////////////////////////////////////////////////////////////////////////
+
+// #22
+// Preventing Parameters Pollution
+
+// Changes => "app.js"
+
+// Ex in URL => sort=duration&sort=price => cannot sort 2 parameters
+// "limitFields()" in "apiFeatures.js" => returns a "array"
+// .split(',').join(' ') => will not work in a array in "limitFields()"
+
+// ----------------------------------------------- npm i hpp
+
+// ----------------------------- app.use(hpp({ whitelist: [""] }))
+// => Will run the last parameter field
+// whitelist: ["duration"] => Whitelist parameters

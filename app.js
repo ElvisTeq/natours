@@ -12,6 +12,8 @@ const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 // sanitization agains XSS
 const xss = require('xss-clean');
+// Prevent Parameters Pollution
+const hpp = require('hpp');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -66,6 +68,22 @@ app.use(mongoSanitize());
 
 // Data sanitization agains XSS
 app.use(xss());
+
+// _________________________________________________________________
+// #22 - s10
+// Preventing Parameters Pollution
+app.use(
+  hpp({
+    whitelist: [
+      'duration',
+      'ratingsQuantity',
+      'ratingsAverage',
+      'maxGroupSize',
+      'difficulty',
+      'price',
+    ],
+  })
+);
 
 // #17 _____________________________________________________________
 // Serving Static Files
