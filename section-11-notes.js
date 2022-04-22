@@ -63,3 +63,24 @@
 // => Don't allow arrays to grow indefinitely: use CHILD REFERENCING for 1:MANY, and PARENT REFERENCING got 1:TON
 
 // => Use TWO-WAY Referencing for MANY:MANY
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// #1
+// Designing Our Data Model
+
+// users => reviews
+// 1:MANY
+// Parent Referencing => 1 user can write many reviews, sometimes we need to query only the reviews
+
+// tours <=> locations
+// FEW:FEW => Tour has few locations, same location can be in a few tours
+// Embedding => because FEW:FEW few of them, They belong together (tours needs to contain locations)
+
+// tours <=> users
+// FEW:FEW => tours contains a few tour guides, same guide might works for a few differnt tours
+// Child Referencing or Embedding => Embedding because tour must contain a guide, Child Referencing because tour guide has info on his own that me may query
+
+// tours => bookings <= users
+// 1:MANY => 1 tour/user can have many bookings, booking can only have 1 tour/user
+// Parent Referencing => Bookings will contain ID from user/tour that belongs
