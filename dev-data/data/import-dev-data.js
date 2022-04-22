@@ -26,7 +26,7 @@ mongoose
 const tours = JSON.parse(
   // ./ => Home folder which we started to run the app
   // ${__dirname} => current folder name
-  fs.readFileSync(`${__dirname}/tours-simple.json`, 'utf-8')
+  fs.readFileSync(`${__dirname}/tours.json`, 'utf-8')
 );
 
 // Import Data into DB

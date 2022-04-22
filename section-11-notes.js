@@ -84,3 +84,22 @@
 // tours => bookings <= users
 // 1:MANY => 1 tour/user can have many bookings, booking can only have 1 tour/user
 // Parent Referencing => Bookings will contain ID from user/tour that belongs
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// #2
+// Modelling Locations (Geospatial Data) => (longitude latitude location)
+// => Creating Embedded data
+
+// MongoDb supports Geospatial data
+
+// Added => "startLocation" and "locatioins" in the Schema in "tourModel.js"
+
+// --------------------------------- locations: []
+// [] => this creates a embedded document
+
+// ---------------------------------- node ./dev-data/data/import-dev-data.js --delete
+// Deleted all our tours
+
+// ---------------------------------- node ./dev-data/data/import-dev-data.js --import
+// imported data from "import-dev-data.js" => "tours.json"
