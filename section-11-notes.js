@@ -103,3 +103,16 @@
 
 // ---------------------------------- node ./dev-data/data/import-dev-data.js --import
 // imported data from "import-dev-data.js" => "tours.json"
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// #3
+// Modelling tours guides: Embedding
+
+// => When data is stored in "[]" in the schema is EMBEDDED
+
+// Added => "guides: Array" into "tourModel.js"
+
+// Added => "tourSchema.pre('save')" Middleware in "tourModel.js"
+// => When creating a new User
+// => Find all user By Id in, then store it to "guides:"
