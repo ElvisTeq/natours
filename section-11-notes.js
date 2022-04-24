@@ -116,3 +116,19 @@
 // Added => "tourSchema.pre('save')" Middleware in "tourModel.js"
 // => When creating a new User
 // => Find all user By Id in, then store it to "guides:"
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// #4
+// Modelling Tour Guides: Child Referencing
+
+// Changed => "guides: [{}]" in "tourModel.js"
+
+// Child Referencing using Mongoose
+// => Basically just storing the ID of the users using "type: mongoose.Schema.ObjectId"
+
+// --------------------------- type: mongoose.Schema.ObjectId
+// To tell mongoose this is a ID
+
+// --------------------------- ref: 'User'
+// Reference name
