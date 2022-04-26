@@ -120,12 +120,14 @@ const tourSchema = new mongoose.Schema(
       },
     ],
   },
+  // Options for Virtual Fields
   {
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
   }
 );
 
+// Create a temporary field "durationWeeks" , that will not be saved
 tourSchema.virtual('durationWeeks').get(function () {
   return this.duration / 7;
 });

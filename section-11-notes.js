@@ -153,3 +153,17 @@
 // ********************** Important ************************
 // .populate => returns a new query, if is used many times in a application it will be slow
 // .populate() => Points to "ref: User" in the schema
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// #6
+// Modelling Reviews: Parent Referencing
+
+// Created => "reviewModel.js" inside "models" folder
+
+// Created => "reviewSchema"
+
+// ************************ Remember ************************
+// schemaName = new mongoose.Schema({})
+// newName = mongoose.model('newName', schemaName)
+// module.exports = Name
