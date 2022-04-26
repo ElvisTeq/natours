@@ -132,3 +132,24 @@
 
 // --------------------------- ref: 'User'
 // Reference name
+// This will point to ".populate()" function in the future
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// #5
+// Populating Tour Guides
+
+// Modified => ".getTour()" in "tourController.js"
+// Added ".populate({})"
+
+// Created => Middleware in "tourModel.js" => ".pre(/^find/)" to .populate() all the "find" calls
+
+// .populate() => Points to "ref: User" in the schema
+// ------------------------------------------------- .populate({ path: 'guides', select: '-__v -passwordChangedAt'})
+// Returns the tours.guides data/info, (tours.guides only had the ID of the guides)
+// path: 'guides' => select guides to convert into data
+// select: '-__V' => filter out the selected names, (remember to add "-" before the name)
+
+// ********************** Important ************************
+// .populate => returns a new query, if is used many times in a application it will be slow
+// .populate() => Points to "ref: User" in the schema

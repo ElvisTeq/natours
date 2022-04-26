@@ -180,6 +180,17 @@ tourSchema.pre(/^find/, function (next) {
   this.start = Date.now();
   next();
 });
+// ___________________________________________________________
+// #5 - 11s
+// Populating Tour Guides
+tourSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: 'guides',
+    select: '-__v -passwordChangedAt',
+  });
+  next();
+});
+// ___________________________________________________________
 
 tourSchema.post(/^find/, function (docs, next) {
   // To show that this runs after the code on top
