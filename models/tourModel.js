@@ -133,6 +133,20 @@ tourSchema.virtual('durationWeeks').get(function () {
 });
 
 // ___________________________________________________________
+// #9 - s11
+// Virtual Populate: Tours and Reviews
+
+// .virtual() => Create a temporary field
+tourSchema.virtual('reviews', {
+  ref: 'Review',
+  // => Connecting the "_id" to the "tour"
+  foreignField: 'tour',
+  // => reviewModel.tour => reference to the other model
+  localField: '_id',
+  // .this"_id" = foreingField
+});
+
+// ___________________________________________________________
 // #22 - S-8
 // DOCUMENT MIDDLEWARE: runs before .save() and .create()
 

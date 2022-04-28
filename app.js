@@ -52,7 +52,7 @@ app.use('/api', limiter);
 // #18 _____________________________________________________________
 // Environment Variables
 
-// if we are on delevepment mode, automatically run morgan.dev
+// if we are on development mode, automatically run morgan.dev
 console.log(process.env.NODE_ENV);
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));

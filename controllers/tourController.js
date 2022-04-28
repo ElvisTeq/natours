@@ -160,7 +160,7 @@ exports.getAllTours = catchAsync(async (req, res, next) => {
 
 exports.getTour = catchAsync(async (req, res, next) => {
   // req.params => all parameters enter/use on the URL
-  const tour = await Tour.findById(req.params.id);
+  const tour = await Tour.findById(req.params.id).populate('reviews');
   // id => route('/:id') we specified in "tourRoutes.js"
 
   if (!tour) {

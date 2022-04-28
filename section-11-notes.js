@@ -185,3 +185,19 @@
 // Populating Reviews
 
 // Created => Populate middleware in "reviewModel.js" for "getAllReviews"
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// #9
+// Virtual Populate: Tours and Reviews
+
+// Using ".virtual()" to create a temporary field for "Reviews"
+
+// Implemented => "tourModel.js"
+
+// ----------------------------------- tourSchema.virtual('reviews', { ref: , foreingField: , localField: })
+// To populate a virtual field
+// reviews => name
+// ref: reference like in the schema
+// foreingField: => field of the referenced model
+// localField: => '_id' => makes "_id" = foreingField
