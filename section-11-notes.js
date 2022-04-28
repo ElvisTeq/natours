@@ -167,3 +167,19 @@
 // schemaName = new mongoose.Schema({})
 // newName = mongoose.model('newName', schemaName)
 // module.exports = Name
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// #7
+// Creating and getting Reviews
+
+// Challenge => Vid.155
+
+// Created => "reviewController.js" & "ewviewRoutes.js"
+
+// Added => "app.use('/api/v1/reviews', reviewRouter)" to "app.js"
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// #8
+//
