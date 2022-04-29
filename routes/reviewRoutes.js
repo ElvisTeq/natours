@@ -3,9 +3,12 @@ const fs = require('fs');
 const reviewController = require('./../controllers/reviewController');
 const authController = require('./../controllers/authController');
 
-const router = express.Router();
+// mergeParams: true => Allows "router.use('/:tourId/reviews', reviewRouter)" from "tourRoutes" to work
+const router = express.Router({ mergeParams: true });
+// This makes that "/" = '/:tourId/reviews'
 
 router
+  // "/" = '/api/v1/reviews'
   .route('/')
   .get(reviewController.getAllReviews)
   .post(

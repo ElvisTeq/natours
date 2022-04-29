@@ -211,3 +211,15 @@
 // Created => req.params to handle "tourId" fomr the URL
 
 // Implemented => in "createReview()"
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// #11
+// Nested Routes With Express
+
+// -------------------------- router.use('/:tourId/reviews', reviewRouter);
+// => to nest '/:tourId/reviews' to "reviewRouter"
+
+// -------------------------- const router = express.Router({ mergeParams: true });
+// mergeParams: true => for the merging to work in "reviewRouter"
+// this makes that => "/" = '/:tourId/reviews' and '/api/v1/reviews'

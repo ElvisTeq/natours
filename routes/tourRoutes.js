@@ -4,10 +4,32 @@ const fs = require('fs');
 const tourController = require('./../controllers/tourController.js');
 const authController = require('./../controllers/authController');
 const reviewController = require('./../controllers/reviewController');
+const reviewRouter = require('./reviewRoutes');
 
 const router = express.Router();
+//_________________________________________________________________________
+// #10 - s11
+// Implementing Simple Nested Routes
+
+/*
+router
+  // Crating req.params
+  .route('/:tourId/reviews')
+  .post(
+    authController.protect,
+    authController.restrictTo('user'),
+    reviewController.createReview
+  );
+*/
+
+// #11- s11
+// Nested Routes With Express
+
+// if URL = /:tourId/reviews => use "reviewRouter"
+router.use('/:tourId/reviews', reviewRouter);
 
 // #15 _______________________________________________________________
+
 // Param Middleware
 /*
 // Middleware that only run with certain params
@@ -49,19 +71,6 @@ router
     authController.protect,
     authController.restrictTo('admin', 'lead-guide'),
     tourController.deleteTour
-  );
-
-//_________________________________________________________________________
-// #10
-// Implementing Simple Nested Routes
-
-router
-  // Crating req.params
-  .route('/:tourId/reviews')
-  .post(
-    authController.protect,
-    authController.restrictTo('user'),
-    reviewController.createReview
   );
 
 module.exports = router;
