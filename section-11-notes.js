@@ -201,3 +201,13 @@
 // ref: reference like in the schema
 // foreingField: => field of the referenced model
 // localField: => '_id' => makes "_id" = foreingField
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// #10
+// Implementing Simple Nested Routes
+// => So we don't have to enter tour and user id to create a review
+
+// Created => req.params to handle "tourId" fomr the URL
+
+// Implemented => in "createReview()"

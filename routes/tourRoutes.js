@@ -3,6 +3,7 @@ const fs = require('fs');
 
 const tourController = require('./../controllers/tourController.js');
 const authController = require('./../controllers/authController');
+const reviewController = require('./../controllers/reviewController');
 
 const router = express.Router();
 
@@ -48,6 +49,19 @@ router
     authController.protect,
     authController.restrictTo('admin', 'lead-guide'),
     tourController.deleteTour
+  );
+
+//_________________________________________________________________________
+// #10
+// Implementing Simple Nested Routes
+
+router
+  // Crating req.params
+  .route('/:tourId/reviews')
+  .post(
+    authController.protect,
+    authController.restrictTo('user'),
+    reviewController.createReview
   );
 
 module.exports = router;
