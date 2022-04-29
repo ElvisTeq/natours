@@ -25,8 +25,12 @@ router
 // #11- s11
 // Nested Routes With Express
 
-// if URL = /:tourId/reviews => use "reviewRouter"
+// if URL = contains "/:tourId/reviews" => use "reviewRouter"
+// this.URL => api/v1/tours
+// Contains => /tourId/reviews
+// reviewRouter => api/v1/tours/tourId/reviews
 router.use('/:tourId/reviews', reviewRouter);
+// /: => req.params
 
 // #15 _______________________________________________________________
 

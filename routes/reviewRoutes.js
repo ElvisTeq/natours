@@ -5,7 +5,7 @@ const authController = require('./../controllers/authController');
 
 // mergeParams: true => Allows "router.use('/:tourId/reviews', reviewRouter)" from "tourRoutes" to work
 const router = express.Router({ mergeParams: true });
-// This makes that "/" = '/:tourId/reviews'
+// This makes that "/" = 'api/v1/tours/tourId/reviews'
 
 router
   // "/" = '/api/v1/reviews'

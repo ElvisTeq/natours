@@ -6,7 +6,13 @@ const User = require('./../models/userModel');
 const Review = require('./../models/reviewModel');
 
 exports.getAllReviews = catchAsync(async (req, res, next) => {
-  const reviews = await Review.find();
+  let filter = {};
+
+  // api/v1/tours/tourId/reviews
+  if (req.params.tourId) filter = { tour: req.params.tourId };
+
+  // if filter is empthy, .find() empthy => return all
+  const reviews = await Review.find(filter);
 
   if (!reviews) {
     return new AppError('Tour does not have any reviews yet', 404);

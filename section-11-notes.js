@@ -222,4 +222,14 @@
 
 // -------------------------- const router = express.Router({ mergeParams: true });
 // mergeParams: true => for the merging to work in "reviewRouter"
-// this makes that => "/" = '/:tourId/reviews' and '/api/v1/reviews'
+// this makes that => "/" = 'api/v1/tours/tourId/reviews' and '/api/v1/reviews'
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// #12
+// Adding a Nested GET Endpoint
+
+// Changes => "getAllReviews()" in "reviewController.js"
+
+// By Nesting Routes With Express, we can manipulate "tourId" from URL "api/v1/tours/tourId/reviews"
+// => To get all reviews from 1 tour
