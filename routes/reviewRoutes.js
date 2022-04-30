@@ -17,4 +17,7 @@ router
     reviewController.createReview
   );
 
+router.route('/:id').delete(reviewController.deleteReview);
+// "/:id" => '/api/v1/reviews/id'
+
 module.exports = router;

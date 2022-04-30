@@ -3,6 +3,7 @@ const Tour = require('./../models/tourModel');
 const APIFeatures = require('./../utils/apiFeatures');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
+const factory = require('./handlerFactory');
 
 // #3 ______________________________________________________________
 /*
@@ -228,20 +229,27 @@ exports.updateTour = catchAsync(async (req, res, next) => {
 
 // #7 ________________________________________________________________
 // Deleting Tours
+// ________________________________________________________________
+// #13 - s11
+// Building Handler Factor Functions: Delete
 
-exports.deleteTour = catchAsync(async (req, res, next) => {
-  const tour = await Tour.findByIdAndDelete(req.params.id);
+// .deleteOne() => "handleFactory.js"
+exports.deleteTour = factory.deleteOne(Tour);
 
-  if (!tour) {
-    return next(new AppError('No tour found with that ID', 404));
-  }
+// exports.deleteTour = catchAsync(async (req, res, next) => {
+//   const tour = await Tour.findByIdAndDelete(req.params.id);
 
-  res.status(204).json({
-    status: 'success',
-    data: null,
-  });
-});
+//   if (!tour) {
+//     return next(new AppError('No tour found with that ID', 404));
+//   }
 
+//   res.status(204).json({
+//     status: 'success',
+//     data: null,
+//   });
+// });
+
+// ________________________________________________________________
 exports.getTourStats = catchAsync(async (req, res, next) => {
   const stats = await Tour.aggregate([
     {

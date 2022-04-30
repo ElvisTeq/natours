@@ -233,3 +233,15 @@
 
 // By Nesting Routes With Express, we can manipulate "tourId" from URL "api/v1/tours/tourId/reviews"
 // => To get all reviews from 1 tour
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// #13
+// Building Handler Factor Functions: Delete
+
+// Created => "handleFactory.js" and ".deleteOne(Model)"
+// => Making a single function to work on any Model
+
+// Changes => "deleteTour" from "tourController.js"
+// => "deleteReview" from "reviewController.js"
+// => "deleteUser" from "userController.js"
