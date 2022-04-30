@@ -245,3 +245,16 @@
 // Changes => "deleteTour" from "tourController.js"
 // => "deleteReview" from "reviewController.js"
 // => "deleteUser" from "userController.js"
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// #14
+// Factoring functions: Update and Create
+
+// Created => ".updateOne(Model)" and ".createOne()" in "handleFactory.js"
+// => Added the new function to all the "update" and "create" models
+
+// Created => "setTourUserIds()" in "reviewController.js"
+
+// Changes => made to the "createReview()" so it can use ".createOne()"
+// => Separated some code to "setTourUserIds()" so ".createOne()" works

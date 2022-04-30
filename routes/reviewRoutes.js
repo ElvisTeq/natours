@@ -14,10 +14,14 @@ router
   .post(
     authController.protect,
     authController.restrictTo('user'),
+    reviewController.setTourUserIds,
     reviewController.createReview
   );
 
-router.route('/:id').delete(reviewController.deleteReview);
-// "/:id" => '/api/v1/reviews/id'
+router
+  // "/:id" => '/api/v1/reviews/id'
+  .route('/:id')
+  .patch(reviewController.updateReview)
+  .delete(reviewController.deleteReview);
 
 module.exports = router;

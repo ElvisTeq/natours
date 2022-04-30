@@ -178,54 +178,62 @@ exports.getTour = catchAsync(async (req, res, next) => {
 });
 
 // #4 ________________________________________________________________
+// #14 - s11
+// Factoring functions: Update and Create
 
-exports.createTour = catchAsync(async (req, res, next) => {
-  // const newTour = new Tour()
-  // newTour.save().then()
-  const newTour = await Tour.create(req.body);
-  // req.body => data from request
+exports.createTour = factory.createOne(Tour);
 
-  res.status(201).json({
-    // 201 => created
-    status: 'success',
-    data: {
-      tour: newTour,
-    },
-  });
+// exports.createTour = catchAsync(async (req, res, next) => {
+//   // const newTour = new Tour()
+//   // newTour.save().then()
+//   const newTour = await Tour.create(req.body);
+//   // req.body => data from request
 
-  // try {
+//   res.status(201).json({
+//     // 201 => created
+//     status: 'success',
+//     data: {
+//       tour: newTour,
+//     },
+//   });
 
-  // } catch (err) {
-  //   res.status(400).json({
-  //     // 400 => bad request
-  //     status: 'fail',
-  //     message: err,
-  //   });
-  // }
-});
+// try {
+
+// } catch (err) {
+//   res.status(400).json({
+//     // 400 => bad request
+//     status: 'fail',
+//     message: err,
+//   });
+// }
+// });
 
 // #6 ________________________________________________________________
 // Updating existing tours
+// #14 - s11
+// Refactoring updateTour
 
-exports.updateTour = catchAsync(async (req, res, next) => {
-  const tour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
-    // to return new changes
-    new: true,
-    // to validate the schema rules
-    runValidators: true,
-  });
+exports.updateTour = factory.updateOne(Tour);
 
-  if (!tour) {
-    return next(new AppError('No tour found with that ID', 404));
-  }
+// exports.updateTour = catchAsync(async (req, res, next) => {
+//   const tour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
+//     // to return new changes
+//     new: true,
+//     // to validate the schema rules
+//     runValidators: true,
+//   });
 
-  res.status(200).json({
-    status: 'success',
-    data: {
-      tour,
-    },
-  });
-});
+//   if (!tour) {
+//     return next(new AppError('No tour found with that ID', 404));
+//   }
+
+//   res.status(200).json({
+//     status: 'success',
+//     data: {
+//       tour,
+//     },
+//   });
+// });
 
 // #7 ________________________________________________________________
 // Deleting Tours
