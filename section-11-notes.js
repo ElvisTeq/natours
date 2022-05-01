@@ -277,3 +277,11 @@
 // Merged functionality when created "getOne()" with "getAllTours()" and "getAllReviews()"
 // "getAllTours()" => added all the "APIFeatures"
 // "getAllReviews()" => uses "req.params.tourId" to "GET" all reviews from one tour
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// #16
+// Adding a /me Endpoint
+
+// Created => "getMe()" in "userController.js"
+// => tricking "getOne()" by setting "params.id" = "user.id"

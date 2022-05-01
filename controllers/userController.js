@@ -13,6 +13,15 @@ const filterObj = (obj, ...allowedFields) => {
   });
   return newObj;
 };
+// _______________________________________________________________
+// #16
+// Adding a /me Endpoint
+
+// Making "params.id" = "user.id" for "getOne()"
+exports.getMe = (req, res, next) => {
+  req.params.id = req.user.id;
+  next();
+};
 
 // #12 _______________________________________________________________
 // User methods

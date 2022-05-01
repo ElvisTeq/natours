@@ -19,6 +19,14 @@ router.patch(
   authController.updatePassword
 );
 
+router.get(
+  '/me',
+  authController.protect,
+  // Making "params.id" = "user.id" for "getUser()"
+  userController.getMe,
+  // getUser => calls "getOne()" which uses "params.id"
+  userController.getUser
+);
 router.patch('/updateMe', authController.protect, userController.updateMe);
 router.delete('/deleteMe', authController.protect, userController.deleteMe);
 
