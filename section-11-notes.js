@@ -339,3 +339,17 @@
 // *********** Important ************
 // To delete a Index we need to do it in the database
 // The whole point of indexing is to shortcut when finding data
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// #20
+// Calculating Average Rating on Tours - P1
+
+// Created => ".static.calcAverageRatings" in "reviewModel.js"
+
+// Created => Middlewate to run ".static.calcAverageRatings"
+
+// -------------------------------- this.constructor
+// this => current document
+// this.constructor => the model who created "this"
+// Example => "reviewModel.js"

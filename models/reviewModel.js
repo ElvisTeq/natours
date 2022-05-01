@@ -50,5 +50,49 @@ reviewSchema.pre(/^find/, function (next) {
   next();
 });
 
+//___________________________________________________________________________
+// #20 - s11
+// Calculating Average Rating on Tours - P1
+
+reviewSchema.statics.calcAverageRatings = async function (tourId) {
+  const stats = await this.aggregate([
+    {
+      // find tours with "tourId"
+      $match: { tour: tourId },
+    },
+    {
+      $group: {
+        // What to group
+        _id: '$tour',
+        // +1 for each rating found
+        nRating: { $sum: 1 },
+        // $avr operator => to calculate average of "rating"
+        avgRating: { $avg: '$rating' },
+        // "$" => for MongoDB to recognize
+      },
+    },
+  ]);
+  console.log(stats);
+
+  // Updating Tour Ratings
+  await Tour.findByIdAndUpdate(tourId, {
+    // stats[0] => they are stored in the first Arr of "stats"
+    ratingsQuantity: stats[0].nRating,
+    ratingsAverage: stats[0].avgRating,
+  });
+};
+
+// .post => Run "calcAverageRatings()" after a Review is created
+// Middlewares run after "save()" or "create()"
+reviewSchema.post('save', function () {
+  // this => current document
+  // this.constructor => the model who created "this"
+  this.constructor.calcAverageRatings(this.tour);
+
+  // Review.calcAverageRatings(this.tour)
+  // => will not work because this middleware will be called in a different module when "save()/create()"
+});
+//___________________________________________________________________________
+
 const Review = mongoose.model('Review', reviewSchema);
 module.exports = Review;
