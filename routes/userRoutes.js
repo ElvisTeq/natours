@@ -9,26 +9,28 @@ const router = express.Router();
 
 router.post('/signup', authController.signup);
 router.post('/login', authController.login);
-
 router.post('/forgotPassword', authController.forgotPassword);
 router.patch('/resetPassword/:token', authController.resetPassword);
 
-router.patch(
-  '/updateMyPassword',
-  authController.protect,
-  authController.updatePassword
-);
+// Middleware runs in sequence => So we can call ".protect()" here before running any of the routes below
+// Instead of calling them individualy, All routes are protectec after this middleware
+router.use(authController.protect);
+
+router.patch('/updateMyPassword', authController.updatePassword);
 
 router.get(
   '/me',
-  authController.protect,
+
   // Making "params.id" = "user.id" for "getUser()"
   userController.getMe,
   // getUser => calls "getOne()" which uses "params.id"
   userController.getUser
 );
-router.patch('/updateMe', authController.protect, userController.updateMe);
-router.delete('/deleteMe', authController.protect, userController.deleteMe);
+router.patch('/updateMe', userController.updateMe);
+router.delete('/deleteMe', userController.deleteMe);
+
+// All routes after this middleware is ".restrictTo('admin')"
+router.use(authController.restrictTo('admin'));
 
 router
   .route('/')

@@ -51,17 +51,27 @@ router
 // aliasTopTours => Middleware to get "req.query" for "getAllTours" to show
 
 router.route('/tour-stats').get(tourController.getTourStats);
-router.route('/monthly-plan/:year').get(tourController.getMonthlyPlan);
+router
+  .route('/monthly-plan/:year')
+  .get(
+    authController.protect,
+    authController.restrictTo('admin', 'lead-guide', 'guide'),
+    tourController.getMonthlyPlan
+  );
 // /:year => to manually give "req.params" to "/monthly-plan"
 
 // app.get('/api/v1/tours', getAllTours);
 // app.post('/api/v1/tours', createTour);
 router
   .route('/')
-  .get(authController.protect, tourController.getAllTours)
-  .post(tourController.createTour);
+  .get(tourController.getAllTours)
+  .post(
+    authController.protect,
+    authController.restrictTo('admin', 'lead-guide'),
+    tourController.createTour
+  );
 // checkBody function deleter
-// '/' => We will define '/api/v1/tours' by "app.use()" in "app.js"
+// '/' => '/api/v1/tours'
 
 // app.get('/api/v1/tours/:id?', getTour);
 // app.patch('/api/v1/tours/:id', updateTour);
@@ -70,7 +80,11 @@ router
   .route('/:id')
   // We need only the id because the rest of the route is defined by "app.use()" in "app.js"
   .get(tourController.getTour)
-  .patch(tourController.updateTour)
+  .patch(
+    authController.protect,
+    authController.restrictTo('admin', 'lead-guide'),
+    tourController.updateTour
+  )
   .delete(
     authController.protect,
     authController.restrictTo('admin', 'lead-guide'),

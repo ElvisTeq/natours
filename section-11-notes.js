@@ -285,3 +285,15 @@
 
 // Created => "getMe()" in "userController.js"
 // => tricking "getOne()" by setting "params.id" = "user.id"
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// #17
+// Adding Missing Authentication and Authorization
+
+// Adjusting/Fixing Authentication and Authorization for all "Routes.js"
+
+// ********************* Important **********************
+// Middleware runs in sequence => If we call "router.use(authController.protect)" before any middleware
+// We don't need to add ".protect()" individualy
+// Example => "userRouter.js"
