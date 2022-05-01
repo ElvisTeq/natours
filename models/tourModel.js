@@ -127,6 +127,20 @@ const tourSchema = new mongoose.Schema(
   }
 );
 
+//____________________________________________________________________
+// #19 - s11
+// Improving Read Perfomance with Indexes
+
+// tourSchema.index({ price: 1 });
+
+// price: 1 => will be starting to search from (Low~High)
+// ratingsAverage: -1 => will start to search from (High~Low)
+tourSchema.index({ price: 1, ratingsAverage: -1 });
+
+tourSchema.index({ slug: 1 });
+
+//___________________________________________________________
+
 // Create a temporary field "durationWeeks" , that will not be saved
 tourSchema.virtual('durationWeeks').get(function () {
   return this.duration / 7;

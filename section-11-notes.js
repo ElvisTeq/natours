@@ -317,3 +317,25 @@
 
 // Added => "await User.create(users, { validateBeforeSave: false });"
 // => Turning validation off in order to create new users
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// #19
+// Improving Read Perfomance with Indexes
+
+// -------------------------------------------- .explain()
+// => "const doc = await features.query.explain();"
+// => gets detailed data of the req.param
+
+// To create a Index
+// -------------------------------------------- tourSchema.index({ price: 1, ratingsAverage: -1 });
+// This causes that if we search for price, it will start in a ascending order
+// 1 => (Low ~ High)
+// -1 => (High ~ Low)
+
+// ********* When Should we Decide to Use Indexes *********
+// => Need to study our code pattern and figure out ourself
+
+// *********** Important ************
+// To delete a Index we need to do it in the database
+// The whole point of indexing is to shortcut when finding data
