@@ -297,3 +297,23 @@
 // Middleware runs in sequence => If we call "router.use(authController.protect)" before any middleware
 // We don't need to add ".protect()" individualy
 // Example => "userRouter.js"
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// #18
+// Importing Review and User Data
+
+// Changes => to "import-dev-data.js"
+// => added functionallity yo delete users and reviews
+
+// Deleted all "user", "reviews", "tours"
+// with => node ./dev-data/data/import-dev-data.js --delete
+
+// Imported new "user", "reviews", "tours"
+// with => node ./dev-data/data/import-dev-data.js --import
+
+// Commenting password Encryption in "userModel.js"
+// => because data we importing already contains passwords
+
+// Added => "await User.create(users, { validateBeforeSave: false });"
+// => Turning validation off in order to create new users
