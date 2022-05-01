@@ -21,6 +21,7 @@ router
 router
   // "/:id" => '/api/v1/reviews/id'
   .route('/:id')
+  .get(reviewController.getReview)
   .patch(reviewController.updateReview)
   .delete(reviewController.deleteReview);
 

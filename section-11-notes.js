@@ -258,3 +258,22 @@
 
 // Changes => made to the "createReview()" so it can use ".createOne()"
 // => Separated some code to "setTourUserIds()" so ".createOne()" works
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// #15
+// Factory Functions: Reading
+
+// Created => "getOne()" in "handleFactory.js"
+// => added a second argument to the function for ".populate()" options
+// if empthy => will not call ".populate()"
+
+// Changed => replaced "getOne()" to all "get" functions
+
+// Created => "getAll()" in "handleFactory.js"
+// To replace all the getAll functions for the Models
+
+// ***************** Important ****************
+// Merged functionality when created "getOne()" with "getAllTours()" and "getAllReviews()"
+// "getAllTours()" => added all the "APIFeatures"
+// "getAllReviews()" => uses "req.params.tourId" to "GET" all reviews from one tour
