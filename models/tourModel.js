@@ -237,13 +237,13 @@ tourSchema.post(/^find/, function (docs, next) {
 // Aggregation Middleware
 // To make/add changes in a "pipeline" before executing
 
-tourSchema.pre('aggregate', function (next) {
-  // .unshift() => JS ARR method => too add at the beggining of ARR
-  // this.pipeline() => Tour.aggregate([pipeline])
-  this.pipeline().unshift({ $match: { secretTour: { $ne: true } } });
-  console.log(this._pipeline);
-  next();
-});
+// tourSchema.pre('aggregate', function (next) {
+//   // .unshift() => JS ARR method => too add at the beggining of ARR
+//   // this.pipeline() => Tour.aggregate([pipeline])
+//   this.pipeline().unshift({ $match: { secretTour: { $ne: true } } });
+//   console.log(this._pipeline);
+//   next();
+// });
 
 // ___________________________________________________________
 

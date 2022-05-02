@@ -67,11 +67,17 @@ router
 router
   .route('/tours-within/:distance/:center/:latlng/unit/:unit')
   .get(tourController.getToursWithin);
-// URL => /tours-within?distance=233&center=-40,45&unit=mi
+// URL Ex => /tours-within?distance=233&center=-40,45&unit=mi
 // Better URL => /tours-within/233/center/-40,45/unit/mi
 
 //_________________________________________________________________________________
+// #24 - s11
+// Geospatial Aggregation: Calculating Distances
 
+router.route('/distances/:latlng/unit/:unit').get(tourController.getDistances);
+// URL Ex => /distances/34.111745,-118.113491/unit/mi
+
+//_________________________________________________________________________________
 // app.get('/api/v1/tours', getAllTours);
 // app.post('/api/v1/tours', createTour);
 router

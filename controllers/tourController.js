@@ -401,3 +401,57 @@ exports.getToursWithin = catchAsync(async (req, res, next) => {
     },
   });
 });
+
+exports.getDistances = catchAsync(async (req, res, next) => {
+  const { latlng, unit } = req.params;
+  const [lat, lng] = latlng.split(',');
+
+  const multiplier = unit === 'mi' ? 0.000621371 : 0.001;
+  // 0.000621371 => meters into miles
+  // 0.001 => meters into kilometer
+
+  if (!lat || !lng) {
+    next(
+      new AppError(
+        'Please Provide latitude and longitude in the format lat,lng',
+        400
+      )
+    );
+  }
+
+  const distances = await Tour.aggregate([
+    {
+      // This always need to be the first stage
+      // requires a geospatial index => automatically find one if contains
+      // If multiple geospatial index => need to use "keys" parameter to define one
+      // All fields are mandatory
+      $geoNear: {
+        // Specifiying GeoJson data
+        near: {
+          type: 'Point',
+          // * 1 => to convert into Number
+          coordinates: [lng * 1, lat * 1],
+        },
+        // Name of the field that will be created, storing all the calculated distances
+        // Result comes in metters
+        distanceField: 'distance',
+        // Multiply to get Kilometers
+        distanceMultiplier: multiplier,
+      },
+    },
+    {
+      // Only show this results in "distance"
+      $project: {
+        distance: 1,
+        name: 1,
+      },
+    },
+  ]);
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      data: distances,
+    },
+  });
+});

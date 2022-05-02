@@ -403,8 +403,29 @@
 
 // ----------------------------------------- .find({startLocation: { $geoWithin: { $centerSphere: [[lng, lat], radius]}}})
 // => Finding tours around in a given location
+// $geoWithin => requires a geospatial index
 
+// Geospatial index
 // ---------------------------------------- .index({startLocation: '2dsphere'})
 // => Geospatial Data needed to show in map
 // Telling MongoDB that the "startLocation" is a "2dsphere"
 // "2dsphere" => 2d map
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// #24
+// Geospatial Aggregation: Calculating Distances
+
+// Created => route for "/distances/:latlng/unit/:unit"
+
+// Created => "getDistances" in "tourController.js"
+// To handle the new route above
+
+// ------------------------------------ $geoNear: {}
+// Always need to be the first stage in ".aggregate()"
+// => requires a geospatial index => will automatically search if has one
+// => If multiple geospatial index => need to use "keys" parameter to define the field we want to use
+
+// **************** Important *******************
+// $geoNear is only valid as the first stage in a pipeline.
+// Check "getDistances" for Examples
