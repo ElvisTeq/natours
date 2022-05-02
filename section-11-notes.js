@@ -371,3 +371,21 @@
 // Using => Schema.post(/^findOneAnd/) => to run ".calcAverageRatings"
 // Reason => "await this.findOne();" does not work in ".post", query has already executed
 // ".calcAverageRatings" is a statis function
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// #22
+// Preventing Duplicate Reviews
+
+// Added => "reviewModel.js"
+// --------------------------------- reviewSchema.index({ tour: 1, user: 1 }, { unique: true });
+// => Each combination of "tour" and "user" has to be unique
+// => Tour cannot have the same user => User cannot have the same tour
+// => Preventing Duplicate Reviews
+
+// ---------------------------------- set: () => {}
+// function for the schema
+// Implemented => "tourModel.js" schema
+
+// Changes => "ratingsAverage" on "tourModel.js" schema
+// Math.round() => the average number
