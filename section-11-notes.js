@@ -389,3 +389,22 @@
 
 // Changes => "ratingsAverage" on "tourModel.js" schema
 // Math.round() => the average number
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// #23
+// Geospatial Queries: Finding Tours Within Radius
+
+// Created => route for "distance, latlng, unit" in the URL (req.params)
+// => "/tours-within/:distance/:center/:latlng/unit/:unit"
+
+// Created => "getToursWithin()" in "tourController.js"
+// => To handle the route above
+
+// ----------------------------------------- .find({startLocation: { $geoWithin: { $centerSphere: [[lng, lat], radius]}}})
+// => Finding tours around in a given location
+
+// ---------------------------------------- .index({startLocation: '2dsphere'})
+// => Geospatial Data needed to show in map
+// Telling MongoDB that the "startLocation" is a "2dsphere"
+// "2dsphere" => 2d map

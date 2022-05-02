@@ -139,8 +139,9 @@ const tourSchema = new mongoose.Schema(
 // price: 1 => will be starting to search from (Low~High)
 // ratingsAverage: -1 => will start to search from (High~Low)
 tourSchema.index({ price: 1, ratingsAverage: -1 });
-
 tourSchema.index({ slug: 1 });
+// Options for Map rendering with MongoDB - (#23 -s11)
+tourSchema.index({ startLocation: '2dsphere' });
 
 //___________________________________________________________
 

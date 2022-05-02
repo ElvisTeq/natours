@@ -363,3 +363,41 @@ exports.getMonthlyPlan = catchAsync(async (req, res, next) => {
     },
   });
 });
+
+exports.getToursWithin = catchAsync(async (req, res, next) => {
+  // /tours-within/233/center/34.111745,-118.113491/unit/mi
+  // distance => /233
+  // latlng => /34.111745,-118.113491
+  // unit => /mi
+  const { distance, latlng, unit } = req.params;
+  const [lat, lng] = latlng.split(',');
+
+  // To get radians of the earth => Necessary for MongoDB "$centerSphere"
+  const radius = unit === 'mi' ? distance / 3963.2 : distance / 6378.1;
+  // in Miles => distance / 3963.2
+  // in Kilometers => distance / 6378.1
+
+  if (!lat || !lng) {
+    next(
+      new AppError(
+        'Please Provide latitude and longitude in the format lat,lng',
+        400
+      )
+    );
+  }
+
+  // Find tours around in a given location
+  // [lng, lat] => Center
+  // radius => tours around this radius
+  const tours = await Tour.find({
+    startLocation: { $geoWithin: { $centerSphere: [[lng, lat], radius] } },
+  });
+
+  res.status(200).json({
+    status: 'success',
+    results: tours.length,
+    data: {
+      data: tours,
+    },
+  });
+});

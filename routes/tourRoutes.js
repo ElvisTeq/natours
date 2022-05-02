@@ -60,6 +60,18 @@ router
   );
 // /:year => to manually give "req.params" to "/monthly-plan"
 
+//_________________________________________________________________________________
+// #23 -s11
+// Geospatial Queries: Finding Tours Within Radius
+
+router
+  .route('/tours-within/:distance/:center/:latlng/unit/:unit')
+  .get(tourController.getToursWithin);
+// URL => /tours-within?distance=233&center=-40,45&unit=mi
+// Better URL => /tours-within/233/center/-40,45/unit/mi
+
+//_________________________________________________________________________________
+
 // app.get('/api/v1/tours', getAllTours);
 // app.post('/api/v1/tours', createTour);
 router
