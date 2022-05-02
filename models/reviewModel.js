@@ -72,14 +72,22 @@ reviewSchema.statics.calcAverageRatings = async function (tourId) {
       },
     },
   ]);
-  console.log(stats);
+  // console.log(stats);
 
   // Updating Tour Ratings
-  await Tour.findByIdAndUpdate(tourId, {
-    // stats[0] => they are stored in the first Arr of "stats"
-    ratingsQuantity: stats[0].nRating,
-    ratingsAverage: stats[0].avgRating,
-  });
+  if (stats.length > 0) {
+    await Tour.findByIdAndUpdate(tourId, {
+      // stats[0] => where "nRating/avgRating" is stored
+      ratingsQuantity: stats[0].nRating,
+      ratingsAverage: stats[0].avgRating,
+    });
+  } else {
+    await Tour.findByIdAndUpdate(tourId, {
+      ratingsQuantity: 0,
+      // 4.5 => default in schema
+      ratingsAverage: 4.5,
+    });
+  }
 };
 
 // .post => Run "calcAverageRatings()" after a Review is created
@@ -92,6 +100,26 @@ reviewSchema.post('save', function () {
   // Review.calcAverageRatings(this.tour)
   // => will not work because this middleware will be called in a different module when "save()/create()"
 });
+//___________________________________________________________________________
+// #21 - s11
+// Calculating Average Rating on Tours - P2
+
+// This is for
+// => findOneAndUpdate
+// => findOneAndDelete
+
+reviewSchema.pre(/^findOneAnd/, async function (next) {
+  // Create "r" => contains findOne() data
+  this.r = await this.findOne();
+  console.log(this.r);
+  next();
+});
+
+reviewSchema.post(/^findOneAnd/, async function () {
+  // "await this.findOne();" does not work here, query has already executed
+  await this.r.constructor.calcAverageRatings(this.r.tour);
+});
+
 //___________________________________________________________________________
 
 const Review = mongoose.model('Review', reviewSchema);

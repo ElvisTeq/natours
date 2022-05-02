@@ -353,3 +353,21 @@
 // this => current document
 // this.constructor => the model who created "this"
 // Example => "reviewModel.js"
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// #21
+// Calculating Average Rating on Tours - P2
+
+// This is for
+// => findOneAndUpdate
+// => findOneAndDelete
+
+// Changes => in "reviewModel.js"
+
+// Using => Schema.pre(/^findOneAnd/) => to get the data we want to call ".calcAverageRatings"
+// Then storing it, so ".post" has access to it
+
+// Using => Schema.post(/^findOneAnd/) => to run ".calcAverageRatings"
+// Reason => "await this.findOne();" does not work in ".post", query has already executed
+// ".calcAverageRatings" is a statis function
