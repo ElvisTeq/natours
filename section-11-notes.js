@@ -429,3 +429,16 @@
 // **************** Important *******************
 // $geoNear is only valid as the first stage in a pipeline.
 // Check "getDistances" for Examples
+
+///////////////////////////////////////////////////////////////////////////////////
+
+// #25
+// Creating API Documentation Using Postman
+
+// Created => Environment Variable to Hold the Password from Postman
+// => {{password}}
+
+// ** ** => To highlight text in the description
+
+// 1) => Add "Description" => Describe our API Collection
+// 2) => Make sure to not leak Passwords or any important data
