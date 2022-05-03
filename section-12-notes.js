@@ -25,3 +25,26 @@
 
 // ----------------------------------------- .render('')
 // Was use to render "base.pug"
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+// #2
+// First Step with Pug
+
+// ---------------------------------------- .render('template', { data })
+// { data } => to pass data into the template
+
+// ******************** Buffer Code
+// => We can write JS in "base.pug"
+
+// ******************** Unbuffer Code
+// --------------------------------------- (- const x = 9)
+// => Code that is not going to appear in the output
+
+// ******************** Interpolation Code "#{}"
+// => Added template string with "#{}" instead of "${}" from ES6
+// => Adding Code to a String
+
+// ******************* Important ***********************
+// => We use "app.use(express.static(path.join(__dirname, 'public')));" in "app.js"
+// => This causes that "images" and "css/style.css" will automatically be search in "public" folder in "base.pug"

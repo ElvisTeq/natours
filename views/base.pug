@@ -1,1 +1,20 @@
-h1 Yo
+doctype html
+html
+  head
+    //- Interpolation Code (Adding Code to a String)
+    title Natours | #{tour}
+    //- We defined => app.use(express.static(path.join(__dirname, 'public')));
+    //- So 'images' and 'css' will automatically be from "public" folder
+    link(rel='stylesheet' href='css/style.css')
+    link(rel='shorcut icon' type='image/png' href='img/favicon.png')
+
+  body
+    h1= tour
+    //- Buffer Code
+    h2= user.toUpperCase()
+
+    //- Unbuffer Code
+    - const x = 9
+    h2= 2 * x
+
+    p yo

@@ -122,9 +122,12 @@ app.use((req, res, next) => {
 // Rendering base.pug
 
 app.get('/', (req, res) => {
-  res.status(200).render('base');
+  res.status(200).render('base', {
+    tour: 'The Forest Hiker',
+    user: 'Elvis',
+  });
   // .render('base') => "base.pug"
-  // Possible because => We setted Pug express above
+  // Possible because => We setted Pug Express Before
 });
 
 // #13 _______________________________________________________________
