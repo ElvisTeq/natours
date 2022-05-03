@@ -11,6 +11,8 @@ const helmet = require('helmet');
 // Sanitization agains NoDQL query injection
 const mongoSanitize = require('express-mongo-sanitize');
 // sanitization agains XSS
+// To manipulate Path names
+const path = require('path');
 const xss = require('xss-clean');
 // Prevent Parameters Pollution
 const hpp = require('hpp');
@@ -24,8 +26,23 @@ const reviewRouter = require('./routes/reviewRoutes');
 const app = express();
 // We store/assign the functions to 'app'
 
+//____________________________________________________________________
+// #1 - s12
+// Setting up Pug in Express
+
+app.set('view engine', 'pug');
+// Defining "view" location
+app.set('views', path.join(__dirname, 'views'));
+// same as => app.set('views', './views'));
+// But is not ideal => other dev could have "./" in a different folder
+
+//____________________________________________________________________
 // 1) Global Middlewares
 // => functions that can modify incoming request data
+// #17 _____________________________________________________________
+// Serving Static Files
+app.use(express.static(path.join(__dirname, 'public')));
+// __dirname => this file name
 
 //_________________________________________________________________
 // #20 - s10
@@ -86,11 +103,6 @@ app.use(
   })
 );
 
-// #17 _____________________________________________________________
-// Serving Static Files
-app.use(express.static(`${__dirname}/public`));
-// __dirname => this file name
-
 // #10 _____________________________________________________________
 // Creating Middleware
 
@@ -103,6 +115,16 @@ app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
   // console.log(req.headers);
   next();
+});
+
+//____________________________________________________________________
+// #1 - s12
+// Rendering base.pug
+
+app.get('/', (req, res) => {
+  res.status(200).render('base');
+  // .render('base') => "base.pug"
+  // Possible because => We setted Pug express above
 });
 
 // #13 _______________________________________________________________
