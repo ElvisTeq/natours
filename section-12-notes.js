@@ -129,3 +129,15 @@
 
 // Created => "viewsController.js"
 // => Refactored "viewRoutes.js" functions into "viewsController.js"
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+// #7
+// Building the Tour Overview - p1
+
+// Implemented => "Get tour data from collection" in "getOverview()"
+// => tours = Tour.find()
+// => render('overview', {tours})
+
+// ---------------------------------------------- each el in tours
+// => To loop in PUG
