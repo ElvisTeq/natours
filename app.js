@@ -130,6 +130,23 @@ app.get('/', (req, res) => {
   // Possible because => We setted Pug Express Before
 });
 
+//____________________________________________________________________
+// #5 - s12
+// Extending Out Base Templates with Blocks
+
+app.use('/overview', (req, res) => {
+  res.status(200).render('overview', {
+    // #{title} => in pug
+    title: 'All Tours',
+  });
+});
+
+app.use('/tour', (req, res) => {
+  res.status(200).render('tour', {
+    title: 'The Forest Hiker Tour',
+  });
+});
+
 // #13 _______________________________________________________________
 // Mounting Router
 app.use('/api/v1/tours', tourRouter);

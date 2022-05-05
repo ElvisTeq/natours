@@ -101,3 +101,20 @@
 // => Select All
 // => ctrl + shift + p
 // => type: "Beautify Pug"
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+// #5
+// Extending Our Base Templates with Blocks
+
+// Created => "overview.pug" and "tour.pug"  in "views" folder
+
+// Added => "app.get('/overview')" in "app.js"
+// to render('overview.pug') if URL = /overview
+
+// --------------------------------------- extends base
+// => to extends current file into the file "base"
+// => "overview.pug" for examples
+
+// ********************** Important **********************
+// Only works for "Block" element
