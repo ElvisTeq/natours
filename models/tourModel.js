@@ -15,6 +15,7 @@ const tourSchema = new mongoose.Schema(
       // // validator.isAlpha => external library to validate that name contains only letters
       // validate: [validator.isAlpha, 'Tour name must only contain characters'],
     },
+    // slug => a stringName that works like an ID
     slug: String,
     duration: {
       type: Number,

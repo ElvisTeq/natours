@@ -141,3 +141,23 @@
 
 // ---------------------------------------------- each el in tours
 // => To loop in PUG
+// el => each tours from "tours"
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+// #8
+// Building the Tour Overview - p2
+
+// --------------------------------------- el= value
+// "=" => to set a value to a element
+
+// --------------------------------------- .toLocaleString('en-us', {month: 'long', year: 'numeric'})
+// => Method was used to convert "Date" into String
+// 'en/us' => language
+// {Options}
+// month: 'long' =>  show Month full name
+// year: 'numeric' => show year in number
+
+// --------------------------------------- "| "
+// Adds a space between elements
+// See Example in => "overview.pug"
