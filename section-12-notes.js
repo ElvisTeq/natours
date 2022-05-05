@@ -80,3 +80,24 @@
 
 // ----------------------------------- p.footer__copyright &copy; by Elvis
 // => <p class="footer__copyright">&copy; Elvis</p>
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+// #4
+// Including Files into Pug Templates
+
+// Created => "_header.pug" for the Header
+// "_" => File that's only going to be served/ included to another file
+
+// ------------------------------------ include _header
+// => Added in "base.pug" to include "_header.pug"
+
+// ------------------------------------ include _footer
+// Added in "base.pug" to include "_footer.pug"
+
+// ------------------------------------ Pug beautify
+// => extension to auto fix pug spacing installed
+// ************ How to Use *************
+// => Select All
+// => ctrl + shift + p
+// => type: "Beautify Pug"
