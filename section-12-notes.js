@@ -118,3 +118,14 @@
 
 // ********************** Important **********************
 // Only works for "Block" element
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+// #6
+// Setting up the Project Structure
+
+// Created => "reviewRouter.js" in "routes" folder
+// => Refactored "ROUTES" from "app.js" to "reviewRouter.js"
+
+// Created => "viewsController.js"
+// => Refactored "viewRoutes.js" functions into "viewsController.js"
