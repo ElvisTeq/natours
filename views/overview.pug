@@ -4,13 +4,14 @@ extends base
 block content 
   main.main 
     .card-container
-      //- looping each "el" in tours from "getOverview"
+      //- We have access to "tours" automatically from "getTour" from "viewsController.js"
+      //- looping each "tour" from "tours"
       each tour in tours
         .card
           .card__header
             .card__picture
               .card__picture-overlay &nbsp;
-              img.card__picture-img(src=`img/tours/${tour.imageCover}`, alt=`${tour.name}`)
+              img.card__picture-img(src=`/img/tours/${tour.imageCover}`, alt=`${tour.name}`)
             h3.heading-tertirary
               span= tour.name
 
@@ -19,19 +20,19 @@ block content
             p.card__text= tour.summary
             .card__data
               svg.card__icon
-                use(xlink:href='img/icons.svg#icon-map-pin')
+                use(xlink:href='/img/icons.svg#icon-map-pin')
               span= tour.startLocation.description
             .card__data
               svg.card__icon
-                use(xlink:href='img/icons.svg#icon-calendar')
+                use(xlink:href='/img/icons.svg#icon-calendar')
               span= tour.startDates[0].toLocaleString('en-us', {month: 'long', year: 'numeric'})
             .card__data
               svg.card__icon
-                use(xlink:href='img/icons.svg#icon-flag')
+                use(xlink:href='/img/icons.svg#icon-flag')
               span= `${tour.locations.length} stops`
             .card__data
               svg.card__icon
-                use(xlink:href='img/icons.svg#icon-user')
+                use(xlink:href='/img/icons.svg#icon-user')
               span= `${tour.maxGroupSize} people`
 
           .card__footer
@@ -44,5 +45,5 @@ block content
               span.card__footer-value= tour.ratingsAverage
               | 
               span.card__footer-text= `rating (${tour.ratingsQuantity})`
-              //- `/tours/${tour.slug}` => Relative URL, Will automatically add URL after the HOST name
-            a.btn.btn--green.btn--small(href=`/tours/${tour.slug}`) Details
+              //- `/tour/${tour.slug}` => Relative URL, Will automatically add URL after the HOST name
+            a.btn.btn--green.btn--small(href=`/tour/${tour.slug}`) Details

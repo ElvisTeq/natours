@@ -6,6 +6,6 @@ const router = express.Router();
 // "/" => localhost:3000 => main page = overview
 router.get('/', viewsController.getOverview);
 
-router.get('/tour', viewsController.getTour);
+router.get('/tour/:slug', viewsController.getTour);
 
 module.exports = router;

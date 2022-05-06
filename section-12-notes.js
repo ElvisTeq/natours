@@ -161,3 +161,30 @@
 // --------------------------------------- "| "
 // Adds a space between elements
 // See Example in => "overview.pug"
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+// #9
+// Building the Tour Page - p1
+
+// ------------------------------------ .populate()
+// => Populate will automatically replace the specified path in the document, with document(s) from other collection(s).
+
+// ------------------------------------ "/" Relative URL
+// adding => "/" will conver
+
+// ------------------------------------ minxin randomName()
+// => function for PUG
+// Examples => See usage in "tour.pug" "overviewBox()"
+// ***************** How to Use
+// => +randomName()
+
+// ***************** Mistakes ****************
+// .find() => for JS arrays
+// => The find() method returns the first element in the provided array that satisfies the provided testing function
+// .findOne() => for MongoDB
+// => Returns one document that satisfies the specified query criteria on the collection
+
+// ***************** Important *******************
+// Using "block" "extends" in PUG => Will make the main page load in the current file (which causes error)
+// So we need to add "/" to conver URL into "Relative URL" (Which will make the URL/File run from the main ROOT)
