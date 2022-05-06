@@ -168,10 +168,10 @@
 // Building the Tour Page - p1
 
 // ------------------------------------ .populate()
-// => Populate will automatically replace the specified path in the document, with document(s) from other collection(s).
+// => To automatically replace the specified path in the document, with document(s) from other collection(s).
 
 // ------------------------------------ "/" Relative URL
-// adding => "/" will conver
+// adding => "/"
 
 // ------------------------------------ minxin randomName()
 // => function for PUG
@@ -188,3 +188,28 @@
 // ***************** Important *******************
 // Using "block" "extends" in PUG => Will make the main page load in the current file (which causes error)
 // So we need to add "/" to conver URL into "Relative URL" (Which will make the URL/File run from the main ROOT)
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+// #10
+// Building the Tour Page - p2
+
+// Created => "_reviewCard.pug" in "views" folder
+// Contains mixin => to loop array/review.rating to determine "rating stars"
+
+// ---------------------------------------------- include fileName
+// importing on PUG
+// Ex => "tour.pug"
+
+// ---------------------------------------------- "- if ()"
+// To add conditional to PUG
+// Example => "tour.pug"
+
+// ---------------------------------------------- each a, b in tour.images
+// => we can define 2 variables when looping in PUG
+// Ex => See "tour.pug"
+
+// ****************** Important *******************
+// We redefine the "class" element so we can manipulate with "${}"
+// Ex => img.picture-box__img.picture-box__img--1
+// Answer => img.picture-box__img(class=`picture-box__img--${i + 1}`)
