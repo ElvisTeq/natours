@@ -213,3 +213,27 @@
 // We redefine the "class" element so we can manipulate with "${}"
 // Ex => img.picture-box__img.picture-box__img--1
 // Answer => img.picture-box__img(class=`picture-box__img--${i + 1}`)
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+// #11
+// Including a Map with Mapbox - p1
+
+// Created => "mapbox.js" in "public/js"
+
+// ---------------------------------- block append anyName
+// => To get the original code from the "block"
+// => We can also add aditional code to it
+// Ex => "tour.pug"
+
+// ---------------------------------- block prepend anyName
+//
+
+// ---------------------------------- "#" to create ID in PUG
+
+// ---------------------------------- data-anyName => data attribute (can only contain string)
+// data is stored as => "dataset.anyName" in JS
+// Ex => "mapbox.js"
+
+// ---------------------------------- /* eslint-disable */
+// => To disable eslint in current file

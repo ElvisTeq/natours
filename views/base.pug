@@ -1,16 +1,19 @@
 doctype html
 html
   head
-    meta(charset='UTF-8')
-    meta(name='viewport' content='width=device-width, initial-scale=1.0')
-    //- We defined => app.use(express.static(path.join(__dirname, 'public')));
-    //- So 'images' and 'css' will automatically be from "public" folder
-    link(rel='stylesheet' href='/css/style.css')
-    //- Added "/" => to make the URL/File run from here if is running from a different file
-    link(rel='shorcut icon' type='image/png' href='img/favicon.png')
-    link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,300i,700')
-    //- Interpolation Code #{JS}
-    title Natours | #{title}
+    //- block => to extend template
+    block head
+      meta(charset='UTF-8')
+      meta(name='viewport' content='width=device-width, initial-scale=1.0')
+      //- We defined => app.use(express.static(path.join(__dirname, 'public')));
+      //- So 'images' and 'css' will automatically be from "public" folder
+      link(rel='stylesheet' href='/css/style.css')
+      //- Added "/" => to make the URL/File run from here if is running from a different file
+      link(rel='shorcut icon' type='image/png' href='img/favicon.png')
+      link(rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,300i,700')
+      //- Interpolation Code #{JS}
+      title Natours | #{title}
+      
   
   body
     // HEADER
@@ -23,4 +26,4 @@ html
     // FOOTER
     include _footer
 
-  
+    script(src='/js/mapbox.js')

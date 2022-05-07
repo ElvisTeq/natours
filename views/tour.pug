@@ -1,6 +1,11 @@
 extends base
 include _reviewCard
 
+//- append => This block will also contain the content from the original block
+block append head
+  //- We can add extra code to the "append" block
+  //- script(src='/js/mapbox.js')
+
 //- mixin => function in PUG
 mixin overviewBox(label, text, icon)
   .overview-box__detail
@@ -81,7 +86,10 @@ block content
         //- We redefine separately the "class" so we can manipulate the "picture-box Number"
 
   section.section-map
-    #map
+    //- Storing "tour.locations" data into "#map" ID (# => ID)
+    //- data-locations => data attribute (can only contain string)
+    //- dataset.locations => This is how is stored for use in JS
+    #map(data-locations=`${JSON.stringify(tour.locations)}`)
 
   section.section-reviews
     .reviews
