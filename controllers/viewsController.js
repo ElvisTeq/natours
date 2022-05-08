@@ -32,8 +32,15 @@ exports.getTour = catchAsync(async (req, res) => {
 
   // 3) Render Template using data from "1)"
 
-  res.status(200).render('tour', {
-    title: `${tour.name} Tour`,
-    tour,
-  });
+  // .set() => added to fix error from Mapbox
+  res
+    .status(200)
+    .set(
+      'Content-Security-Policy',
+      'connect-src https://*.tiles.mapbox.com https://api.mapbox.com https://events.mapbox.com'
+    )
+    .render('tour', {
+      title: `${tour.name} Tour`,
+      tour,
+    });
 });

@@ -4,7 +4,11 @@ include _reviewCard
 //- append => This block will also contain the content from the original block
 block append head
   //- We can add extra code to the "append" block
-  //- script(src='/js/mapbox.js')
+  //- Mapbox Implementation code from "Documentation"
+  script(src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js')
+  link(href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet')
+  //- defer => to make the code run last, mapbox.js was trying to get data that wasn't declared
+  script(defer src='/js/mapbox.js')
 
 //- mixin => function in PUG
 mixin overviewBox(label, text, icon)

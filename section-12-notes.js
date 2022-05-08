@@ -237,3 +237,26 @@
 
 // ---------------------------------- /* eslint-disable */
 // => To disable eslint in current file
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+// #12
+// Including a Map with Mapbox - p2
+
+// Added => Mapbox implementation "documentation" in "mapbox.js" and "tour.pug"
+
+// ----------------------------------- new mapboxgl.LatLngBounds()
+// => To tell the map to focus/displat/show a location
+
+// ----------------------------------- map.fitBounds(bounds, {mapOptions})
+// => makes all coordinates in "bounds" show in the map with the correct "zoom" level
+// Added => {padding} in "mapbox.js"
+
+// ----------------------------------- new mapboxgl.Popup({options}).setLngLat(coordinates).setHTML(`<p></p>`).addTo(map)
+// To create a popup message in the map
+// .setLngLat() => popup location
+// .setHTML() => popup HTML text/message
+// .addTo() => to add popup to map
+
+// ----------------------------------- npm i helmet@3.23.3
+// => downgrading helmet version to support mapbox
