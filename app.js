@@ -16,6 +16,8 @@ const path = require('path');
 const xss = require('xss-clean');
 // Prevent Parameters Pollution
 const hpp = require('hpp');
+// To parse incoming cookies request
+const cookieParser = require('cookie-parser');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -78,6 +80,10 @@ if (process.env.NODE_ENV === 'development') {
 
 // Body parser, reading data from body into req.body
 app.use(express.json({ limit: '10kb' }));
+// _________________________________________________________________
+// #14 - s12
+// Parsing cookie "jwt"
+app.use(cookieParser());
 
 // _________________________________________________________________
 // #21 - s10
@@ -114,7 +120,7 @@ app.use(
 
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
-  // console.log(req.headers);
+  console.log(req.cookies);
   next();
 });
 

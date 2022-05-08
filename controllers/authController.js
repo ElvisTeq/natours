@@ -124,8 +124,11 @@ exports.protect = catchAsync(async (req, res, next) => {
     req.headers.authorization.startsWith('Bearer')
   ) {
     token = req.headers.authorization.split(' ')[1];
+    // We have access to "req.cookies.jwt" because of "app.use(cookieParser())" in (#14 - s12)
+  } else if (req.cookies.jwt) {
+    // If existing account is logged in, token = curren token
+    token = req.cookies.jwt;
   }
-
   if (!token) {
     return next(
       new AppError('You are not logged in! Please log in to get access.', 401)

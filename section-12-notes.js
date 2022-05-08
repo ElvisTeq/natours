@@ -271,3 +271,32 @@
 // Added => "router.get('/login')" in "viewRoutes.js"
 
 // Created => "login.pug" HTML
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+// #14
+// Logging in Users With Our API - p1
+
+// HTTP request => AJAX (Requesting data from the API)
+
+// Created => "login()" in "login.js"
+
+// Using "axios"
+// ------------------------------------------------- axios
+// => script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js')
+// => Added to the "base.pug" to get access to "axios library"
+// => To get HTTP/AJAX request from our API to the Application
+// Ex => "login()" in "login.js"
+
+// ------------------------------------------------- npm i cookie-parser
+// => Package to parse incoming cookies request
+// => cookie contains "jwt" JSON Web Token
+// => Added package to "app.js"
+
+// ------------------------------------------------- app.use(cookieParser())
+// => to use cookie-parser package
+// Implemented => "app.js"
+
+// Changes => ".protect()" in "authController.js"
+// => Using "app.use(cookieParser())" to have access to "req.cookies.jwt"
+// => If existing account is logged in => token = "req.cookies.jwt" (current token)
