@@ -324,3 +324,35 @@
 
 // Changes => in "login.js"
 // => Added code to If login is success => show message => redirect to main page
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+// #16
+// Logging in Users With Our API - p3
+
+// Created => "index.js"
+// => refactored/imported code from "mapbox.js", "login.js"
+
+// Created => "alert.js"
+// Created => "showAlert()" and "hideAlert()"
+
+// Bundling all JS files into one
+// ----------------------------------------------- npm i parcel-bundler (package for bundling)
+// ADDED => ("watch:js": "parcel watch ./public/js/index.js --out-dir ./public/js --out-file bundle.js") => in "package.json"
+// (parcel watch) => Command to run
+// (./public/js/index.js) => File that will run the code
+// (--out-dir ./public/js) => Folder to bundle all "script" (JS files)
+// (--out-file bundle.js) => Created file which contains the bundled data "bundle.js" (name)
+// ADDED => script(src='/js/bundle.js') in the "base.pug"
+
+// ---------------------------------------------- npm i axios
+// => To get HTTP/AJAX request from our API to the Application
+// Ex => "login.js"
+
+// ---------------------------------------------- npm i @babel/polyfill
+// => Library to make New JS features to work on Older Browsers
+// => import '@babel/polyfill' => Not saved in any variable => Will run automatically
+// Added => "index.js"
+
+// ********************* Important **********************
+// => npm i mapbox => will not work with "parsel"
