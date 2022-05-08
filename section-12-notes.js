@@ -260,3 +260,14 @@
 
 // ----------------------------------- npm i helmet@3.23.3
 // => downgrading helmet version to support mapbox
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+// #13
+// Building the Login Screen
+
+// Created => "getLoginForm()" in "viewsController.js"
+
+// Added => "router.get('/login')" in "viewRoutes.js"
+
+// Created => "login.pug" HTML
