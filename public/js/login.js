@@ -1,7 +1,6 @@
 /* eslint-disable */
 
 const login = async (email, password) => {
-  console.log(email, password);
   try {
     const res = await axios({
       method: 'POST', // Type of request
@@ -11,9 +10,17 @@ const login = async (email, password) => {
         password, // password: password
       },
     });
-    console.log(res);
+
+    // If login success => Display alert message
+    // => Set timer to ".assign" => redirect to "/" main page
+    if (res.data.status === 'success') {
+      alert('Logged in successfully');
+      window.setTimeout(() => {
+        location.assign('/');
+      }, 1000);
+    }
   } catch (err) {
-    console.log(err.response.data); // to get error from "axios"
+    alert(err.response.data.message); // to get error from "axios"
   }
 };
 

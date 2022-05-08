@@ -25,6 +25,7 @@ const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const viewRouter = require('./routes/viewRoutes');
+const cors = require('cors');
 
 const app = express();
 // We store/assign the functions to 'app'
@@ -51,6 +52,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // #20 - s10
 // Setting Security HTTP Headers
 app.use(helmet());
+
+app.use(cors());
 
 // _________________________________________________________________
 // #19 - s10

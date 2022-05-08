@@ -160,6 +160,38 @@ exports.protect = catchAsync(async (req, res, next) => {
   next();
 });
 
+//____________________________________________________________________________
+// #15 - s12
+// Logging in Users With Our API - p2
+
+// Only for rendered pages, not for errors
+exports.isLoggedIn = catchAsync(async (req, res, next) => {
+  if (req.cookies.jwt) {
+    // 2) Verify Token
+    // decoded => contains => id, creationDate (iat), expDate (exp) of the object
+    const decoded = await promisify(jwt.verify)(
+      req.cookies.jwt,
+      process.env.JWT_SECRET
+    );
+
+    // 3) Check if user still exists
+    const currentUser = await User.findById(decoded.id);
+    if (!currentUser) {
+      return next();
+    }
+
+    // 4) Check if user changed password after the token was issued
+    if (currentUser.changedPasswordAfter(decoded.iat)) {
+      return next();
+    }
+
+    // If all above true, There's a logged-in user
+    res.locals.user = currentUser; // Creating a variable with "currentUser" for PUG
+    return next();
+  }
+  next();
+});
+
 // ________________________________________________________________
 // #10 = s10
 // Authorization: User Roles and Permissions

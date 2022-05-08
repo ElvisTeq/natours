@@ -300,3 +300,27 @@
 // Changes => ".protect()" in "authController.js"
 // => Using "app.use(cookieParser())" to have access to "req.cookies.jwt"
 // => If existing account is logged in => token = "req.cookies.jwt" (current token)
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+// #15
+// Logging in Users With Our API - p2
+
+// Created => "isLoggedIn()" in "authController.js"
+// => Function similar to ".protect()" that checks if a user is logged in
+// => To
+
+// -------------------------------------------------- res.locals.user (PUG)
+// => All PUG template has access to "res.locals"
+// .user => We can create a variable for all templates to use
+// Ex => res.locals.user = currentUser
+
+// -------------------------------------------------- if / else (PUG)
+// Ex => "_header.pug"
+
+// -------------------------------------------------- npm i cors
+// => Fixed issue with "'http://localhost:3000' has been blocked by CORS policy"
+// => added to "app.js"
+
+// Changes => in "login.js"
+// => Added code to If login is success => show message => redirect to main page
