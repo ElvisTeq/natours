@@ -379,3 +379,23 @@
 // => To avoid error when creating a cheap token with "logout()" in "authController.js"
 // => "try/catch" => error will be catch locally
 // => "catchAsync" => will catch error from all "async" function
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+// #18
+// Rendering Error Pages
+
+// Changes => "getTour()" in "viewController.js"
+// => handling error if (!tour)
+
+// Created => "error.pug"
+
+// Changed => "sendErrorDev()" and "sendErrorProd()" in "errorController.js"
+// => To check if req.url starts with "/api" => So we can handle error that are not from API (back-end) vs (unknown)
+// => .render "error.pug" based on (back-end) or (unknown) error
+
+// ------------------------------------------ req.originalUrl
+// => URL after the "Host"
+
+// ******************* Important **********************
+// ("isOperational": true) => means that the error is created by ourself

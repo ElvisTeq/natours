@@ -1,4 +1,5 @@
 const Tour = require('../models/tourModel');
+const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 
 //____________________________________________________________________
@@ -28,10 +29,11 @@ exports.getTour = catchAsync(async (req, res, next) => {
     fields: 'review rating user',
   });
 
-  // 2) Build template
+  if (!tour) {
+    return next(new AppError('There is no tour with that name.', 404)); // 404 (not found)
+  }
 
-  // 3) Render Template using data from "1)"
-
+  // 2) Render Template using data from "1)"
   // .set() => added to fix error from Mapbox
   res
     .status(200)
