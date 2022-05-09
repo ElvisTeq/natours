@@ -356,3 +356,26 @@
 
 // ********************* Important **********************
 // => npm i mapbox => will not work with "parsel"
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+// #17
+// Logging out Users
+
+// Created => "logout()" in "authController.js"
+// => Create cheap token
+// => Tricking the application by re-assigning a new token, so it will logout from the JWT
+
+// Created => "logout()" in "login.js"
+// => Using axios to "GET" request to "URL", and reaload server
+
+// ----------------------------------------------- location.reload(true)
+// => Server reload (to make changes to the browser from the backend)
+
+// Added => eventListening for button click to logOut() in "index.js"
+
+// ********************** Bug Fix **********************
+// Replaced => "catchAsync" with "try/catch" for "isLoggedIn()" in "authController"
+// => To avoid error when creating a cheap token with "logout()" in "authController.js"
+// => "try/catch" => error will be catch locally
+// => "catchAsync" => will catch error from all "async" function

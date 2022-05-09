@@ -2,17 +2,14 @@
 
 import '@babel/polyfill'; // => package to make New JS features to work on Older Browsers
 import { displayMap } from './mapbox';
-import { login } from './login';
+import { login, logout } from './login';
 
 // DOM ELEMENTS (To prevent error if content don't exist)
-
-// Get "#map" data in "tour.pug"
-const mapBox = document.getElementById('map');
-// Quering/Getting input value from "login.pug"
-const loginForm = document.querySelector('.form');
+const mapBox = document.getElementById('map'); // Get "#map" data in "tour.pug"
+const loginForm = document.querySelector('.form'); // Quering/Getting input value from "login.pug"
+const logOutBtn = document.querySelector('.nav__el--logout'); // Selecting Logout button
 
 // DELEGATION
-
 if (mapBox) {
   // JSON.parse => to conver to JSON (is was stored as a String)
   const locations = JSON.parse(mapBox.dataset.locations);
@@ -26,3 +23,5 @@ if (loginForm)
     const password = document.getElementById('password').value;
     login(email, password);
   });
+
+if (logOutBtn) logOutBtn.addEventListener('click', logout);

@@ -110,6 +110,21 @@ exports.login = catchAsync(async (req, res, next) => {
 });
 
 // ________________________________________________________________
+// #17 - s12
+// Logging out Users
+
+// Create/Replace new cheap "JWT" (to logout)
+exports.logout = (req, res) => {
+  res.cookie('jwt', 'loggedout', {
+    expires: new Date(Date.now() + 10 * 1000), // 10 sec
+    httpOnly: true,
+  });
+  res.status(200).json({
+    status: 'success',
+  });
+};
+
+// ________________________________________________________________
 // #7 - #8 = s10
 // Protecting Tour Routes - p1 - p2
 
@@ -165,32 +180,36 @@ exports.protect = catchAsync(async (req, res, next) => {
 // Logging in Users With Our API - p2
 
 // Only for rendered pages, not for errors
-exports.isLoggedIn = catchAsync(async (req, res, next) => {
+exports.isLoggedIn = async (req, res, next) => {
   if (req.cookies.jwt) {
-    // 2) Verify Token
-    // decoded => contains => id, creationDate (iat), expDate (exp) of the object
-    const decoded = await promisify(jwt.verify)(
-      req.cookies.jwt,
-      process.env.JWT_SECRET
-    );
+    try {
+      // 2) Verify Token
+      // decoded => contains => id, creationDate (iat), expDate (exp) of the object
+      const decoded = await promisify(jwt.verify)(
+        req.cookies.jwt,
+        process.env.JWT_SECRET
+      );
 
-    // 3) Check if user still exists
-    const currentUser = await User.findById(decoded.id);
-    if (!currentUser) {
+      // 3) Check if user still exists
+      const currentUser = await User.findById(decoded.id);
+      if (!currentUser) {
+        return next();
+      }
+
+      // 4) Check if user changed password after the token was issued
+      if (currentUser.changedPasswordAfter(decoded.iat)) {
+        return next();
+      }
+
+      // If all above true, There's a logged-in user
+      res.locals.user = currentUser; // Creating a variable with "currentUser" for PUG
+      return next();
+    } catch (err) {
       return next();
     }
-
-    // 4) Check if user changed password after the token was issued
-    if (currentUser.changedPasswordAfter(decoded.iat)) {
-      return next();
-    }
-
-    // If all above true, There's a logged-in user
-    res.locals.user = currentUser; // Creating a variable with "currentUser" for PUG
-    return next();
   }
   next();
-});
+};
 
 // ________________________________________________________________
 // #10 = s10
