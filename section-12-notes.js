@@ -399,3 +399,16 @@
 
 // ******************* Important **********************
 // ("isOperational": true) => means that the error is created by ourself
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+// #19
+// Building the User Account Page
+
+// Created => "account.pug"
+// => Setting "account.pug"
+
+// Added => route for "account.pug" in "viewRouter.js"
+
+// Created => "getAccount()" in "viewsController.js"
+// => To render "account.pug"
