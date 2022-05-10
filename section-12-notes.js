@@ -456,3 +456,13 @@
 // Implemented updateData in "index.js" (similar to "login()")
 
 // Challenge passed
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+// #22
+// Updating User Password with Our API
+
+// Deleted => "updateData()" in "updateSettings.js"
+
+// Created => "updateSettings()" in "updateSettings.js"
+// Function to change (password or data)
