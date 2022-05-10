@@ -416,9 +416,9 @@
 ///////////////////////////////////////////////////////////////////////////////////////
 
 // #20
-// Updating User Data
+// Updating User Data (Option 1)
 
-// Submitting a form using API request in Template
+// Submitting a form Without API
 
 // Step 1) Speficy request
 // --------------------------------------- (action='/submit-user-data' method='POST')
@@ -444,3 +444,15 @@
 // ******************** Fixed Bug ********************
 // Changed => in "login.pug" loginForm('form') into ('form--login')
 // => It was calling the login function to all the "form" elements
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+// #21
+// Updating User Data with Our API (Option 2)
+
+// Created => "updateSettings.js" in "./public/js"
+
+// Created => "updateData()" in "updateSettings.js"
+// Implemented updateData in "index.js" (similar to "login()")
+
+// Challenge passed

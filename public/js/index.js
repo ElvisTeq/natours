@@ -3,11 +3,13 @@
 import '@babel/polyfill'; // => package to make New JS features to work on Older Browsers
 import { displayMap } from './mapbox';
 import { login, logout } from './login';
+import { updateData } from './updateSettings';
 
 // DOM ELEMENTS (To prevent error if content don't exist)
 const mapBox = document.getElementById('map'); // Get "#map" data in "tour.pug"
 const loginForm = document.querySelector('.form--login'); // Quering/Getting input value from "login.pug"
 const logOutBtn = document.querySelector('.nav__el--logout'); // Selecting Logout button
+const userDataForm = document.querySelector('.form-user-data'); // Selecting user data Form
 
 // DELEGATION
 if (mapBox) {
@@ -25,3 +27,11 @@ if (loginForm)
   });
 
 if (logOutBtn) logOutBtn.addEventListener('click', logout);
+
+if (userDataForm)
+  userDataForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    updateData(name, email);
+  });
