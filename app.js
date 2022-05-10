@@ -89,6 +89,12 @@ app.use(express.json({ limit: '10kb' }));
 app.use(cookieParser());
 
 // _________________________________________________________________
+// #20 - s12
+// Middleware to parse data coming from URL encoded form
+app.use(express.urlencoded({ extended: true, limit: '10kb' }));
+// exteded: true (Allows to pass complex data)
+
+// _________________________________________________________________
 // #21 - s10
 // Data Sanitization agains NoDQL query injection
 app.use(mongoSanitize());

@@ -6,7 +6,7 @@ import { login, logout } from './login';
 
 // DOM ELEMENTS (To prevent error if content don't exist)
 const mapBox = document.getElementById('map'); // Get "#map" data in "tour.pug"
-const loginForm = document.querySelector('.form'); // Quering/Getting input value from "login.pug"
+const loginForm = document.querySelector('.form--login'); // Quering/Getting input value from "login.pug"
 const logOutBtn = document.querySelector('.nav__el--logout'); // Selecting Logout button
 
 // DELEGATION

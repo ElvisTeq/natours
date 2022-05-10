@@ -412,3 +412,35 @@
 
 // Created => "getAccount()" in "viewsController.js"
 // => To render "account.pug"
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+// #20
+// Updating User Data
+
+// Submitting a form using API request in Template
+
+// Step 1) Speficy request
+// --------------------------------------- (action='/submit-user-data' method='POST')
+// Always need to be added in the "form" element
+// Form will send a "POST" request to "/submit-user-data"
+// Ex => "account.pug"
+
+// Step 2) Speficy (name) properties to send
+// --------------------------------------- (name='anyThing') (name='somethingElse')
+// data will be stored in (req.body) for (/submit-user-data)
+// Added to => "input" field in "account.pug"
+// Needed to add middleware => "express.urlencoded" to convert URL data
+
+// Created => router POST for (/submit-user-data)
+
+// Created => "updateUserData()" in "viewsController.js"
+// To handle (/submit-user-data)
+
+// --------------------------------------- app.use(express.urlencoded({ SETTINGS }));
+// => Middleware to parse data coming from URL encoded form
+// Added => "app.js"
+
+// ******************** Fixed Bug ********************
+// Changed => in "login.pug" loginForm('form') into ('form--login')
+// => It was calling the login function to all the "form" elements

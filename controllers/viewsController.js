@@ -1,6 +1,7 @@
 const Tour = require('../models/tourModel');
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
+const User = require('../models/userModel');
 
 //____________________________________________________________________
 // #5 - s12
@@ -60,3 +61,24 @@ exports.getAccount = (req, res) => {
     title: 'Your account',
   });
 };
+
+exports.updateUserData = catchAsync(async (req, res, next) => {
+  const updatedUser = await User.findByIdAndUpdate(
+    req.user.id,
+    {
+      // req.body => was returning {empthy}
+      // Added => app.use(express.urlencoded) => To parse incoming data
+      name: req.body.name, // (name='name') in "account.pug"
+      email: req.body.email, // (name='email')
+    },
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+
+  res.status(200).render('account', {
+    tutle: 'Your account',
+    user: updatedUser, // Make sure to display updatedUser
+  });
+});

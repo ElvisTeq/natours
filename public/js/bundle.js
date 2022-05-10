@@ -11584,7 +11584,7 @@ var _login = require("./login");
 // DOM ELEMENTS (To prevent error if content don't exist)
 var mapBox = document.getElementById('map'); // Get "#map" data in "tour.pug"
 
-var loginForm = document.querySelector('.form'); // Quering/Getting input value from "login.pug"
+var loginForm = document.querySelector('.form--login'); // Quering/Getting input value from "login.pug"
 
 var logOutBtn = document.querySelector('.nav__el--logout'); // Selecting Logout button
 // DELEGATION
@@ -11631,7 +11631,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62365" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65282" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -11808,4 +11808,4 @@ function hmrAcceptRun(bundle, id) {
   }
 }
 },{}]},{},["../../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","index.js"], null)
-//# sourceMappingURL=/bundle.js.map
+//# sourceMappingURL=/js/bundle.js.map
