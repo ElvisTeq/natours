@@ -41,3 +41,14 @@
 // --------------------------------------------------- multerFilter = (req, file, cb) => {}
 // To Filter images
 // Ex => "multerStorage" in "userController.js"
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+// #3
+// Saving Image Name to Database
+
+// Added => in "updateMe()"
+// => if (req.file) filteredBody.photo = req.file.filename;
+
+// Changed => in "user.Model.js"
+// set => photo: {default: 'default.jpg'}
