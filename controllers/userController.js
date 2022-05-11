@@ -1,4 +1,5 @@
 const multer = require('multer'); // to handle multi-part form data (upload img)
+const sharp = require('sharp'); // To resize images (Node.js)
 const fs = require('fs');
 const User = require('./../models/userModel');
 const catchAsync = require('./../utils/catchAsync');
@@ -9,20 +10,28 @@ const factory = require('./handlerFactory');
 // #2 - s13
 // Configuring Multer
 
-const multerStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    // cb(firstArg) => Error if there's one, (null) if not
-    // cb(secondArg) => Destination
-    cb(null, 'public/img/users');
-  },
-  filename: (req, file, cb) => {
-    // file => req.file
-    // req => req.user/body
-    const ext = file.mimetype.split('/')[1]; // file.mimetype (contain file-type)
-    // user-id-timeStamp.jpeg
-    cb(null, `user-${req.user.id}-${Date.now()}.${ext}`); // cb(secondArg) => File name
-  },
-});
+// Option 1) (Sharp) library
+// Store as buffer (raw memory)
+
+const multerStorage = multer.memoryStorage();
+
+// Option 2) (Multer) library
+// Store in disk
+
+// const multerStorage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     // cb(firstArg) => Error if there's one, (null) if not
+//     // cb(secondArg) => Destination
+//     cb(null, 'public/img/users');
+//   },
+//   filename: (req, file, cb) => {
+//     // file => req.file
+//     // req => req.user/body
+//     const ext = file.mimetype.split('/')[1]; // file.mimetype (contain file-type)
+//     // filename => user-id-timeStamp.jpeg
+//     cb(null, `user-${req.user.id}-${Date.now()}.${ext}`); // cb(secondArg) => File name
+//   },
+// });
 
 // Filtering type of File
 const multerFilter = (req, file, cb) => {
@@ -41,9 +50,26 @@ const upload = multer({
 
 // Middleware for Uploading a single image
 exports.uploadUserPhoto = upload.single('photo'); // "photo" field name that's going to hold the image to upload
+// _______________________________________________________________
+// #4 - s13
+// Resizing Images
+
+exports.resizeUserPhoto = (req, res, next) => {
+  if (!req.file) return next();
+
+  // Get img => change name
+  req.file.filename = `user-${req.user.id}-${Date.now()}.jpeg`;
+
+  sharp(req.file.buffer)
+    .resize(500, 500)
+    .toFormat('jpeg')
+    .jpeg({ quality: 90 })
+    .toFile(`public/img/users/${req.file.filename}`); // to store as
+
+  next();
+};
 
 // _______________________________________________________________
-
 const filterObj = (obj, ...allowedFields) => {
   const newObj = {};
   // Object.keys(obj) => Loop over all the key values of "obj"

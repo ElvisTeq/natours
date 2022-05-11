@@ -52,3 +52,33 @@
 
 // Changed => in "user.Model.js"
 // set => photo: {default: 'default.jpg'}
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+// #4
+// Resizing Images
+
+// Created => "resizeUserPhoto()" in "userController.js"
+// Implemented (sharp) library
+
+// ****************************** Using Sharp **********************************
+// ---------------------------------------------------- npm i sharp
+// Library to resize images (Node.js)
+
+// ---------------------------------------------------- multer.memoryStorage();
+// Store as buffer (raw memory)
+// Gives access to => req.file.buffer
+
+// ---------------------------------------------------- sharp(req.file.buffer).resize(500, 500)
+// Using sharp
+// (req.file.buffer) => from =>  (multer.memoryStorage())
+
+// ---------------------------------------------------- .toFormat('jpeg')
+// Convert to jpeg
+
+// ---------------------------------------------------- .jpeg({ quality: 90 })
+// Change img quality
+// => to compress, make it take less space
+
+// ---------------------------------------------------- .toFile(``)
+// Save to
