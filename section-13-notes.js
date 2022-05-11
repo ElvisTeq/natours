@@ -69,9 +69,12 @@
 // Store as buffer (raw memory)
 // Gives access to => req.file.buffer
 
-// ---------------------------------------------------- sharp(req.file.buffer).resize(500, 500)
+// ---------------------------------------------------- sharp(req.file.buffer)
 // Using sharp
 // (req.file.buffer) => from =>  (multer.memoryStorage())
+
+// ---------------------------------------------------- .resize(500, 500)
+// to Resize
 
 // ---------------------------------------------------- .toFormat('jpeg')
 // Convert to jpeg
@@ -82,3 +85,27 @@
 
 // ---------------------------------------------------- .toFile(``)
 // Save to
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+// #5
+// Adding Image Uploads to Form
+
+// Changes => "account.pug"
+// Changed imput type for uploading image
+
+// ---------------------------------------------------- input(type='file')
+// => imput type that the "form" receives
+
+// Changed => (if (userDataForm)) "index.js"
+// => Implemented "new FormData()"
+// => ".apprend()" => to add data to the form
+
+// ---------------------------------------------------- const form = new FormData()
+// To create a FormData
+
+// ---------------------------------------------------- form.append('name', data)
+// To add data to the form
+
+// ---------------------------------------------------- enctype='multipart/form-data'
+// We need to specify anchor type if we want to Submitting form without API
