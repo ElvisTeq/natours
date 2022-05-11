@@ -1,9 +1,7 @@
 const express = require('express');
-const multer = require('multer'); // to handle multi-part form data (upload img)
+
 const userController = require('./../controllers/userController.js');
 const authController = require('./../controllers/authController.js');
-
-const upload = multer({ dest: 'public/img/users' }); // Destination to save uploaded images
 
 // #12 _______________________________________________________________
 // User Routes
@@ -30,7 +28,11 @@ router.get(
   // getUser => calls "getOne()" which uses "params.id"
   userController.getUser
 );
-router.patch('/updateMe', upload.single('photo'), userController.updateMe);
+router.patch(
+  '/updateMe',
+  userController.uploadUserPhoto,
+  userController.updateMe
+);
 router.delete('/deleteMe', userController.deleteMe);
 
 // All routes after this middleware is ".restrictTo('admin')"

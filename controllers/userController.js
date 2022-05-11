@@ -1,8 +1,48 @@
+const multer = require('multer'); // to handle multi-part form data (upload img)
 const fs = require('fs');
 const User = require('./../models/userModel');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 const factory = require('./handlerFactory');
+
+// _______________________________________________________________
+// #2 - s13
+// Configuring Multer
+
+const multerStorage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    // cb(firstArg) => Error if there's one, (null) if not
+    // cb(secondArg) => Destination
+    cb(null, 'public/img/users');
+  },
+  filename: (req, file, cb) => {
+    // file => req.file
+    // req => req.user/body
+    const ext = file.mimetype.split('/')[1]; // file.mimetype (contain file-type)
+    // user-id-timeStamp.jpeg
+    cb(null, `user-${req.user.id}-${Date.now()}.${ext}`); // cb(secondArg) => File name
+  },
+});
+
+// Filtering type of File
+const multerFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith('image')) {
+    cb(null, true);
+  } else {
+    cb(new AppError('Not an image!, please upload only images', 400), false);
+  }
+};
+
+// Bundling/Create multer
+const upload = multer({
+  storage: multerStorage,
+  fileFilter: multerFilter,
+});
+
+// Create/Upload a single image => Stored as "photo"
+exports.uploadUserPhoto = upload.single('photo');
+
+// _______________________________________________________________
 
 const filterObj = (obj, ...allowedFields) => {
   const newObj = {};
