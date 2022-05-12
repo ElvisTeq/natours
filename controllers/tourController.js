@@ -1,9 +1,45 @@
+const multer = require('multer'); // to handle multi-part form data (upload img)
+const sharp = require('sharp'); // To resize images (Node.js)
 const fs = require('fs');
 const Tour = require('./../models/tourModel');
 const APIFeatures = require('./../utils/apiFeatures');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
 const factory = require('./handlerFactory');
+
+//___________________________________________________________________
+// #6 - s13
+// Uploading Multiple Images: Tours
+
+const multerStorage = multer.memoryStorage();
+
+// Filtering type of File
+const multerFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith('image')) {
+    cb(null, true);
+  } else {
+    cb(new AppError('Not an image!, please upload only images', 400), false);
+  }
+};
+
+// Bundling/Create multer
+const upload = multer({
+  storage: multerStorage,
+  fileFilter: multerFilter,
+});
+
+exports.uploadTourImages = upload.fields([
+  { name: 'imageCover', maxCount: 1 },
+  { name: 'images', maxCount: 3 },
+]);
+
+// upload.single('image') req.file
+// upload.array('images', 5); req.files
+
+exports.resizeTourImages = (req, res, next) => {
+  console.log(req.files);
+  next();
+};
 
 // #3 ______________________________________________________________
 /*

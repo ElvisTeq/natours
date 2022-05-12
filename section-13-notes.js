@@ -109,3 +109,26 @@
 
 // ---------------------------------------------------- enctype='multipart/form-data'
 // We need to specify anchor type if we want to Submitting form without API
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+// #6
+// Uploading Multiple Images: Tours
+
+// Created => "uploadTourImages()" in "tourController.js"
+// Implemented => "upload.fields"
+
+// ---------------------------------------------------- upload.single('name')
+// To upload one single img
+// => req.file
+
+// ---------------------------------------------------- upload.array('name', 5)
+// To upload more than 1
+// => req.files
+
+// ---------------------------------------------------- upload.fields([{name:, maxCount:}])
+// To upload separated by group/fields
+// Ex => "uploadTourImages()"
+// => req.files
+
+// Created => "resizeTourImages()" in "tourController.js"
