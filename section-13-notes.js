@@ -158,3 +158,29 @@
 
 // ------------------------------------------------------ npm i html-to-text
 // => const { htmlToText } = require('html-to-text');
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+// #9
+// Email Templates with PUG: Welcome Emails
+
+// ------------------------------------------------ https://html2pug.now.sh/
+// To convert HTML into PUG
+
+// ------------------------------------------------ https://github.com/leemunroe/responsive-html-email-template
+// Email template
+
+// Created => "email" folder =>
+// "welcome.pug"
+// "baseEmail.pug"
+
+// ------------------------------------------------ .sendMail({OPTIONS})
+// To send Email
+// Ex => "email.js" => (await this.newTransport().sendMail(mailOptions);)
+
+// ------------------------------------------------ req.protocol (https)
+
+// Changes => "signUp()" in "authController.js"
+
+// ********************** Important ***********************
+// Do not add comments between imported functions/methods

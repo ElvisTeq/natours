@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const User = require('./../models/userModel');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
-const sendEmail = require('./../utils/email');
+const Email = require('./../utils/email');
 
 // ________________________________________________________________
 // #5
@@ -56,29 +56,33 @@ exports.signup = catchAsync(async (req, res, next) => {
     email: req.body.email,
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,
-    passwordChangedAt: req.body.passwordChangedAt,
-    role: req.body.role,
   });
 
+  const url = `${req.protocol}://${req.get('host')}/me`;
+  console.log(url);
+  // Email (class) => ("takes user.data" and "url")
+  // .sendWelcome() => Send Email
+  await new Email(newUser, url).sendWelcome();
+
   createSendToken(newUser, 201, res);
-
-  // ************** Refactored into "createSendToken" *****************
-  // ________________________________________________________________
-  // #5
-  // Jason Web Token (JWT)
-  // signing up Users
-
-  // Creating token
-  // const token = signToken(newUser._id);
-  // // ________________________________________________________________
-  // res.status(201).json({
-  //   status: 'success',
-  //   token,
-  //   data: {
-  //     user: newUser,
-  //   },
-  // });
 });
+// ************** Refactored into "createSendToken" *****************
+// ________________________________________________________________
+// #5
+// Jason Web Token (JWT)
+// signing up Users
+
+// Creating token
+// const token = signToken(newUser._id);
+// // ________________________________________________________________
+// res.status(201).json({
+//   status: 'success',
+//   token,
+//   data: {
+//     user: newUser,
+//   },
+// });
+
 // ________________________________________________________________
 // #6 = s10
 // Logging in Users
@@ -261,11 +265,11 @@ exports.forgotPassword = catchAsync(async (req, res, next) => {
 
   try {
     // sendEmail({mailOptions}) => in "email.js"
-    await sendEmail({
-      email: req.body.email,
-      subject: 'Your password reset token is valid for 10 min!',
-      message,
-    });
+    // await sendEmail({
+    //   email: req.body.email,
+    //   subject: 'Your password reset token is valid for 10 min!',
+    //   message,
+    // });
 
     res.status(200).json({
       status: 'success',
