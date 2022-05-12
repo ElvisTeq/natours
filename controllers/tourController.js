@@ -36,10 +36,46 @@ exports.uploadTourImages = upload.fields([
 // upload.single('image') req.file
 // upload.array('images', 5); req.files
 
-exports.resizeTourImages = (req, res, next) => {
+exports.resizeTourImages = catchAsync(async (req, res, next) => {
   console.log(req.files);
+
+  // files.imageCover/images => are created in "uploadTourImages()" above
+  if (!req.files.imageCover || !req.files.images) return next();
+
+  // 1) Cover image
+
+  // => Create/Store img into "imageCover" => (updateOne()) function updates the entire "req.body"
+  req.body.imageCover = `tour-${req.params.id}-${Date.now()}-cover.jpeg`; //  tour-id-timeStamp-cover.jpeg
+  // Edit Img with sharp
+  // req.files.imageCover => array
+  await sharp(req.files.imageCover[0].buffer) // (buffer) => multer.memoryStorage()
+    .resize(2000, 1333) // 2/3 ratio
+    .toFormat('jpeg')
+    .jpeg({ quality: 90 })
+    .toFile(`public/img/tours/${req.body.imageCover}`);
+
+  // 2) Images
+  req.body.images = []; // Create/Store images in array to req.body
+
+  // Promise.all() => so next() function "req.files.images" is not empthy
+  await Promise.all(
+    // req.files.images => comes from "uploadTourImages()"
+    req.files.images.map(async (file, i) => {
+      const filename = `tour-${req.params.id}-${Date.now()}-${i + 1}.jpeg`;
+
+      await sharp(file.buffer) // (buffer) => multer.memoryStorage()
+        .resize(2000, 1333) // 2/3 ratio
+        .toFormat('jpeg')
+        .jpeg({ quality: 90 })
+        .toFile(`public/img/tours/${filename}`);
+
+      // Storing to req.body
+      req.body.images.push(filename);
+    })
+  );
+
   next();
-};
+});
 
 // #3 ______________________________________________________________
 /*

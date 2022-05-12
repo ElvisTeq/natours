@@ -65,7 +65,7 @@
 // ---------------------------------------------------- npm i sharp
 // Library to resize images (Node.js)
 
-// ---------------------------------------------------- multer.memoryStorage();
+// ---------------------------------------------------- multer.memoryStorage(); (buffer)
 // Store as buffer (raw memory)
 // Gives access to => req.file.buffer
 
@@ -132,3 +132,14 @@
 // => req.files
 
 // Created => "resizeTourImages()" in "tourController.js"
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+// #7
+// Processing Multiple Images
+
+// Implementing => "resizeTourImages()" in "tourController.js"
+
+// **************** Important ****************
+// We get (req.file) => by using "multer"
+// (req.file.buffer) => by using " multer.memoryStorage()" (buffer img)
