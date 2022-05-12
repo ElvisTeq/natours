@@ -143,3 +143,18 @@
 // **************** Important ****************
 // We get (req.file) => by using "multer"
 // (req.file.buffer) => by using " multer.memoryStorage()" (buffer img)
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+// #8
+// Building a Complex Email Handler
+
+// Using a class to create Emails for different kind of situations
+
+// Implemented in => "email.js"
+
+// ------------------------------------------------------ pug.renderFile('fileToRender', {DATA})
+// Takes a file to render the PUG code into real HTML
+
+// ------------------------------------------------------ npm i html-to-text
+// => const { htmlToText } = require('html-to-text');
