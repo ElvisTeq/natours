@@ -212,3 +212,8 @@
 // To create fake emails for testing
 
 // Stored => SendGrid "key" "Password" in "config.env"
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+// #12
+// Credit Card Payment with Stripe
