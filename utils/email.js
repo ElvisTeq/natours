@@ -52,31 +52,21 @@ module.exports = class Email {
       to: this.to,
       subject,
       html,
-      text: htmlToText.fromString(html),
+      text: htmlToText(html),
     };
 
     // 3) Create a transport and send email
     await this.newTransport().sendMail(mailOptions);
   }
-
+  // "welcome.pug"
   async sendWelcome() {
     await this.send('welcome', 'Welcome to Natours');
   }
+  // "passwordReset.pug"
+  async sendPasswordReset() {
+    await this.send(
+      'passwordReset',
+      'Your password reset token (valid for 10 minutes)'
+    );
+  }
 };
-
-// const sendEmail = async (options) => {
-//   // 1) Create a transporter
-
-//   // 2) Define the email options
-//   const mailOptions = {
-//     from: 'Elvis <hello@elvis.io>',
-//     to: options.email,
-//     subject: options.subject,
-//     text: options.message,
-//     // html:
-//   };
-
-//   // 3) Actually Send email
-//   // .sendMail(mailOptions) => assigning mailOptions to be ".sendMail" parameters
-//   await transporter.sendMail(mailOptions);
-// };

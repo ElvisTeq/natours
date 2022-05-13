@@ -184,3 +184,15 @@
 
 // ********************** Important ***********************
 // Do not add comments between imported functions/methods
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+// #10
+// Sending Password Reset Emails
+
+// Created => "passwordReset.pug"
+
+// Created => "sendPasswordReset()" in "email.js"
+
+// Implemented => "changePassword()" in "authController.js"
+// => Implementen funcitonality to send email for password reset
