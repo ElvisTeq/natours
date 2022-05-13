@@ -196,3 +196,19 @@
 
 // Implemented => "changePassword()" in "authController.js"
 // => Implementen funcitonality to send email for password reset
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+// #11
+// Using Sendgrid for "Real" Emails
+
+// Using Nodemailer / SendGrid to send real emails
+// See => "newTransport()" in "emails.js"
+
+// ---------------------------------------------------- Sendgrid.com
+// API to send real Emails
+
+// ---------------------------------------------------- Mailsac.com
+// To create fake emails for testing
+
+// Stored => SendGrid "key" "Password" in "config.env"
