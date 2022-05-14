@@ -217,3 +217,31 @@
 
 // #12
 // Credit Card Payment with Stripe
+
+// ----------------------------------------------------- Stripe.com
+// API for Credit Card Payment
+
+// ----------------------------------------------------- https://stripe.com/docs
+// Documentation
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+// #13
+// Integrating Stripe into the Back-End
+
+// Created => "bookingRoutes.js"
+// Added router in "app.js" => app.use('/api/v1/bookings', bookingRouter);
+
+// Created => "bookingController.js"
+// Created => "getCheckoutSession()"
+// => Implemented "Stripe"
+
+// ----------------------------------------------------- npm i stripe
+// Package for Credit Card Payment
+
+// **************************** HOW TO USE STRIPE *********************************
+// ----------------------------------------------------- const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+// Add secret key after requiring stripe
+
+// ----------------------------------------------------- stripe.checkout.sessions.create({OPTIONS})
+// To create checkout session
