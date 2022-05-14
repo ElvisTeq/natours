@@ -245,3 +245,29 @@
 
 // ----------------------------------------------------- stripe.checkout.sessions.create({OPTIONS})
 // To create checkout session
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+// #14
+// Processing Paymens on the Front-End
+
+// Using => if/else in PUG "tour.pug"
+// => for the book tour button, to check if logged in or not => to redirect to login page
+
+// Created => "stripe.js" in "./public/js"
+// Using (Stripe) in Fron-End
+// Using Axios to sent request to Stripe
+
+// --------------------------------------------------- <script src="https://js.stripe.com/v3/"></script>
+// Script for HTML
+// Added to "tour.pug"
+
+// --------------------------------------------------- Stripe('publicKey')
+// To save/get Stripe public key
+
+// --------------------------------------------------- stripe.redirectToCheckout({sessionId: })
+// Redirect user to checkout URL
+// See example => "stripe.js"
+
+// ********************* ADDITIONAL NOTES *************************
+// in HTML/PUG => data-tour-id = dataset.tourId ("-" is automatically converte into camelcase notation)

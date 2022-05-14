@@ -8,8 +8,8 @@ block append head
   //- Mapbox Implementation code from "Documentation"
   script(src='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js')
   link(href='https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet')
-  //- defer => to make the code run last, mapbox.js was trying to get data that wasn't declared
-  //- script(defer src='/js/mapbox.js')
+  script(src='https://js.stripe.com/v3/') 
+
 
 //- mixin => function in PUG
 mixin overviewBox(label, text, icon)
@@ -113,4 +113,11 @@ block content
       .cta__content
         h2.heading-secondary What are you waiting for?
         p.cta__text= `${tour.duration} days. 1 adventure. Infinite memories. Make it yours today!`
-        button.btn.btn--green.span-all-rows Book tour now!
+
+        //- If "logged in" redirect to booktour page
+        if user 
+          //- Storing "tour.id" In "dataset.tourId" 
+          button.btn.btn--green.span-all-rows#book-tour(data-tour-id=`${tour.id}`) Book tour now!
+        //- Else "redirect" to login page
+        else 
+          a.btn.btn--green.span-all-rows(href='/login') Log in to book tour

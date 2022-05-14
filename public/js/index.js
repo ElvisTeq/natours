@@ -4,6 +4,7 @@ import '@babel/polyfill'; // => package to make New JS features to work on Older
 import { displayMap } from './mapbox';
 import { login, logout } from './login';
 import { updateSettings } from './updateSettings';
+import { bookTour } from './stripe';
 
 // DOM ELEMENTS (To prevent error if content don't exist)
 const mapBox = document.getElementById('map'); // Get "#map" data in "tour.pug"
@@ -11,6 +12,7 @@ const loginForm = document.querySelector('.form--login'); // Quering/Getting inp
 const logOutBtn = document.querySelector('.nav__el--logout'); // Selecting Logout button
 const userDataForm = document.querySelector('.form-user-data'); // Selecting user data Form
 const userPasswordForm = document.querySelector('.form-user-password');
+const bookBtn = document.getElementById('book-tour'); // Get "#book-tour" in "tour.pug"
 
 // DELEGATION
 if (mapBox) {
@@ -63,4 +65,11 @@ if (userPasswordForm)
     document.getElementById('password-current').value = '';
     document.getElementById('password').value = '';
     document.getElementById('password-confirm').value = '';
+  });
+
+if (bookBtn)
+  bookBtn.addEventListener('click', (e) => {
+    e.target.textContent = 'Processing...';
+    const { tourId } = e.target.dataset;
+    bookTour(tourId);
   });

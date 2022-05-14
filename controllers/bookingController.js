@@ -1,4 +1,4 @@
-// Using stripe => add secret key after "require"
+// Using stripe => add secret key after "require"render
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const Tour = require('./../models/tourModel');
 const APIFeatures = require('./../utils/apiFeatures');
@@ -8,7 +8,7 @@ const factory = require('./handlerFactory');
 
 exports.getCheckoutSession = async (req, res, next) => {
   // 1) Get the currently booked tour
-  const tour = await Tour.findById(req.params.tourID);
+  const tour = await Tour.findById(req.params.tourId);
 
   // 2) Create checkout session
   const session = await stripe.checkout.sessions.create({
@@ -16,7 +16,7 @@ exports.getCheckoutSession = async (req, res, next) => {
     success_url: `${req.protocol}://${req.get('host')}/`, // URL to deridect when success payment
     cancel_url: `${req.protocol}://${req.get('host')}/tour/${tour.slug}`, // URL to deridect when cancel payment
     customer_email: req.user.email, // autofill customer email
-    client_reference_id: req.params.tourID, // ID reference for the client
+    client_reference_id: req.params.tourId, // ID reference for the client
     // Info about the product
     line_items: [
       {
