@@ -279,3 +279,18 @@
 
 // Created => "bookingModel.js"
 // => Created Schema using Mongoose
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+// #16
+// Creating New Bookings on Checkout Sucess
+
+// Created => "createBookingCheckout" in "bookingController.js"
+// Used => "success_url:" to get (req.params) To store bookings containing (user.id, tour.id, price)
+
+// ------------------------------------------------- res.redirect()
+// To redirect to URL
+// Created a new req to new URL
+
+// ********************** FIXEd BUG ///////////////////
+// script(src='https://js.stripe.com/v3/') => Moved from "tour.pug" to "base.pug"
