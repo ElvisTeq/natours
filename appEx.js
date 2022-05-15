@@ -49,7 +49,7 @@ app.get('/api/v1/tours', (req, res) => {
 // ? => optional, if id is not enter, it will not throw err
 app.get('/api/v1/tours/:id?', (req, res) => {
   // req.params => all parameters enter on the URL
-  console.log(req.params);
+  // console.log(req.params);
 
   // Get ID param in URL & convert to number
   const id = +req.params.id;

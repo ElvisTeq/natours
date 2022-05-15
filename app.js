@@ -18,6 +18,8 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 // To parse incoming cookies request
 const cookieParser = require('cookie-parser');
+// To Compress all TEXT sent to CLIENT
+const compression = require('compression');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -120,6 +122,8 @@ app.use(
     ],
   })
 );
+
+app.use(compression());
 
 // #10 _____________________________________________________________
 // Creating Middleware

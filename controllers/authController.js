@@ -59,7 +59,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   });
 
   const url = `${req.protocol}://${req.get('host')}/me`;
-  console.log(url);
+  //console.log(url);
   // Email (class) => ("takes user.data" and "url")
   // .sendWelcome() => Send Email
   await new Email(newUser, url).sendWelcome();
@@ -334,7 +334,7 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   // 1) Get user from collection
   // .select('+password') => because "select: false" in the schema
   const user = await User.findById(req.user.id).select('+password');
-  console.log(user);
+  //console.log(user);
 
   // 2) Check if POSTed current password is correct
   if (!(await user.correctPassword(req.body.passwordCurrent, user.password))) {

@@ -8,7 +8,7 @@ export const login = async (email, password) => {
   try {
     const res = await axios({
       method: 'POST', // Type of request
-      url: 'http://127.0.0.1:3000/api/v1/users/login', // URL to request
+      url: '/api/v1/users/login', // URL to request
       data: {
         email, // email: email
         password, // password: password
@@ -32,11 +32,12 @@ export const logout = async () => {
   try {
     const res = await axios({
       method: 'GET',
-      url: 'http://127.0.0.1:3000/api/v1/users/logout',
+      url: '/api/v1/users/logout',
     });
 
     if ((res.data.status = 'success')) location.reload(true); // Forces a reload form the server and not from browser
   } catch (err) {
+    console.log(err.response);
     showAlert('error', 'Error logging out!');
   }
 };

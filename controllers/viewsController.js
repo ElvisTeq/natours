@@ -47,7 +47,7 @@ exports.getTour = catchAsync(async (req, res, next) => {
       title: `${tour.name} Tour`,
       tour,
     });
-  console.log(tour.user);
+  //console.log(tour.user);
 });
 
 // Display Login form

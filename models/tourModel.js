@@ -227,11 +227,11 @@ tourSchema.pre(/^find/, function (next) {
 });
 // ___________________________________________________________
 
-tourSchema.post(/^find/, function (docs, next) {
-  // To show that this runs after the code on top
-  console.log(`Query took ${Date.now() - this.start} milliseconds!`);
-  next();
-});
+// tourSchema.post(/^find/, function (docs, next) {
+//   // To show that this runs after the code on top
+//   console.log(`Query took ${Date.now() - this.start} milliseconds!`);
+//   next();
+// });
 
 // ___________________________________________________________
 // #24 - S-8
