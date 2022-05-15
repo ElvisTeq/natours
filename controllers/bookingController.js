@@ -53,3 +53,9 @@ exports.createBookingCheckout = async (req, res, next) => {
   // This will redirect to ("/") => which will trigger (.get('/')) in "viewRoutes.js"
   // No need to call next() => This function will be called again with no (req.query)
 };
+
+exports.createBooking = factory.createOne(Booking);
+exports.getBooking = factory.getOne(Booking);
+exports.getAllBookings = factory.getAll(Booking);
+exports.updateBooking = factory.updateOne(Booking);
+exports.deleteBooking = factory.deleteOne(Booking);

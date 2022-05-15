@@ -307,3 +307,11 @@
 // -------------------------------------------------- Tour.find({ _id: { $in: tourIDs } });
 // to Find the Tour IDs in (tourIDs)
 // (tourIDs) => Array of tourIDs
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+// #18
+// Finishing the Bookings API
+
+// Finished => "bookingRoutes.js"
+// Implemented => CRUD
