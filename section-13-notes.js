@@ -294,3 +294,16 @@
 
 // ********************** FIXEd BUG ///////////////////
 // script(src='https://js.stripe.com/v3/') => Moved from "tour.pug" to "base.pug"
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+// #17
+// Rendering a User's Booked Tours
+
+// Added => router for (/my-tours)
+
+// Created => "getMyTours()" in "viewsController.js"
+
+// -------------------------------------------------- Tour.find({ _id: { $in: tourIDs } });
+// to Find the Tour IDs in (tourIDs)
+// (tourIDs) => Array of tourIDs
