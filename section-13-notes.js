@@ -249,7 +249,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 
 // #14
-// Processing Paymens on the Front-End
+// Processing Payments on the Front-End
 
 // Using => if/else in PUG "tour.pug"
 // => for the book tour button, to check if logged in or not => to redirect to login page
@@ -271,3 +271,11 @@
 
 // ********************* ADDITIONAL NOTES *************************
 // in HTML/PUG => data-tour-id = dataset.tourId ("-" is automatically converte into camelcase notation)
+
+////////////////////////////////////////////////////////////////////////////////////////
+
+// #15
+// Modelling the Bookings
+
+// Created => "bookingModel.js"
+// => Created Schema using Mongoose
