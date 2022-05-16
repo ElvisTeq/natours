@@ -7,4 +7,4 @@ Implemented: Payments with Stripe / Map with Mapbox / JWT / Image uploads with M
 https://tour-map-elvis.herokuapp.com/
 
 For Sign-in Testing Use:
-email: admin@natours.io / password: test1234
+email: test@example.com / password: test1234
