@@ -76,4 +76,4 @@ if (bookBtn)
 
 const alertMessage = document.querySelector('body').dataset.alert;
 // Alert is added in "alert()" in "viewsController"
-if (alert) showAlert('success', alertMessage, 20);
+if (alertMessage) showAlert('success', alertMessage, 20);
