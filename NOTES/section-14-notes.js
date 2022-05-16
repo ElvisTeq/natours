@@ -68,3 +68,14 @@
 
 // ----------------------------------------------- app.enable('trust proxy');
 // Added => "app.js"
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+// #4
+// Responding to a SIGTERM Signal
+
+// SIGTERM
+// => HEROKU every 24 hrs will send a SIGTERM to out app to close our server
+
+// Implemented in => "server.js"
+// Handling SIGTERM Signal

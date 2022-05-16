@@ -60,6 +60,16 @@ process.on('unhandledRejection', (err) => {
     process.exit(1);
   });
 });
+// _____________________________________________________________
+// #4 - s14
+// Responding to a SIGTERM Signal
+
+process.on('SIGTERM', () => {
+  console.log('*****SIGTERM RECEIVED. Shutting down gracefully*****');
+  server.close(() => {
+    console.log('***** Process terminated! *****');
+  });
+});
 
 // #2 __________________________________________________________
 // Creating a simple Tour model
