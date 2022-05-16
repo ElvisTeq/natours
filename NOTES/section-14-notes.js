@@ -36,11 +36,13 @@
 // Creates link for our APP
 
 // ----------------------------------------------- git push heroku master
+// To deploy/redeploy application
 
 // ----------------------------------------------- heroku open
 // To open app on heroku
 
 // ----------------------------------------------- heroku logs --tail
+// Log heroku
 
 // Heroku wont work because (confing.env) is in (.gitignore)
 // => So we have to manually assign its value
@@ -79,3 +81,9 @@
 
 // Implemented in => "server.js"
 // Handling SIGTERM Signal
+
+// ----------------------------------------------- heroku ps
+// to check HEROKU "Dino"
+
+// ----------------------------------------------- heroku ps:restart
+// Restarting keroku
