@@ -1,10 +1,10 @@
 const multer = require('multer'); // to handle multi-part form data (upload img)
 const sharp = require('sharp'); // To resize images (Node.js)
 const fs = require('fs');
-const Tour = require('./../models/tourModel');
-const APIFeatures = require('./../utils/apiFeatures');
-const catchAsync = require('./../utils/catchAsync');
-const AppError = require('./../utils/appError');
+const Tour = require('../models/tourModel');
+const APIFeatures = require('../utils/apiFeatures');
+const catchAsync = require('../utils/catchAsync');
+const AppError = require('../utils/appError');
 const factory = require('./handlerFactory');
 
 //___________________________________________________________________
