@@ -83,7 +83,11 @@ const limiter = rateLimit({
 app.use('/api', limiter);
 
 // This needs to be called before (body parser)
-app.post('/webhook-checkout', express.raw(), bookingController.webhookCheckout);
+app.post(
+  '/webhook-checkout',
+  express.raw({ type: 'application/json' }),
+  bookingController.webhookCheckout
+);
 
 // #18 _____________________________________________________________
 // Environment Variables
