@@ -5,7 +5,7 @@ import { displayMap } from './mapbox';
 import { login, logout } from './login';
 import { updateSettings } from './updateSettings';
 import { bookTour } from './stripe';
-import { showAlert } from './alerts';
+import { showAlert } from './alert';
 
 // DOM ELEMENTS (To prevent error if content don't exist)
 const mapBox = document.getElementById('map'); // Get "#map" data in "tour.pug"
