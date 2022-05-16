@@ -21,6 +21,8 @@ const cookieParser = require('cookie-parser');
 // To Compress all TEXT sent to CLIENT
 const compression = require('compression');
 
+const bodyParser = require('body-parser');
+
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 const tourRouter = require('./routes/tourRoutes');
@@ -85,7 +87,7 @@ app.use('/api', limiter);
 // This needs to be called before (body parser)
 app.post(
   '/webhook-checkout',
-  express.raw({ type: 'application/json' }),
+  bodyParser.raw({ type: 'application/json' }),
   bookingController.webhookCheckout
 );
 
