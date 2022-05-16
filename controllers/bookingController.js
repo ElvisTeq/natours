@@ -30,7 +30,9 @@ exports.getCheckoutSession = async (req, res, next) => {
       {
         name: `${tour.name} Tour`,
         description: tour.summary,
-        images: [`https://www.natours.dev/img/tours/${tour.imageCover}`], // takes a array if images
+        images: [
+          `${req.protocol}://${req.get('host')}/img/tours/${tour.imageCover}`,
+        ], // takes a array if images
         amount: tour.price * 100,
         currency: 'usd',
         quantity: 1,
@@ -49,7 +51,7 @@ exports.getCheckoutSession = async (req, res, next) => {
 const createBookingCheckout = async (session) => {
   const tour = session.client_reference_id;
   const user = (await User.findOne({ email: session.customer_email })).id;
-  const price = session.line_items[0].amount / 100;
+  const price = session.display_items[0].amount / 100;
   await Booking.create({ tour, user, price });
 };
 
@@ -68,7 +70,7 @@ exports.webhookCheckout = (req, res, next) => {
   }
 
   // We defined this in "Stripe" Webhook creation
-  if (event.type === 'checkout.session.complete')
+  if (event.type === 'checkout.session.completed')
     createBookingCheckout(event.data.object); // event.data.object === (session)
 
   res.status(200).json({ received: true });
