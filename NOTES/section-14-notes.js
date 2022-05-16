@@ -87,3 +87,26 @@
 
 // ----------------------------------------------- heroku ps:restart
 // Restarting keroku
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+// #5
+// Implementing CORS (Cross Origin Resource Sharing)
+
+// To allow access for anyone to our API request
+
+// ----------------------------------------------- npm i cors
+
+// ----------------------------------------------- app.use(cors());
+// (To allow everyone to acess our API) => only (GET)
+
+// ----------------------------------------------- cors()
+// We can also specify routes we want to allow
+// app.use('/api/v1/tours', cors(), tourRouter);
+
+// ----------------------------------------------- app.use(cors({ origin: 'URL' }))
+// We can also specify the URL that is allowed to acces our API
+
+// ----------------------------------------------- app.options('*', cors());
+// To allow (POST) (DELETE) (PATCH) in our app
+// ('*') => URL

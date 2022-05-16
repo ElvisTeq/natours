@@ -62,6 +62,8 @@ app.use(helmet());
 
 app.use(cors());
 
+app.options('*', cors());
+
 // _________________________________________________________________
 // #19 - s10
 // Implementing Rate Limiting
