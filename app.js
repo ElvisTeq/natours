@@ -28,6 +28,7 @@ const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const viewRouter = require('./routes/viewRoutes');
 const bookingRouter = require('./routes/bookingRoutes');
+const bookingController = require('./controllers/bookingController');
 
 const cors = require('cors'); // Fixed error
 
@@ -80,6 +81,13 @@ const limiter = rateLimit({
 // Apply limiter to "/api"
 // => if URL contains /api
 app.use('/api', limiter);
+
+// This needs to be called before (body parser)
+app.post(
+  '/webhook-checkout',
+  express.raw({ type: 'application/json' }),
+  bookingController.webhookCheckout
+);
 
 // #18 _____________________________________________________________
 // Environment Variables

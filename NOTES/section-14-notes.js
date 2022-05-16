@@ -110,3 +110,21 @@
 // ----------------------------------------------- app.options('*', cors());
 // To allow (POST) (DELETE) (PATCH) in our app
 // ('*') => URL
+
+////////////////////////////////////////////////////////////////////////////////////////////
+
+// #6
+// Finishing Payments with Stripe Webhooks
+//  => How to use Stripe
+
+// Added => Webhooks in Stripe
+// Created URL with webhook => https://tour-map-elvis.herokuapp.com/webhook-checkout
+
+// Added => in "app.js"
+// => app.post('/webhook-checkout', express.raw({ type: 'application/json' }), bookingController.webhookCheckout);
+
+// Created => "webhookCheckout()" in "bookingController.js"
+// => implementation of Stripe Webhook
+
+// **************************** Important *******************************
+// Webhook needs to be called before (body parsing) the html
