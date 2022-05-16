@@ -34,6 +34,9 @@ const cors = require('cors'); // Fixed error
 const app = express();
 // We store/assign the functions to 'app'
 
+// Testing for Secure HTTPS Connections
+app.enable('trust proxy'); // Express
+
 //____________________________________________________________________
 // #1 - s12
 // Setting up Pug in Express
