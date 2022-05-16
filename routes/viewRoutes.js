@@ -5,6 +5,9 @@ const bookingController = require('../controllers/bookingController');
 
 const router = express.Router();
 
+// This checks if (alert=booking) in req.query for (sucess payment)
+router.use(viewsController.alerts);
+
 // "/" => localhost:3000 => main page = overview
 router.get('/', authController.isLoggedIn, viewsController.getOverview);
 router.get('/tour/:slug', authController.isLoggedIn, viewsController.getTour);

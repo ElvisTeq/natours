@@ -4,6 +4,14 @@ const Booking = require('../models/bookingModel');
 const catchAsync = require('../utils/catchAsync');
 const User = require('../models/userModel');
 
+exports.alerts = (req, res, next) => {
+  const { alert } = req.query; // (alert=booking) was added to the payment "sucess_url"
+  if (alert === 'booking')
+    res.locals.alert =
+      "Your booking was successfull! Please Check your email for a confirmation. If your booking doesn't show up here inmediately, please come back later";
+  next();
+};
+
 //____________________________________________________________________
 // #5 - s12
 // Extending Our Base Templates with Blocks

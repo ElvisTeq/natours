@@ -21,7 +21,7 @@ exports.getCheckoutSession = async (req, res, next) => {
     //   req.params.tourId
     // }&user=${req.user.id}&price=${tour.price}`,
 
-    success_url: `${req.protocol}://${req.get('host')}/my-tours`,
+    success_url: `${req.protocol}://${req.get('host')}/my-tours?alert=booking`, // alert=booking (will trigger "alert()")
     cancel_url: `${req.protocol}://${req.get('host')}/tour/${tour.slug}`, // URL to deridect when cancel payment
     customer_email: req.user.email, // autofill customer email
     client_reference_id: req.params.tourId, // ID reference for the client
@@ -49,10 +49,12 @@ exports.getCheckoutSession = async (req, res, next) => {
 
 // Get data using the data pass on stripe to create pay session
 const createBookingCheckout = async (session) => {
+  // This data is how is stored in "Stripe.com"
   const tour = session.client_reference_id;
   const user = (await User.findOne({ email: session.customer_details.email }))
     .id;
   const price = session.amount_total / 100;
+  // Create Booking card
   await Booking.create({ tour, user, price });
 };
 

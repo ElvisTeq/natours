@@ -126,7 +126,18 @@
 // Created => "webhookCheckout()" in "bookingController.js"
 // => implementation of Stripe Webhook
 
-// **************************** Important *******************************
-// Webhook needs to be called before (body parsing) the html
+// => bodyParser.raw({ type: 'application/json' }),
 
 // ------------------------------------------------- npm i body-parser
+
+// Added => "body(data-alert=`${alert ? alert : ''}`)" in "base.pug"
+
+// Created => "alerts()" in "viewsController.js"
+// To check if URL contains "alert=booking"
+// if do => add/create "alert" (req.locals.alert) = with message alert
+
+// Then => in "index.js", Check if body contains HTML Body contains "alert"
+// If not => no message
+
+// **************************** Important *******************************
+// Webhook needs to be called before (body parsing) the html

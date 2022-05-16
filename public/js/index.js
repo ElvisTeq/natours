@@ -5,6 +5,7 @@ import { displayMap } from './mapbox';
 import { login, logout } from './login';
 import { updateSettings } from './updateSettings';
 import { bookTour } from './stripe';
+import { showAlert } from './alerts';
 
 // DOM ELEMENTS (To prevent error if content don't exist)
 const mapBox = document.getElementById('map'); // Get "#map" data in "tour.pug"
@@ -72,3 +73,7 @@ if (bookBtn)
     const { tourId } = e.target.dataset;
     bookTour(tourId);
   });
+
+const alertMessage = document.querySelector('body').dataset.alert;
+// Alert is added in "alert()" in "viewsController"
+if (alert) showAlert('success', alertMessage, 20);

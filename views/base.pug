@@ -14,8 +14,8 @@ html
       //- Interpolation Code #{JS}
       title Natours | #{title}
       
-  
-  body
+  //- (dataset.alert) in JS
+  body(data-alert=`${alert ? alert : ''}`)
     // HEADER
     include _header
 
